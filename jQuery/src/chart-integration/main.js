@@ -195,7 +195,7 @@ const chartIntegration = (function () {
                 }
             }]
         });
-        return $('<div id="popup-content-data-panel">').append(formContainer);
+        return $('<div id="popup-content-data-panel" />').append(formContainer);
     }
 
     function enableAdaptivity() {

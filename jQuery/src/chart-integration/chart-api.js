@@ -67,7 +67,6 @@ const chartAPI = (function() {
             : container.dxChart(chartConfig).dxChart('instance')
     }
 
-
     return {
         createChart,
         getDataForChart,
