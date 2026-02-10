@@ -16,6 +16,7 @@ The Popup implements:
 ![Chart Popup](images/image-template.png)
 
 Popup adapts to narrow screens:
+
 ![Narrow Chart Popup](images/image-adaptive.png)
 
 Use either the DataGrid [toolbar button](https://js.devexpress.com/Documentation/Guide/UI_Components/DataGrid/Getting_Started_with_DataGrid/#Customize_the_Toolbar) or [context menu](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxDataGrid/Configuration/#onContextMenuPreparing) to invoke the Chart Popup.
