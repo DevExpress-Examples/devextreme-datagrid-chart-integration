@@ -4,19 +4,21 @@
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 [![](https://img.shields.io/badge/💬_Leave_Feedback-feecdd?style=flat-square)](#does-this-example-address-your-development-requirementsobjectives)
 <!-- default badges end -->
-# DevExtreme Examples Template
+# DevExtreme DataGrid - Chart Integration
 
-This is the repository template for creating new examples. 
+This example demonstrates how to add a Popup with DevExtreme Chart bound to the DataGrid's data. The Chart takes into account the DataGrid filter and selection.
+The Popup implements:
+- Series Type chooser
+- Chart Exporting
+- Chart Printing
+- Data Settings (Category Axis, Series, Toggle to show all or only selected rows)
 
-![Example image](images/image-template.png)
+![Chart Popup](images/image-template.png)
 
-Use **DevExtreme _Product_ - _Task_** template for a title. 
+Popup adapts to narrow screens:
+![Narrow Chart Popup](images/image-adaptive.png)
 
-Describe the solved task in this section.
-
-Put a screenshot/gif that illustrates the result here.
-
-Then, add implementation details (steps, code snippets, and other technical information in a free form), or add a link to an existing document with implementation details. 
+Use either the DataGrid [toolbar button](https://js.devexpress.com/Documentation/Guide/UI_Components/DataGrid/Getting_Started_with_DataGrid/#Customize_the_Toolbar) or [context menu](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxDataGrid/Configuration/#onContextMenuPreparing) to invoke the Chart Popup.
 
 ## Files to Review
 
@@ -29,22 +31,22 @@ Then, add implementation details (steps, code snippets, and other technical info
     - [App.vue](Vue/src/App.vue)
     - [Home.vue](Vue/src/components/HomeContent.vue)
 - **jQuery**
+    - [Instructions](jQuery/README.md)
     - [index.html](jQuery/src/index.html)
     - [index.js](jQuery/src/index.js)
+    - [chart-integration/chart-api.js](jQuery/src/chart-integration/chart-api.js)
+    - [chart-integration/chart-data.js](jQuery/src/chart-integration/chart-data.js)
+    - [chart-integration/helpers.js](jQuery/src/chart-integration/helpers.js)
+    - [chart-integration/main.js](jQuery/src/chart-integration/main.js)
 - **ASP.NET Core**    
     - [Index.cshtml](ASP.NET%20Core/Views/Home/Index.cshtml)
 
 ## Documentation
 
-- link
-- link
-- ...
+- [Chart Overview](https://js.devexpress.com/Documentation/Guide/UI_Components/Chart/Overview/)
+- [PieChart Overview](https://js.devexpress.com/Documentation/Guide/UI_Components/PieChart/Series/Overview/)
+- [Popup Overview](https://js.devexpress.com/Documentation/Guide/UI_Components/Popup/Overview/)
 
-## More Examples
-
-- link
-- link
-- ...
 <!-- feedback -->
 ## Does this example address your development requirements/objectives?
 
