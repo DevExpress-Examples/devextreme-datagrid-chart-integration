@@ -12,16 +12,19 @@ import type { DxDropDownButtonTypes } from 'devextreme-vue/drop-down-button';
 import SeriesTypesTabs from './SeriesTypesTabs.vue';
 import ChartViewer from './ChartViewer.vue';
 import ChartSettings from './ChartSettings.vue';
+
 import { seriesTypes, defaults } from '../utils/chartData';
 import { capitalizeFirst } from '../utils/helpers';
 import { sizes, subscribe, unsubscribe } from '../utils/media-query';
 import type { CategoryField, SeriesField, SeriesType } from '../utils/chartData';
 import type { ChartDataSource } from '../utils/chartApi';
+import type { GridDataItem } from '../data/gridData';
 
 interface Props {
   visible: boolean;
   gridInstance?: dxDataGrid;
   onlySelected: boolean;
+  selectedRowsData: GridDataItem[];
 }
 
 const props = defineProps<Props>();
@@ -67,18 +70,14 @@ const chartDataSource = computed<ChartDataSource>(() => {
   }
   return {
     store: props.onlySelected
-      ? props.gridInstance.getSelectedRowsData()
+      ? props.selectedRowsData
       : props.gridInstance.getDataSource()!.store(),
     filter: props.onlySelected ? null : props.gridInstance.getCombinedFilter(true),
     paginate: false,
   };
 });
 const hasSelectedRows = computed(() => {
-  if (props.onlySelected) {
-    return true;
-  } else {
-    return props.gridInstance ? props.gridInstance.getSelectedRowsData().length > 0 : false;
-  }
+  return props.selectedRowsData.length > 0;
 });
 
 function onSeriesTypeChange(newType: SeriesType) {

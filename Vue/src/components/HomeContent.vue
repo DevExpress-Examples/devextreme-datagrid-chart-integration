@@ -16,7 +16,7 @@ import DxButton from 'devextreme-vue/button';
 import ArrayStore from 'devextreme/data/array_store';
 
 import ChartPopup from './ChartPopup.vue';
-import { gridData } from '../data/gridData';
+import { gridData, type GridDataItem } from '../data/gridData';
 import { getIcon } from '../utils/helpers';
 
 const gridRef = ref<DxDataGrid>();
@@ -31,6 +31,7 @@ const gridDataStore = new ArrayStore({
 const gridInstance = computed<dxDataGrid | undefined>(() => gridRef.value?.instance);
 
 const hasSelectedRows = ref(false);
+const selectedRowsData = ref<GridDataItem[]>([]);
 
 watchEffect(() => {
   if (!gridInstance.value) return false;
@@ -54,8 +55,9 @@ function onRowClick(e: DxDataGridTypes.RowClickEvent) {
   }
 }
 
-function onSelectionChanged(e: DxDataGridTypes.SelectionChangedEvent) {
+function onSelectionChanged(e: DxDataGridTypes.SelectionChangedEvent<GridDataItem, number>) {
   hasSelectedRows.value = e.component.getSelectedRowsData().length > 0;
+  selectedRowsData.value = e.component.getSelectedRowsData();
 }
 
 function onContextMenuPreparing(e: DxDataGridTypes.ContextMenuPreparingEvent) {
@@ -132,6 +134,7 @@ function onContextMenuPreparing(e: DxDataGridTypes.ContextMenuPreparingEvent) {
       v-model:visible="chartPopupVisible"
       v-model:only-selected="hasSelectedRows"
       :grid-instance="gridInstance"
+      :selected-rows-data="selectedRowsData"
     />
   </div>
 </template>
