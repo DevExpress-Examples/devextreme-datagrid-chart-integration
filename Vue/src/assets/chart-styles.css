@@ -1,0 +1,62 @@
+.chart-popup {
+  &>.dx-overlay-content {
+    background: #fafafa;
+  }
+
+  .dx-popup-content {
+    padding: 24px;
+  }
+}
+
+
+
+#popup-content-series-list {
+  .dx-tab-text {
+    column-gap: 6px;
+  }
+
+  .dx-item.dx-tab.dx-state-hover {
+    background-color: #f5f5f5;
+  }
+
+  .dx-item-content.dx-tab-content {
+    padding-left: 2px;
+  }
+
+  &.dx-tabs-styling-mode-secondary.dx-tab-indicator-position-right .dx-tab::after {
+    left: 0;
+  }
+}
+
+.custom-icon {
+  width: 20px;
+  height: 20px;
+  fill: #0f6cbd;
+}
+
+.dx-item.dx-tab.dx-tab-selected .custom-icon .icon-filled {
+  display: inline-block;
+}
+
+.dx-item.dx-tab.dx-tab-selected .custom-icon .icon-outline {
+  display: none;
+}
+
+.dx-item.dx-tab:not(.dx-tab-selected) .custom-icon .icon-filled {
+  display: none;
+}
+
+.dx-button-default .custom-icon {
+  fill: #fff;
+}
+
+.dx-menu-item-has-icon .custom-icon {
+  fill: unset;
+}
+
+.dx-toolbar-menu-section .dx-list-item-content:has(.dx-dropdownbutton) {
+  padding: 0;
+}
+
+
+

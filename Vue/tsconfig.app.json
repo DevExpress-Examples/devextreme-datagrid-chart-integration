@@ -9,6 +9,7 @@
     "preserveValueImports": false,
     "importsNotUsedAsValues": "remove",
     "verbatimModuleSyntax": true,
+      "moduleResolution": "bundler",
     "paths": {
       "@/*": ["./src/*"]
     }
