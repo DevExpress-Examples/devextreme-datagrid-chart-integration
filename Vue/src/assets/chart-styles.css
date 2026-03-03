@@ -8,8 +8,6 @@
   }
 }
 
-
-
 #popup-content-series-list {
   .dx-tab-text {
     column-gap: 6px;
@@ -57,6 +55,3 @@
 .dx-toolbar-menu-section .dx-list-item-content:has(.dx-dropdownbutton) {
   padding: 0;
 }
-
-
-
