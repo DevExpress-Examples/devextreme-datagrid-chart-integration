@@ -260,6 +260,7 @@ onUnmounted(() => {
 <style scoped>
 .chart-title {
   font-size: 16px;
+  font-weight: 500;
   color: var(--fluent-colors-grey-900);
 }
 
