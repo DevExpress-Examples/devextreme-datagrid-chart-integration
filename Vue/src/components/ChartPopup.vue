@@ -174,6 +174,8 @@ onUnmounted(() => {
                 styling-mode="text"
                 icon="export"
                 text="Export"
+                display-expr="text"
+                key-expr="text"
                 :items="exportItems"
                 @item-click="onExportItemClick"
               />
