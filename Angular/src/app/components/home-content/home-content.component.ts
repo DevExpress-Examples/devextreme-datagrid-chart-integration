@@ -4,19 +4,20 @@ import type { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
 import ArrayStore from 'devextreme/data/array_store';
 import type dxDataGrid from 'devextreme/ui/data_grid';
 
-import { gridData, type GridDataItem } from '../../data/grid-data';
+import { GridDataService, type GridDataItem } from '../../data/grid-data';
 import { getIcon } from '../../utils/helpers';
 
 @Component({
   selector: 'app-home-content',
   templateUrl: './home-content.component.html',
+  providers:[GridDataService],
   styleUrls: ['./home-content.component.scss'],
 })
 export class HomeContentComponent {
   @ViewChild('gridRef') gridRef?: DxDataGridComponent;
 
   readonly gridDataStore = new ArrayStore<GridDataItem, number>({
-    data: gridData,
+    data: this.gridDataService.getData(),
     key: 'Id',
   });
 
@@ -24,6 +25,8 @@ export class HomeContentComponent {
   isDataGridEmpty = false;
   hasSelectedRows = false;
   selectedRowsData: GridDataItem[] = [];
+
+  constructor(private readonly gridDataService: GridDataService) {}
 
   get gridInstance(): dxDataGrid<GridDataItem, number> | undefined {
     return this.gridRef?.instance;

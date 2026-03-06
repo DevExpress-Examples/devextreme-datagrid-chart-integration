@@ -1,3 +1,5 @@
+import { Injectable } from '@angular/core';
+
 export interface GridDataItem {
   Id: number;
   Product: string;
@@ -8,7 +10,7 @@ export interface GridDataItem {
   ExporterRegion: string;
 }
 
-export const gridData: GridDataItem[] = [
+const gridData: GridDataItem[] = [
   { Id: 1, Product: 'Wheat', ExportCategory: 'Agriculture', ExportValue: 1250000, TaxPaid: 95000, LogisticsCost: 140000, ExporterRegion: 'North Region' },
   { Id: 2, Product: 'Corn', ExportCategory: 'Agriculture', ExportValue: 980000, TaxPaid: 72000, LogisticsCost: 110000, ExporterRegion: 'Valley District' },
   { Id: 3, Product: 'Fresh Apples', ExportCategory: 'Agriculture', ExportValue: 740000, TaxPaid: 52000, LogisticsCost: 98000, ExporterRegion: 'Orchard Belt' },
@@ -39,3 +41,12 @@ export const gridData: GridDataItem[] = [
   { Id: 22, Product: 'Meat', ExportCategory: 'Food & Beverages', ExportValue: 1560000, TaxPaid: 118000, LogisticsCost: 130000, ExporterRegion: 'Southern Plains' },
   { Id: 23, Product: 'Water', ExportCategory: 'Food & Beverages', ExportValue: 610000, TaxPaid: 47000, LogisticsCost: 65000, ExporterRegion: 'Spring Source Area' },
 ];
+
+@Injectable({
+  providedIn: 'root',
+})
+export class GridDataService {
+  getData(): GridDataItem[] {
+    return gridData;
+  }
+}
