@@ -15,16 +15,16 @@
     <div id="popup-content-data">
       <dx-toolbar id="popup-content-toolbar">
         <dxi-item location="before" template="titleTemplate"></dxi-item>
-        <ng-container *dxTemplate="let _ of 'titleTemplate'">
+        <div *dxTemplate="let _ of 'titleTemplate'">
           <div class="chart-title">{{ chartTitle }}</div>
-        </ng-container>
+        </div>
 
         <dxi-item
           location="after"
           [locateInMenu]="isSmall ? 'always' : 'auto'"
           template="exportTemplate"
         ></dxi-item>
-        <ng-container *dxTemplate="let _ of 'exportTemplate'">
+        <div *dxTemplate="let _ of 'exportTemplate'">
           <dx-drop-down-button
             stylingMode="text"
             icon="export"
@@ -34,7 +34,7 @@
             [items]="exportItems"
             (onItemClick)="onExportItemClick($event)"
           ></dx-drop-down-button>
-        </ng-container>
+        </div>
 
         <dxi-item
           location="after"
@@ -47,7 +47,7 @@
           location="after"
           template="settingsTemplate"
         ></dxi-item>
-        <ng-container *dxTemplate="let _ of 'settingsTemplate'">
+        <div *dxTemplate="let _ of 'settingsTemplate'">
           <dx-button
             id="settings-button"
             stylingMode="text"
@@ -61,7 +61,7 @@
               <i class="dx-icon dx-icon-spindown"></i>
             </div>
           </dx-button>
-        </ng-container>
+        </div>
       </dx-toolbar>
 
       <app-chart-viewer
