@@ -20,8 +20,15 @@
         </div>
 
         <dxi-item
+          *ngIf="!isSmall"
           location="after"
-          [locateInMenu]="isSmall ? 'always' : 'auto'"
+          locateInMenu="auto"
+          template="exportTemplate"
+        ></dxi-item>
+        <dxi-item
+          *ngIf="isSmall"
+          location="after"
+          locateInMenu="always"
           template="exportTemplate"
         ></dxi-item>
         <div *dxTemplate="let _ of 'exportTemplate'">
@@ -35,12 +42,19 @@
             (onItemClick)="onExportItemClick($event)"
           ></dx-drop-down-button>
         </div>
-
         <dxi-item
+          *ngIf="!isSmall"
           location="after"
-          [locateInMenu]="isSmall ? 'always' : 'auto'"
+          locateInMenu="auto"
           widget="dxButton"
-          [options]="{ icon: 'print', text: 'Print', stylingMode: 'text', onClick: onPrintClick.bind(this) }"
+          [options]="printButtonSettings"
+        ></dxi-item>
+        <dxi-item
+          *ngIf="isSmall"
+          location="after"
+          locateInMenu="always"
+          widget="dxButton"
+          [options]="printButtonSettings"
         ></dxi-item>
 
         <dxi-item

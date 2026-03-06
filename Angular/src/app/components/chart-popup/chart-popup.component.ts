@@ -41,7 +41,7 @@ export class ChartPopupComponent implements OnInit, OnDestroy {
     settingsVisible = false;
     isSmall = false;
     cache: { [key: string]: ChartDataSource } = {};
-   
+    printButtonSettings = { icon: 'print', text: 'Print', stylingMode: 'text', onClick: this.onPrintClick.bind(this) }
     readonly wrapperAttr = { class: 'chart-popup' };
     readonly popoverPosition: PositionConfig = {
         at: { x: 'right', y: 'bottom' },
