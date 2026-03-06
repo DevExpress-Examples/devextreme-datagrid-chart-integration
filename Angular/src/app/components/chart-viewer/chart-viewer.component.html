@@ -1,0 +1,26 @@
+<ng-container *ngIf="!isPieChart">
+  <dx-chart
+    #chartRef
+    class="popup-content-chart"
+    [dataSource]="$any(chartConfig).dataSource"
+    [commonSeriesSettings]="$any(chartConfig).commonSeriesSettings"
+    [series]="$any(chartConfig).series"
+    [legend]="$any(chartConfig).legend"
+    [animation]="$any(chartConfig).animation"
+    [argumentAxis]="$any(chartConfig).argumentAxis"
+    [valueAxis]="$any(chartConfig).valueAxis"
+  ></dx-chart>
+</ng-container>
+
+<ng-container *ngIf="isPieChart">
+  <dx-pie-chart
+    #pieChartRef
+    class="popup-content-chart"
+    [type]="$any(chartConfig).type"
+    [dataSource]="$any(chartConfig).dataSource"
+    [commonSeriesSettings]="$any(chartConfig).commonSeriesSettings"
+    [series]="$any(chartConfig).series"
+    [legend]="$any(chartConfig).legend"
+    [animation]="$any(chartConfig).animation"
+  ></dx-pie-chart>
+</ng-container>

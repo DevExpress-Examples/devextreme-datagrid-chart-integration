@@ -1,0 +1,52 @@
+<div class="demo-container">
+   <dx-data-grid
+    #gridRef
+    id="grid"
+    [dataSource]="gridDataStore"
+    [showBorders]="true"
+    [columnAutoWidth]="true"
+    (onRowClick)="onRowClick($event)"
+    (onSelectionChanged)="onSelectionChanged($event)"
+    (onContextMenuPreparing)="onContextMenuPreparing($event)"
+  >
+    <dxo-data-grid-selection mode="multiple"></dxo-data-grid-selection>
+    <dxo-data-grid-header-filter [visible]="true"></dxo-data-grid-header-filter>
+    <dxo-data-grid-filter-row [visible]="true"></dxo-data-grid-filter-row>
+    <dxo-data-grid-paging [pageSize]="10"></dxo-data-grid-paging>
+
+    <dxo-data-grid-toolbar [visible]="true">
+      <dxi-item location="after" template="chartButtonTemplate"></dxi-item>
+    </dxo-data-grid-toolbar>
+
+    <div *dxTemplate="let _ of 'chartButtonTemplate'">
+      <dx-button
+        stylingMode="contained"
+        type="default"
+        text="Generate Chart"
+        [disabled]="isDataGridEmpty"
+        (onClick)="showChartPopup()"
+      >
+        <div *dxTemplate="let _ of 'content'">
+          <span [innerHTML]="generateChartButtonIcon"></span>
+          <span class="dx-button-text">Generate Chart</span>
+        </div>
+      </dx-button>
+    </div>
+
+    <dxi-data-grid-column dataField="Product" [width]="170"></dxi-data-grid-column>
+    <dxi-data-grid-column dataField="ExporterRegion" [width]="170"></dxi-data-grid-column>
+    <dxi-data-grid-column dataField="ExportCategory" caption="Category" [width]="170"></dxi-data-grid-column>
+    <dxi-data-grid-column dataField="ExportValue"></dxi-data-grid-column>
+    <dxi-data-grid-column dataField="TaxPaid"></dxi-data-grid-column>
+    <dxi-data-grid-column dataField="LogisticsCost"></dxi-data-grid-column>
+  </dx-data-grid>
+
+  <app-chart-popup
+    [visible]="chartPopupVisible"
+    [gridInstance]="gridInstance"
+    [onlySelected]="hasSelectedRows"
+    [selectedRowsData]="selectedRowsData"
+    (visibleChange)="chartPopupVisible = $event"
+    (onlySelectedChange)="hasSelectedRows = $event"
+  ></app-chart-popup>
+</div>

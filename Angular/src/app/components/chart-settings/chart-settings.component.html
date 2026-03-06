@@ -1,0 +1,30 @@
+<div id="popup-content-data-panel">
+  <dx-form
+    id="popup-data-form"
+    [formData]="formData"
+    labelMode="outside"
+    [showColonAfterLabel]="false"
+    (onFieldDataChanged)="onFieldDataChanged($event)"
+  >
+    <dxi-item
+      dataField="CategoryAxis"
+      editorType="dxSelectBox"
+      [editorOptions]="categoryEditorOptions"
+    ></dxi-item>
+
+    <dxi-item
+      dataField="Series"
+      editorType="dxTagBox"
+      [editorOptions]="seriesEditorOptions"
+    ></dxi-item>
+
+    <dxi-item
+      dataField="OnlySelected"
+      editorType="dxSwitch"
+      cssClass="label-v-center"
+      [editorOptions]="onlySelectedEditorOptions"
+    >
+      <dxo-label location="left" alignment="left"></dxo-label>
+    </dxi-item>
+  </dx-form>
+</div>
