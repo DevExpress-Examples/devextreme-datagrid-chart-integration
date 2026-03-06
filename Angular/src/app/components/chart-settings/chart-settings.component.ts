@@ -34,38 +34,32 @@ export class ChartSettingsComponent implements OnChanges {
     OnlySelected: this.onlySelected,
   };
 
-  get onlySelectedEditorOptions(): object {
+  onlySelectedEditorOptions = this.buildOnlySelectedEditorOptions();
+
+  readonly categoryEditorOptions = {
+    items: this.categoryItems,
+    value: this.currentCategory,
+  };
+
+  readonly seriesEditorOptions = {
+    items: this.seriesItems,
+    value: this.currentSeries,
+  };
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['onlySelected'] || changes['hasSelectedRows']) {
+      this.onlySelectedEditorOptions = this.buildOnlySelectedEditorOptions();
+    }
+  }
+
+  private buildOnlySelectedEditorOptions(): object {
     return {
       elementAttr: { id: 'only-selected-box' },
       value: this.onlySelected,
       disabled: !this.hasSelectedRows,
     };
   }
-
-  get categoryEditorOptions(): object {
-    return {
-      items: this.categoryItems,
-      value: this.currentCategory,
-    };
-  }
-
-  get seriesEditorOptions(): object {
-    return {
-      items: this.seriesItems,
-      value: this.currentSeries,
-    };
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['currentCategory'] || changes['currentSeries'] || changes['onlySelected']) {
-      this.formData = {
-        CategoryAxis: this.currentCategory,
-        Series: [...this.currentSeries],
-        OnlySelected: this.onlySelected,
-      };
-    }
-  }
-
+  
   onFieldDataChanged(e: DxFormTypes.FieldDataChangedEvent): void {
     if (e.dataField === 'CategoryAxis' && typeof e.value === 'string') {
       this.categoryChange.emit(e.value as CategoryField);
