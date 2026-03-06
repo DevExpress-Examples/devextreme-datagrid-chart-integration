@@ -27,7 +27,8 @@
         (onClick)="showChartPopup()"
       >
         <div *dxTemplate="let _ of 'content'">
-          <span [innerHTML]="generateChartButtonIcon"></span>
+          <i class="dx-icon dx-svg-icon"
+            [innerHTML]="generateChartButtonIcon"></i>
           <span class="dx-button-text">Generate Chart</span>
         </div>
       </dx-button>

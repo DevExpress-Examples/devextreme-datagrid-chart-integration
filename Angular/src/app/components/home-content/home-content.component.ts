@@ -6,6 +6,7 @@ import type dxDataGrid from 'devextreme/ui/data_grid';
 
 import { GridDataService, type GridDataItem } from '../../data/grid-data';
 import { getIcon } from '../../utils/helpers';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home-content',
@@ -26,18 +27,14 @@ export class HomeContentComponent {
   hasSelectedRows = false;
   selectedRowsData: GridDataItem[] = [];
 
-  constructor(private readonly gridDataService: GridDataService) {}
+  constructor(private readonly gridDataService: GridDataService, private readonly sanitizer: DomSanitizer) {}
 
   get gridInstance(): dxDataGrid<GridDataItem, number> | undefined {
     return this.gridRef?.instance;
   }
 
-  get generateChartButtonIcon(): string {
-    return getIcon('pie', false);
-  }
-
-  get generateChartContextMenuIcon(): string {
-    return getIcon('pie', true);
+  get generateChartButtonIcon(): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(getIcon('pie', false));
   }
 
   showChartPopup(): void {
@@ -68,7 +65,7 @@ export class HomeContentComponent {
       e.items = [
         {
           text: 'Generate Chart',
-          icon: this.generateChartContextMenuIcon,
+          icon: getIcon('pie', true),
           disabled: this.isDataGridEmpty,
           onItemClick: () => this.showChartPopup(),
         },
