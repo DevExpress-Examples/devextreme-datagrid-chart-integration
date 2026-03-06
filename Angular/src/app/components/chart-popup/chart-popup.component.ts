@@ -1,11 +1,11 @@
 import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  ViewChild,
-  OnInit,
-  OnDestroy,
+    Component,
+    Input,
+    Output,
+    EventEmitter,
+    ViewChild,
+    OnInit,
+    OnDestroy,
 } from '@angular/core';
 import type { DxDropDownButtonTypes } from 'devextreme-angular/ui/drop-down-button';
 import type { PositionConfig } from 'devextreme-angular/common/core/animation';
@@ -20,106 +20,113 @@ import type { CategoryField, SeriesField, SeriesType } from '../../utils/chart-d
 import type { ChartDataSource } from '../../utils/chart-api';
 import type { GridDataItem } from '../../data/grid-data';
 @Component({
-  selector: 'app-chart-popup',
-  templateUrl: './chart-popup.component.html',
-  styleUrls: ['./chart-popup.component.scss'],
+    selector: 'app-chart-popup',
+    templateUrl: './chart-popup.component.html',
+    styleUrls: ['./chart-popup.component.scss']
 })
 export class ChartPopupComponent implements OnInit, OnDestroy {
-  @Input() visible = false;
-  @Input() gridInstance?: dxDataGrid<GridDataItem, number>;
-  @Input() onlySelected = false;
-  @Input() selectedRowsData: GridDataItem[] = [];
+    @Input() visible = false;
+    @Input() gridInstance?: dxDataGrid<GridDataItem, number>;
+    @Input() onlySelected = false;
+    @Input() selectedRowsData: GridDataItem[] = [];
 
-  @Output() visibleChange = new EventEmitter<boolean>();
-  @Output() onlySelectedChange = new EventEmitter<boolean>();
+    @Output() visibleChange = new EventEmitter<boolean>();
+    @Output() onlySelectedChange = new EventEmitter<boolean>();
 
-  @ViewChild('chartViewerRef') chartViewerRef?: ChartViewerComponent;
+    @ViewChild('chartViewerRef') chartViewerRef?: ChartViewerComponent;
 
-  currentSeriesType: SeriesType = seriesTypes[defaults.seriesTypeIndex];
-  currentCategory: CategoryField = defaults.category;
-  currentSeriesFields: SeriesField[] = [...defaults.series];
-  settingsVisible = false;
-  isSmall = false;
+    currentSeriesType: SeriesType = seriesTypes[defaults.seriesTypeIndex];
+    currentCategory: CategoryField = defaults.category;
+    currentSeriesFields: SeriesField[] = [...defaults.series];
+    settingsVisible = false;
+    isSmall = false;
+    cache: { [key: string]: ChartDataSource } = {};
+   
+    readonly wrapperAttr = { class: 'chart-popup' };
+    readonly popoverPosition: PositionConfig = {
+        at: { x: 'right', y: 'bottom' },
+        my: { x: 'right', y: 'top' },
+        offset: { y: -8 },
+    };
+    readonly exportItems = [
+        { icon: 'image', text: 'PNG' },
+        { icon: 'pdffile', text: 'PDF' },
+        { icon: 'jpgfile', text: 'JPEG' },
+        { icon: 'svgfile', text: 'SVG' },
+    ];
 
-  readonly wrapperAttr = { class: 'chart-popup' };
-  readonly popoverPosition: PositionConfig = {
-    at: { x: 'right', y: 'bottom' },
-    my: { x: 'right', y: 'top' },
-    offset: { y: -8 },
-  };
-  readonly exportItems = [
-    { icon: 'image', text: 'PNG' },
-    { icon: 'pdffile', text: 'PDF' },
-    { icon: 'jpgfile', text: 'JPEG' },
-    { icon: 'svgfile', text: 'SVG' },
-  ];
-
-  get popupWidth(): number {
-    return this.isSmall ? 576 : 800;
-  }
-
-  get chartTitle(): string {
-    return `${capitalizeFirst(this.currentSeriesType)} Chart`;
-  }
-
-  get chartDataSource(): ChartDataSource {
-    if (!this.gridInstance) {
-      return { store: [], paginate: false };
+    get popupWidth(): number {
+        return this.isSmall ? 576 : 800;
     }
-    return getDataForChart(this.gridInstance, this.onlySelected);
-  }
 
-  get isPieSeriesType(): boolean {
-    return pieSeriesTypes.includes(this.currentSeriesType);
-  }
+    get chartTitle(): string {
+        return `${capitalizeFirst(this.currentSeriesType)} Chart`;
+    }
 
-  private readonly mediaChangeHandler = (): void => {
-    this.isSmall = isSmallScreen();
-  };
+    get chartDataSource(): ChartDataSource {
+        if (!this.gridInstance) {
+            return { store: [], paginate: false };
+        }
+        const cacheKey = this.onlySelected
+            ? this.gridInstance.getSelectedRowKeys().join(',')
+            : 'all_data';
+        if (!this.cache[cacheKey]) {
+            this.cache[cacheKey] = getDataForChart(this.gridInstance, this.onlySelected);
+        }
+        return this.cache[cacheKey];
+    }
 
-  ngOnInit(): void {
-    this.isSmall = isSmallScreen();
-    subscribeToScreenResize(this.mediaChangeHandler);
-  }
+    get isPieSeriesType(): boolean {
+        return pieSeriesTypes.includes(this.currentSeriesType);
+    }
 
-  ngOnDestroy(): void {
-    unsubscribeFromScreenResize(this.mediaChangeHandler);
-  }
+    private readonly mediaChangeHandler = (): void => {
+        this.isSmall = isSmallScreen();
+    };
 
-  onSeriesTypeChange(newType: SeriesType): void {
-    this.currentSeriesType = newType;
-  }
+    ngOnInit(): void {
+        this.isSmall = isSmallScreen();
+        subscribeToScreenResize(this.mediaChangeHandler);
+    }
 
-  onCategoryChange(newCategory: CategoryField): void {
-    this.currentCategory = newCategory;
-  }
+    ngOnDestroy(): void {
+        unsubscribeFromScreenResize(this.mediaChangeHandler);
+    }
 
-  onSeriesChange(newSeries: SeriesField[]): void {
-    this.currentSeriesFields = newSeries;
-  }
+    onSeriesTypeChange(newType: SeriesType): void {
+        this.currentSeriesType = newType;
+    }
 
-  onOnlySelectedChange(value: boolean): void {
-    this.onlySelectedChange.emit(value);
-  }
+    onCategoryChange(newCategory: CategoryField): void {
+        this.currentCategory = newCategory;
+    }
 
-  onExportItemClick(e: DxDropDownButtonTypes.ItemClickEvent): void {
-    this.chartViewerRef?.exportChart('Grid Data', (e.itemData as { text: string }).text);
-  }
+    onSeriesChange(newSeries: SeriesField[]): void {
+        this.currentSeriesFields = newSeries;
+    }
 
-  onPrintClick(): void {
-    this.chartViewerRef?.printChart();
-  }
+    onOnlySelectedChange(value: boolean): void {
+        this.onlySelectedChange.emit(value);
+    }
 
-  toggleSettings(): void {
-    this.settingsVisible = !this.settingsVisible;
-  }
+    onExportItemClick(e: DxDropDownButtonTypes.ItemClickEvent): void {
+        this.chartViewerRef?.exportChart('Grid Data', (e.itemData as { text: string }).text);
+    }
 
-  onSettingsHiding(): void {
-    this.settingsVisible = false;
-  }
+    onPrintClick(): void {
+        this.chartViewerRef?.printChart();
+    }
 
-  onPopupHiding(): void {
-    this.visibleChange.emit(false);
-    this.settingsVisible = false;
-  }
+    toggleSettings(): void {
+        this.settingsVisible = !this.settingsVisible;
+    }
+
+    onSettingsHiding(): void {
+        this.settingsVisible = false;
+    }
+
+    onPopupHiding(): void {
+        this.visibleChange.emit(false);
+        this.settingsVisible = false;
+    }
 }
