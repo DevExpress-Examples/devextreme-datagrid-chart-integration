@@ -4,17 +4,17 @@ import {
     Output,
     EventEmitter,
     ViewChild,
-    OnInit,
     OnDestroy,
 } from '@angular/core';
 import type { DxDropDownButtonTypes } from 'devextreme-angular/ui/drop-down-button';
 import type { PositionConfig } from 'devextreme-angular/common/core/animation';
 import type dxDataGrid from 'devextreme/ui/data_grid';
+import { Subscription } from 'rxjs';
 
 import { ChartViewerComponent } from '../chart-viewer/chart-viewer.component';
 import { seriesTypes, pieSeriesTypes, defaults } from '../../utils/chart-data';
 import { capitalizeFirst } from '../../utils/helpers';
-import { isSmallScreen, subscribeToScreenResize, unsubscribeFromScreenResize } from '../../utils/media-query';
+import { ScreenService } from '../../services/screen.service';
 import { getDataForChart } from '../../utils/chart-api';
 import type { CategoryField, SeriesField, SeriesType } from '../../utils/chart-data';
 import type { ChartDataSource } from '../../utils/chart-api';
@@ -24,7 +24,7 @@ import type { GridDataItem } from '../../data/grid-data';
     templateUrl: './chart-popup.component.html',
     styleUrls: ['./chart-popup.component.scss']
 })
-export class ChartPopupComponent implements OnInit, OnDestroy {
+export class ChartPopupComponent implements OnDestroy {
     @Input() visible = false;
     @Input() gridInstance?: dxDataGrid<GridDataItem, number>;
     @Input() onlySelected = false;
@@ -80,17 +80,17 @@ export class ChartPopupComponent implements OnInit, OnDestroy {
         return pieSeriesTypes.includes(this.currentSeriesType);
     }
 
-    private readonly mediaChangeHandler = (): void => {
-        this.isSmall = isSmallScreen();
-    };
+    private readonly screenSubscription: Subscription;
 
-    ngOnInit(): void {
-        this.isSmall = isSmallScreen();
-        subscribeToScreenResize(this.mediaChangeHandler);
+    constructor(private readonly screenService: ScreenService) {
+        this.isSmall = screenService.isSmall();
+        this.screenSubscription = screenService.changed.subscribe(() => {
+            this.isSmall = screenService.isSmall();
+        });
     }
 
     ngOnDestroy(): void {
-        unsubscribeFromScreenResize(this.mediaChangeHandler);
+        this.screenSubscription.unsubscribe();
     }
 
     onSeriesTypeChange(newType: SeriesType): void {

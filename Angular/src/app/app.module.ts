@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { LayoutModule } from '@angular/cdk/layout';
 
 import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
 import { DxButtonModule } from 'devextreme-angular/ui/button';
@@ -32,6 +33,7 @@ import { DxSelectBoxModule, DxSwitchModule, DxTagBoxModule } from 'devextreme-an
   ],
   imports: [
     BrowserModule,
+    LayoutModule,
     AppRoutingModule,
     DxDataGridModule,
     DxButtonModule,
