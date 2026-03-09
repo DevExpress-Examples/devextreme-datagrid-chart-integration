@@ -3,13 +3,27 @@
     #chartRef
     class="popup-content-chart"
     [dataSource]="$any(chartConfig).dataSource"
-    [commonSeriesSettings]="$any(chartConfig).commonSeriesSettings"
     [series]="$any(chartConfig).series"
-    [legend]="$any(chartConfig).legend"
-    [animation]="$any(chartConfig).animation"
-    [argumentAxis]="$any(chartConfig).argumentAxis"
-    [valueAxis]="$any(chartConfig).valueAxis"
-  ></dx-chart>
+  >
+    <dxo-chart-common-series-settings
+        [argumentField]="chartConfig.commonSeriesSettings.argumentField"
+        [type]="chartConfig.commonSeriesSettings.type"
+    >
+    </dxo-chart-common-series-settings>
+    <dxo-chart-legend
+      verticalAlignment="bottom"
+      horizontalAlignment="center"
+      [columnItemSpacing]="24"
+      itemTextPosition="right"
+    ></dxo-chart-legend>
+    <dxo-chart-animation [enabled]="false"></dxo-chart-animation>
+    <dxo-chart-argument-axis>
+      <dxo-chart-label displayMode="rotate" [rotationAngle]="45"></dxo-chart-label>
+    </dxo-chart-argument-axis>
+    <dxi-chart-value-axis [visible]="false">
+      <dxo-chart-tick [visible]="false"></dxo-chart-tick>
+    </dxi-chart-value-axis>
+  </dx-chart>
 </ng-container>
 
 <ng-container *ngIf="isPieChart">
@@ -18,9 +32,18 @@
     class="popup-content-chart"
     [type]="$any(chartConfig).type"
     [dataSource]="$any(chartConfig).dataSource"
-    [commonSeriesSettings]="$any(chartConfig).commonSeriesSettings"
     [series]="$any(chartConfig).series"
-    [legend]="$any(chartConfig).legend"
-    [animation]="$any(chartConfig).animation"
-  ></dx-pie-chart>
+  >
+   <dxo-pie-chart-common-series-settings
+        [argumentField]="chartConfig.commonSeriesSettings.argumentField"
+    >
+    </dxo-pie-chart-common-series-settings>
+    <dxo-pie-chart-legend
+      verticalAlignment="bottom"
+      horizontalAlignment="center"
+      [columnItemSpacing]="24"
+      itemTextPosition="right"
+    ></dxo-pie-chart-legend>
+    <dxo-pie-chart-animation [enabled]="false"></dxo-pie-chart-animation>
+  </dx-pie-chart>
 </ng-container>

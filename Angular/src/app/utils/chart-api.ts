@@ -33,13 +33,6 @@ export function getChartConfig(
   const commonConfig = {
     dataSource,
     series,
-    legend: {
-      verticalAlignment: 'bottom' as const,
-      horizontalAlignment: 'center' as const,
-      columnItemSpacing: 24,
-      itemTextPosition: 'right' as const,
-    },
-    animation: { enabled: false },
   };
 
   if (isPie) {
@@ -57,16 +50,6 @@ export function getChartConfig(
     commonSeriesSettings: {
       argumentField: argument,
       type: seriesType as DxChartTypes.SeriesType,
-    },
-    argumentAxis: {
-      label: {
-        displayMode: 'rotate' as const,
-        rotationAngle: 45,
-      },
-    },
-    valueAxis: {
-      visible: false,
-      tick: { visible: false },
     },
   } as DxChartTypes.Properties;
 }

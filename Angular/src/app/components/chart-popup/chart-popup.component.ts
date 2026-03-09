@@ -42,6 +42,7 @@ export class ChartPopupComponent implements OnDestroy {
     isSmall = false;
     cache: { [key: string]: ChartDataSource } = {};
     printButtonSettings = { icon: 'print', text: 'Print', stylingMode: 'text', onClick: this.onPrintClick.bind(this) }
+    private readonly screenSubscription: Subscription;
     readonly wrapperAttr = { class: 'chart-popup' };
     readonly popoverPosition: PositionConfig = {
         at: { x: 'right', y: 'bottom' },
@@ -79,8 +80,6 @@ export class ChartPopupComponent implements OnDestroy {
     get isPieSeriesType(): boolean {
         return pieSeriesTypes.includes(this.currentSeriesType);
     }
-
-    private readonly screenSubscription: Subscription;
 
     constructor(private readonly screenService: ScreenService) {
         this.isSmall = screenService.isSmall();
