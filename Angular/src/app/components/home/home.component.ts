@@ -9,12 +9,12 @@ import { getIcon } from '../../utils/helpers';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-home-content',
-  templateUrl: './home-content.component.html',
+  selector: 'app-home',
+  templateUrl: './home.component.html',
   providers:[GridDataService],
-  styleUrls: ['./home-content.component.scss'],
+  styleUrls: ['./home.component.scss'],
 })
-export class HomeContentComponent {
+export class HomeComponent {
   @ViewChild('gridRef') gridRef?: DxDataGridComponent;
 
   readonly gridDataStore = new ArrayStore<GridDataItem, number>({

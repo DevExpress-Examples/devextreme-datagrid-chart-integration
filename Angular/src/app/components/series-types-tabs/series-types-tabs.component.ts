@@ -17,7 +17,7 @@ import type { SeriesType } from '../../utils/chart-data';
   templateUrl: './series-types-tabs.component.html',
   styleUrls: ['./series-types-tabs.component.scss'],
 })
-export class SeriesTypesTabsComponent implements OnChanges {
+export class SeriesTypesTabsComponent  {
   @Input() isSmall = false;
   @Output() seriesTypeChange = new EventEmitter<SeriesType>();
 
@@ -30,10 +30,6 @@ export class SeriesTypesTabsComponent implements OnChanges {
 
   get tabWidth(): number {
     return this.isSmall ? 60 : 150;
-  }
-
-  ngOnChanges(_changes: SimpleChanges): void {
-    // tabWidth is computed from isSmall, Angular re-evaluates bindings automatically
   }
 
   onSelectionChanged(e: DxTabsTypes.SelectionChangedEvent): void {

@@ -15,7 +15,7 @@ import { DxDropDownButtonModule } from 'devextreme-angular/ui/drop-down-button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeContentComponent } from './components/home-content/home-content.component';
+import { HomeComponent } from './components/home/home.component';
 import { ChartPopupComponent } from './components/chart-popup/chart-popup.component';
 import { ChartViewerComponent } from './components/chart-viewer/chart-viewer.component';
 import { ChartSettingsComponent } from './components/chart-settings/chart-settings.component';
@@ -25,7 +25,7 @@ import { DxSelectBoxModule, DxSwitchModule, DxTagBoxModule } from 'devextreme-an
 @NgModule({
   declarations: [
     AppComponent,
-    HomeContentComponent,
+    HomeComponent,
     ChartPopupComponent,
     ChartViewerComponent,
     ChartSettingsComponent,
