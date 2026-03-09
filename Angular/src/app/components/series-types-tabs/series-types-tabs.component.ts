@@ -3,8 +3,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  OnChanges,
-  SimpleChanges,
 } from '@angular/core';
 import type { DxTabsTypes } from 'devextreme-angular/ui/tabs';
 
@@ -14,6 +12,7 @@ import type { SeriesType } from '../../utils/chart-data';
 
 @Component({
   selector: 'app-series-types-tabs',
+  standalone: false,
   templateUrl: './series-types-tabs.component.html',
   styleUrls: ['./series-types-tabs.component.scss'],
 })

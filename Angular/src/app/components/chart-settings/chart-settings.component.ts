@@ -12,6 +12,7 @@ interface SettingsFormData {
 
 @Component({
   selector: 'app-chart-settings',
+  standalone: false,
   templateUrl: './chart-settings.component.html',
   styleUrls: ['./chart-settings.component.scss'],
 })

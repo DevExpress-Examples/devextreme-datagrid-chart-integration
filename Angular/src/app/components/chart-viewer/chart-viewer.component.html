@@ -6,8 +6,8 @@
     [series]="$any(chartConfig).series"
   >
     <dxo-chart-common-series-settings
-        [argumentField]="chartConfig.commonSeriesSettings.argumentField"
-        [type]="chartConfig.commonSeriesSettings.type"
+      [argumentField]="chartConfig.commonSeriesSettings.argumentField"
+      [type]="chartConfig.commonSeriesSettings.type"
     >
     </dxo-chart-common-series-settings>
     <dxo-chart-legend
@@ -18,7 +18,10 @@
     ></dxo-chart-legend>
     <dxo-chart-animation [enabled]="false"></dxo-chart-animation>
     <dxo-chart-argument-axis>
-      <dxo-chart-label displayMode="rotate" [rotationAngle]="45"></dxo-chart-label>
+      <dxo-chart-label
+        displayMode="rotate"
+        [rotationAngle]="45"
+      ></dxo-chart-label>
     </dxo-chart-argument-axis>
     <dxi-chart-value-axis [visible]="false">
       <dxo-chart-tick [visible]="false"></dxo-chart-tick>
@@ -34,8 +37,8 @@
     [dataSource]="$any(chartConfig).dataSource"
     [series]="$any(chartConfig).series"
   >
-   <dxo-pie-chart-common-series-settings
-        [argumentField]="chartConfig.commonSeriesSettings.argumentField"
+    <dxo-pie-chart-common-series-settings
+      [argumentField]="chartConfig.commonSeriesSettings.argumentField"
     >
     </dxo-pie-chart-common-series-settings>
     <dxo-pie-chart-legend

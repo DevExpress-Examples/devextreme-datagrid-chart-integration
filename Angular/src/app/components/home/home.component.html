@@ -1,5 +1,5 @@
 <div class="demo-container">
-   <dx-data-grid
+  <dx-data-grid
     #gridRef
     id="grid"
     [dataSource]="gridDataStore"
@@ -27,16 +27,28 @@
         (onClick)="showChartPopup()"
       >
         <div *dxTemplate="let _ of 'content'">
-          <i class="dx-icon dx-svg-icon"
-            [innerHTML]="generateChartButtonIcon"></i>
+          <i
+            class="dx-icon dx-svg-icon"
+            [innerHTML]="generateChartButtonIcon"
+          ></i>
           <span class="dx-button-text">Generate Chart</span>
         </div>
       </dx-button>
     </div>
 
-    <dxi-data-grid-column dataField="Product" [width]="170"></dxi-data-grid-column>
-    <dxi-data-grid-column dataField="ExporterRegion" [width]="170"></dxi-data-grid-column>
-    <dxi-data-grid-column dataField="ExportCategory" caption="Category" [width]="170"></dxi-data-grid-column>
+    <dxi-data-grid-column
+      dataField="Product"
+      [width]="170"
+    ></dxi-data-grid-column>
+    <dxi-data-grid-column
+      dataField="ExporterRegion"
+      [width]="170"
+    ></dxi-data-grid-column>
+    <dxi-data-grid-column
+      dataField="ExportCategory"
+      caption="Category"
+      [width]="170"
+    ></dxi-data-grid-column>
     <dxi-data-grid-column dataField="ExportValue"></dxi-data-grid-column>
     <dxi-data-grid-column dataField="TaxPaid"></dxi-data-grid-column>
     <dxi-data-grid-column dataField="LogisticsCost"></dxi-data-grid-column>

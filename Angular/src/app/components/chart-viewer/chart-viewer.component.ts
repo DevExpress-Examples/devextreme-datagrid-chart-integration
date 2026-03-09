@@ -13,6 +13,7 @@ import type { ChartDataSource } from '../../utils/chart-api';
 
 @Component({
   selector: 'app-chart-viewer',
+  standalone: false,
   templateUrl: './chart-viewer.component.html',
   styleUrls: ['./chart-viewer.component.scss'],
 })

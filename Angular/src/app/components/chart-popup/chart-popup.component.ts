@@ -21,6 +21,7 @@ import type { ChartDataSource } from '../../utils/chart-api';
 import type { GridDataItem } from '../../data/grid-data';
 @Component({
     selector: 'app-chart-popup',
+    standalone: false,
     templateUrl: './chart-popup.component.html',
     styleUrls: ['./chart-popup.component.scss']
 })

@@ -12,6 +12,9 @@ import { DxTabsModule } from 'devextreme-angular/ui/tabs';
 import { DxToolbarModule } from 'devextreme-angular/ui/toolbar';
 import { DxFormModule } from 'devextreme-angular/ui/form';
 import { DxDropDownButtonModule } from 'devextreme-angular/ui/drop-down-button';
+import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
+import { DxSwitchModule } from 'devextreme-angular/ui/switch'; 
+import { DxTagBoxModule } from 'devextreme-angular/ui/tag-box';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,7 +23,7 @@ import { ChartPopupComponent } from './components/chart-popup/chart-popup.compon
 import { ChartViewerComponent } from './components/chart-viewer/chart-viewer.component';
 import { ChartSettingsComponent } from './components/chart-settings/chart-settings.component';
 import { SeriesTypesTabsComponent } from './components/series-types-tabs/series-types-tabs.component';
-import { DxSelectBoxModule, DxSwitchModule, DxTagBoxModule } from 'devextreme-angular';
+
 
 @NgModule({
   declarations: [
