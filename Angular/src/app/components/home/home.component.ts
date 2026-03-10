@@ -1,12 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
+import { DataSource, ArrayStore } from 'devextreme-angular/common/data';
 import type { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
-import ArrayStore from 'devextreme/data/array_store';
 import type dxDataGrid from 'devextreme/ui/data_grid';
 
 import { GridDataService, type GridDataItem } from '../../data/grid-data';
 import { getIcon } from '../../utils/helpers';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
+
 
 @Component({
   selector: 'app-home',
@@ -18,9 +21,14 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class HomeComponent {
   @ViewChild('gridRef') gridRef?: DxDataGridComponent;
 
-  readonly gridDataStore = new ArrayStore<GridDataItem, number>({
-    data: this.gridDataService.getData(),
-    key: 'Id',
+  readonly gridDataSource: DataSource<GridDataItem, number> = new DataSource({
+      store: new ArrayStore<GridDataItem, number>({
+        data: this.gridDataService.getData(),
+        key: 'Id',
+      }),
+      onChanged: () => {
+        this.isDataGridEmpty = (this.gridInstance?.totalCount() ?? 0) === 0;
+      },
   });
 
   chartPopupVisible = false;
@@ -40,12 +48,6 @@ export class HomeComponent {
 
   showChartPopup(): void {
     this.chartPopupVisible = true;
-  }
-
-  onLoadingChanged(isLoading: boolean): void {
-    if (!isLoading) {
-      this.isDataGridEmpty = (this.gridInstance?.totalCount() ?? 0) === 0;
-    }
   }
 
   onRowClick(e: DxDataGridTypes.RowClickEvent<GridDataItem, number>): void {
