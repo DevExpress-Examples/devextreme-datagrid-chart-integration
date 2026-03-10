@@ -5,10 +5,8 @@ import {
     EventEmitter,
     ViewChild,
     OnDestroy,
+    ChangeDetectionStrategy,
 } from '@angular/core';
-import type { DxDropDownButtonTypes } from 'devextreme-angular/ui/drop-down-button';
-import type { PositionConfig } from 'devextreme-angular/common/core/animation';
-import type dxDataGrid from 'devextreme/ui/data_grid';
 import { Subscription } from 'rxjs';
 
 import { ChartViewerComponent } from '../chart-viewer/chart-viewer.component';
@@ -16,16 +14,24 @@ import { seriesTypes, pieSeriesTypes, defaults } from '../../utils/chart-data';
 import { capitalizeFirst } from '../../utils/helpers';
 import { ScreenService } from '../../services/screen.service';
 import { getDataForChart } from '../../utils/chart-api';
+
 import type { CategoryField, SeriesField, SeriesType } from '../../utils/chart-data';
 import type { ChartDataSource } from '../../utils/chart-api';
 import type { GridDataItem } from '../../data/grid-data';
+
+import type { DxDropDownButtonTypes } from 'devextreme-angular/ui/drop-down-button';
+import type { PositionConfig } from 'devextreme-angular/common/core/animation';
+import type dxDataGrid from 'devextreme/ui/data_grid';
+
 @Component({
     selector: 'app-chart-popup',
     standalone: false,
     templateUrl: './chart-popup.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./chart-popup.component.scss']
 })
 export class ChartPopupComponent implements OnDestroy {
+
     @Input() visible = false;
     @Input() gridInstance?: dxDataGrid<GridDataItem, number>;
     @Input() onlySelected = false;
@@ -41,7 +47,6 @@ export class ChartPopupComponent implements OnDestroy {
     currentSeriesFields: SeriesField[] = [...defaults.series];
     settingsVisible = false;
     isSmall = false;
-    cache: { [key: string]: ChartDataSource } = {};
     printButtonSettings = { icon: 'print', text: 'Print', stylingMode: 'text', onClick: this.onPrintClick.bind(this) }
     private readonly screenSubscription: Subscription;
     readonly wrapperAttr = { class: 'chart-popup' };
@@ -66,16 +71,12 @@ export class ChartPopupComponent implements OnDestroy {
     }
 
     get chartDataSource(): ChartDataSource {
+        console.log('get_data_source')
         if (!this.gridInstance) {
             return { store: [], paginate: false };
         }
-        const cacheKey = this.onlySelected
-            ? this.gridInstance.getSelectedRowKeys().join(',')
-            : 'all_data';
-        if (!this.cache[cacheKey]) {
-            this.cache[cacheKey] = getDataForChart(this.gridInstance, this.onlySelected);
-        }
-        return this.cache[cacheKey];
+        const result = getDataForChart(this.gridInstance, this.onlySelected);
+        return result;
     }
 
     get isPieSeriesType(): boolean {
