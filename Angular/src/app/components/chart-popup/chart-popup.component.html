@@ -1,0 +1,119 @@
+<dx-popup
+  [visible]="visible"
+  [width]="popupWidth"
+  [height]="550"
+  [wrapperAttr]="wrapperAttr"
+  title="Chart Preview"
+  (onHiding)="onPopupHiding()"
+>
+  <div *dxTemplate="let _ of 'content'" id="popup-content">
+    <app-series-types-tabs
+      [isSmall]="isSmall"
+      (seriesTypeChange)="onSeriesTypeChange($event)"
+    ></app-series-types-tabs>
+
+    <div id="popup-content-data">
+      <dx-toolbar id="popup-content-toolbar">
+        <dxi-toolbar-item
+          location="before"
+          template="titleTemplate"
+        ></dxi-toolbar-item>
+        <div *dxTemplate="let _ of 'titleTemplate'">
+          <div class="chart-title">{{ chartTitle }}</div>
+        </div>
+
+        <dxi-toolbar-item
+          *ngIf="!isSmall"
+          location="after"
+          locateInMenu="auto"
+          template="exportTemplate"
+        ></dxi-toolbar-item>
+        <dxi-toolbar-item
+          *ngIf="isSmall"
+          location="after"
+          locateInMenu="always"
+          template="exportTemplate"
+        ></dxi-toolbar-item>
+        <div *dxTemplate="let _ of 'exportTemplate'">
+          <dx-drop-down-button
+            stylingMode="text"
+            icon="export"
+            text="Export"
+            displayExpr="text"
+            keyExpr="text"
+            [items]="exportItems"
+            (onItemClick)="onExportItemClick($event)"
+          ></dx-drop-down-button>
+        </div>
+        <dxi-toolbar-item
+          *ngIf="!isSmall"
+          location="after"
+          locateInMenu="auto"
+          widget="dxButton"
+          [options]="printButtonSettings"
+        ></dxi-toolbar-item>
+        <dxi-toolbar-item
+          *ngIf="isSmall"
+          location="after"
+          locateInMenu="always"
+          widget="dxButton"
+          [options]="printButtonSettings"
+        ></dxi-toolbar-item>
+
+        <dxi-toolbar-item
+          location="after"
+          template="settingsTemplate"
+        ></dxi-toolbar-item>
+        <div *dxTemplate="let _ of 'settingsTemplate'">
+          <dx-button
+            id="settings-button"
+            stylingMode="text"
+            icon="optionsoutline"
+            text="Settings"
+            (onClick)="toggleSettings()"
+          >
+            <div *dxTemplate="let _ of 'content'">
+              <i class="dx-icon dx-icon-optionsoutline"></i>
+              <span class="dx-button-text">Settings</span>
+              <i class="dx-icon dx-icon-spindown"></i>
+            </div>
+          </dx-button>
+        </div>
+      </dx-toolbar>
+
+      <app-chart-viewer
+        #chartViewerRef
+        class="popup-content-chart"
+        [dataSource]="chartData"
+        [seriesType]="currentSeriesType"
+        [category]="currentCategory"
+        [seriesFields]="currentSeriesFields"
+      ></app-chart-viewer>
+    </div>
+  </div>
+</dx-popup>
+
+<dx-popover
+  [visible]="settingsVisible"
+  [deferRendering]="false"
+  [showTitle]="false"
+  [width]="240"
+  height="auto"
+  [shading]="false"
+  target="#settings-button"
+  [position]="popoverPosition"
+  [wrapperAttr]="{ class: 'dx-dropdownbutton-popup-wrapper' }"
+  (onHiding)="onSettingsHiding()"
+>
+  <div *dxTemplate="let _ of 'content'">
+    <app-chart-settings
+      [onlySelected]="onlySelected"
+      [hasSelectedRows]="hasSelectedRows"
+      [currentCategory]="currentCategory"
+      [currentSeries]="currentSeriesFields"
+      (categoryChange)="onCategoryChange($event)"
+      (seriesChange)="onSeriesChange($event)"
+      (onlySelectedChange)="onOnlySelectedChange($event)"
+    ></app-chart-settings>
+  </div>
+</dx-popover>
