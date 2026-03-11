@@ -6,7 +6,6 @@ import DxToolbar, { DxItem as DxToolbarItem } from 'devextreme-vue/toolbar';
 import DxDropDownButton from 'devextreme-vue/drop-down-button';
 import DxButton from 'devextreme-vue/button';
 import DxPopover from 'devextreme-vue/popover';
-import type dxDataGrid from 'devextreme/ui/data_grid';
 import type { DxDropDownButtonTypes } from 'devextreme-vue/drop-down-button';
 
 import SeriesTypesTabs from './SeriesTypesTabs.vue';
@@ -22,9 +21,9 @@ import type { GridDataItem } from '../data/gridData';
 
 interface Props {
   visible: boolean;
-  gridInstance?: dxDataGrid;
   onlySelected: boolean;
   selectedRowsData: GridDataItem[];
+  chartDataSource?: ChartDataSource;
 }
 
 const props = defineProps<Props>();
@@ -64,18 +63,7 @@ const popoverPosition = {
 
 const popupWidth = computed(() => isSmall.value ? 576 : 800);
 const chartTitle = computed(() => `${capitalizeFirst(currentSeriesType.value)} Chart`);
-const chartDataSource = computed<ChartDataSource>(() => {
-  if (!props.gridInstance) {
-    return { store: [], filter: null, paginate: false };
-  }
-  return {
-    store: props.onlySelected
-      ? props.selectedRowsData
-      : props.gridInstance.getDataSource()!.store(),
-    filter: props.onlySelected ? null : props.gridInstance.getCombinedFilter(true),
-    paginate: false,
-  };
-});
+
 const hasSelectedRows = computed(() => {
   return props.selectedRowsData.length > 0;
 });
