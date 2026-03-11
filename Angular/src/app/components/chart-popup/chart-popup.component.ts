@@ -13,15 +13,12 @@ import { ChartViewerComponent } from '../chart-viewer/chart-viewer.component';
 import { seriesTypes, pieSeriesTypes, defaults } from '../../utils/chart-data';
 import { capitalizeFirst } from '../../utils/helpers';
 import { ScreenService } from '../../services/screen.service';
-import { getDataForChart } from '../../utils/chart-api';
 
 import type { CategoryField, SeriesField, SeriesType } from '../../utils/chart-data';
 import type { ChartDataSource } from '../../utils/chart-api';
-import type { GridDataItem } from '../../data/grid-data';
 
 import type { DxDropDownButtonTypes } from 'devextreme-angular/ui/drop-down-button';
 import type { PositionConfig } from 'devextreme-angular/common/core/animation';
-import type dxDataGrid from 'devextreme/ui/data_grid';
 
 @Component({
     selector: 'app-chart-popup',
@@ -33,14 +30,14 @@ import type dxDataGrid from 'devextreme/ui/data_grid';
 export class ChartPopupComponent implements OnDestroy {
 
     @Input() visible = false;
-    @Input() gridInstance?: dxDataGrid<GridDataItem, number>;
+    @Input() chartData: ChartDataSource = { store: [], paginate: false };
     @Input() onlySelected = false;
-    @Input() selectedRowsData: GridDataItem[] = [];
+    @Input() hasSelectedRows = false;
 
     @Output() visibleChange = new EventEmitter<boolean>();
     @Output() onlySelectedChange = new EventEmitter<boolean>();
 
-    @ViewChild('chartViewerRef') chartViewerRef?: ChartViewerComponent;
+    @ViewChild('chartViewerRef', { static: false }) chartViewerRef?: ChartViewerComponent;
 
     currentSeriesType: SeriesType = seriesTypes[defaults.seriesTypeIndex];
     currentCategory: CategoryField = defaults.category;
@@ -68,15 +65,6 @@ export class ChartPopupComponent implements OnDestroy {
 
     get chartTitle(): string {
         return `${capitalizeFirst(this.currentSeriesType)} Chart`;
-    }
-
-    get chartDataSource(): ChartDataSource {
-        console.log('get_data_source')
-        if (!this.gridInstance) {
-            return { store: [], paginate: false };
-        }
-        const result = getDataForChart(this.gridInstance, this.onlySelected);
-        return result;
     }
 
     get isPieSeriesType(): boolean {

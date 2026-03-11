@@ -2,12 +2,14 @@ import { Component, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
-import { DataSource, ArrayStore } from 'devextreme-angular/common/data';
+import { DataSource } from 'devextreme-angular/common/data';
+import ArrayStore from 'devextreme/data/array_store';
 import type { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
-import type dxDataGrid from 'devextreme/ui/data_grid';
 
 import { GridDataService, type GridDataItem } from '../../data/grid-data';
 import { getIcon } from '../../utils/helpers';
+import { getDataForChart } from '../../utils/chart-api';
+import type { ChartDataSource } from '../../utils/chart-api';
 
 
 
@@ -15,31 +17,38 @@ import { getIcon } from '../../utils/helpers';
   selector: 'app-home',
   templateUrl: './home.component.html',
   standalone: false,
-  providers:[GridDataService],
+  providers: [GridDataService],
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  @ViewChild('gridRef') gridRef?: DxDataGridComponent;
+  @ViewChild('gridRef', { static: false }) gridRef?: DxDataGridComponent;
 
-  readonly gridDataSource: DataSource<GridDataItem, number> = new DataSource({
-      store: new ArrayStore<GridDataItem, number>({
-        data: this.gridDataService.getData(),
-        key: 'Id',
-      }),
-      onChanged: () => {
-        this.isDataGridEmpty = (this.gridInstance?.totalCount() ?? 0) === 0;
-      },
-  });
-
+  private readonly dataStore: ArrayStore<GridDataItem, number>;
+  gridDataSource: DataSource<GridDataItem, number>;
+  chartData: ChartDataSource = { store: [], paginate: false };
   chartPopupVisible = false;
   isDataGridEmpty = false;
   hasSelectedRows = false;
+  onlySelected = false;
   selectedRowsData: GridDataItem[] = [];
 
-  constructor(private readonly gridDataService: GridDataService, private readonly sanitizer: DomSanitizer) {}
+  constructor(private readonly gridDataService: GridDataService, private readonly sanitizer: DomSanitizer) {
+    this.dataStore = new ArrayStore<GridDataItem, number>({
+      data: this.gridDataService.getData(),
+      key: 'Id',
+    });
+    this.gridDataSource = new DataSource<GridDataItem, number>({
+      store: this.dataStore,
+      onChanged: () => {
+        this.isDataGridEmpty = (this.gridRef?.instance.totalCount() ?? 0) === 0;
+        this.updateChartData();
+      },
+    });
+  }
 
-  get gridInstance(): dxDataGrid<GridDataItem, number> | undefined {
-    return this.gridRef?.instance;
+  private updateChartData(): void {
+    const filter = this.gridRef?.instance.getCombinedFilter(true) ?? null;
+    this.chartData = getDataForChart(this.dataStore, filter, this.selectedRowsData, this.onlySelected);
   }
 
   get generateChartButtonIcon(): SafeHtml {
@@ -61,6 +70,17 @@ export class HomeComponent {
   onSelectionChanged(e: DxDataGridTypes.SelectionChangedEvent<GridDataItem, number>): void {
     this.hasSelectedRows = e.component.getSelectedRowsData().length > 0;
     this.selectedRowsData = e.component.getSelectedRowsData();
+    this.onlySelected = this.hasSelectedRows;
+    this.updateChartData();
+  }
+
+  onVisibleChange(visible: boolean): void {
+    this.chartPopupVisible = visible ?? false;
+  }
+
+  onOnlySelectedChange(onlySelected: boolean): void {
+    this.onlySelected = onlySelected;
+    this.updateChartData();
   }
 
   onContextMenuPreparing(e: DxDataGridTypes.ContextMenuPreparingEvent<GridDataItem, number>): void {

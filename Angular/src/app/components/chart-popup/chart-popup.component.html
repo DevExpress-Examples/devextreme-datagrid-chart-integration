@@ -14,23 +14,23 @@
 
     <div id="popup-content-data">
       <dx-toolbar id="popup-content-toolbar">
-        <dxi-item location="before" template="titleTemplate"></dxi-item>
+        <dxi-toolbar-item location="before" template="titleTemplate"></dxi-toolbar-item>
         <div *dxTemplate="let _ of 'titleTemplate'">
           <div class="chart-title">{{ chartTitle }}</div>
         </div>
 
-        <dxi-item
+        <dxi-toolbar-item
           *ngIf="!isSmall"
           location="after"
           locateInMenu="auto"
           template="exportTemplate"
-        ></dxi-item>
-        <dxi-item
+        ></dxi-toolbar-item>
+        <dxi-toolbar-item
           *ngIf="isSmall"
           location="after"
           locateInMenu="always"
           template="exportTemplate"
-        ></dxi-item>
+        ></dxi-toolbar-item>
         <div *dxTemplate="let _ of 'exportTemplate'">
           <dx-drop-down-button
             stylingMode="text"
@@ -42,22 +42,22 @@
             (onItemClick)="onExportItemClick($event)"
           ></dx-drop-down-button>
         </div>
-        <dxi-item
+        <dxi-toolbar-item
           *ngIf="!isSmall"
           location="after"
           locateInMenu="auto"
           widget="dxButton"
           [options]="printButtonSettings"
-        ></dxi-item>
-        <dxi-item
+        ></dxi-toolbar-item>
+        <dxi-toolbar-item
           *ngIf="isSmall"
           location="after"
           locateInMenu="always"
           widget="dxButton"
           [options]="printButtonSettings"
-        ></dxi-item>
+        ></dxi-toolbar-item>
 
-        <dxi-item location="after" template="settingsTemplate"></dxi-item>
+        <dxi-toolbar-item location="after" template="settingsTemplate"></dxi-toolbar-item>
         <div *dxTemplate="let _ of 'settingsTemplate'">
           <dx-button
             id="settings-button"
@@ -78,7 +78,7 @@
       <app-chart-viewer
         #chartViewerRef
         class="popup-content-chart"
-        [dataSource]="chartDataSource"
+        [dataSource]="chartData"
         [seriesType]="currentSeriesType"
         [category]="currentCategory"
         [seriesFields]="currentSeriesFields"
@@ -102,7 +102,7 @@
   <div *dxTemplate="let _ of 'content'">
     <app-chart-settings
       [onlySelected]="onlySelected"
-      [hasSelectedRows]="selectedRowsData.length > 0"
+      [hasSelectedRows]="hasSelectedRows"
       [currentCategory]="currentCategory"
       [currentSeries]="currentSeriesFields"
       (categoryChange)="onCategoryChange($event)"

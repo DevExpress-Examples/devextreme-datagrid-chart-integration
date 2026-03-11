@@ -6,25 +6,25 @@
     [showColonAfterLabel]="false"
     (onFieldDataChanged)="onFieldDataChanged($event)"
   >
-    <dxi-item
+    <dxi-form-item
       dataField="CategoryAxis"
       editorType="dxSelectBox"
       [editorOptions]="categoryEditorOptions"
-    ></dxi-item>
+    ></dxi-form-item>
 
-    <dxi-item
+    <dxi-form-item
       dataField="Series"
       editorType="dxTagBox"
       [editorOptions]="seriesEditorOptions"
-    ></dxi-item>
+    ></dxi-form-item>
 
-    <dxi-item
+    <dxi-form-item
       dataField="OnlySelected"
       editorType="dxSwitch"
       cssClass="label-v-center"
       [editorOptions]="onlySelectedEditorOptions"
     >
-      <dxo-label location="left" alignment="left"></dxo-label>
-    </dxi-item>
+      <dxo-form-label location="left" alignment="left"></dxo-form-label>
+    </dxi-form-item>
   </dx-form>
 </div>

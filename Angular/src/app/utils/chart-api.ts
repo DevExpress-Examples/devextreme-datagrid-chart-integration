@@ -1,6 +1,6 @@
 import type { DxChartTypes } from 'devextreme-angular/ui/chart';
 import type { DxPieChartTypes } from 'devextreme-angular/ui/pie-chart';
-import type dxDataGrid from 'devextreme/ui/data_grid';
+import ArrayStore from 'devextreme/data/array_store';
 import type { DataSourceOptions } from 'devextreme/data/data_source';
 
 import type { GridDataItem } from '../data/grid-data';
@@ -9,14 +9,14 @@ import type { CategoryField, SeriesField } from './chart-data';
 export type ChartDataSource = DataSourceOptions<GridDataItem, number>;
 
 export function getDataForChart(
-  gridInstance: dxDataGrid<GridDataItem, number>,
+  allDataStore: ArrayStore<GridDataItem, number>,
+  filter: unknown,
+  selectedRowsData: GridDataItem[],
   onlySelected: boolean,
 ): ChartDataSource {
   return {
-    store: onlySelected
-      ? gridInstance.getSelectedRowsData()
-      : gridInstance.getDataSource()!.store(),
-    filter: onlySelected ? null : gridInstance.getCombinedFilter(true),
+    store: onlySelected ? selectedRowsData : allDataStore,
+    filter: onlySelected ? null : filter,
     paginate: false,
   };
 }
