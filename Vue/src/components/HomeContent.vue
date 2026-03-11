@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, type Ref, watchEffect } from 'vue';
+
 import 'devextreme/dist/css/dx.fluent.blue.light.css';
 import DxDataGrid, {
   DxColumn,
@@ -10,15 +11,15 @@ import DxDataGrid, {
   DxFilterRow,
   DxPaging
 } from 'devextreme-vue/data-grid';
+import DxButton from 'devextreme-vue/button';
+import { DataSource, ArrayStore } from 'devextreme-vue/common/data';
+
 import type { DxDataGridTypes } from 'devextreme-vue/data-grid';
 import type dxDataGrid from 'devextreme/ui/data_grid';
-import DxButton from 'devextreme-vue/button';
-import ArrayStore from 'devextreme/data/array_store';
 
 import ChartPopup from './ChartPopup.vue';
 import { gridData, type GridDataItem } from '../data/gridData';
 import { getIcon } from '../utils/helpers';
-import { DataSource } from 'devextreme/common/data';
 
 const gridRef = ref<DxDataGrid>();
 const chartPopupVisible: Ref<boolean> = ref(false);
