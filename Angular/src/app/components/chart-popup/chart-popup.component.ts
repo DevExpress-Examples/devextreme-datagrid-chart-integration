@@ -6,6 +6,7 @@ import {
     ViewChild,
     OnDestroy,
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
@@ -71,10 +72,11 @@ export class ChartPopupComponent implements OnDestroy {
         return pieSeriesTypes.includes(this.currentSeriesType);
     }
 
-    constructor(private readonly screenService: ScreenService) {
+    constructor(private readonly screenService: ScreenService, private readonly changeDetector: ChangeDetectorRef) {
         this.isSmall = screenService.isSmall();
         this.screenSubscription = screenService.changed.subscribe(() => {
             this.isSmall = screenService.isSmall();
+            this.changeDetector.markForCheck();
         });
     }
 
