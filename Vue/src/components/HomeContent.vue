@@ -114,7 +114,10 @@ function onContextMenuPreparing(e: DxDataGridTypes.ContextMenuPreparingEvent) {
               @click="showChartPopup"
             >
               <template #default>
-                <div v-html="getIcon('pie', false)"/>
+                <i
+                  class="dx-icon dx-svg-icon"
+                  v-html="getIcon('pie', false)"
+                />
                 <span class="dx-button-text">Generate Chart</span>
               </template>
             </DxButton>
