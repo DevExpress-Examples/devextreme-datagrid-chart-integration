@@ -15,7 +15,10 @@
     <dxo-data-grid-paging [pageSize]="10"></dxo-data-grid-paging>
 
     <dxo-data-grid-toolbar [visible]="true">
-      <dxi-data-grid-item location="after" template="chartButtonTemplate"></dxi-data-grid-item>
+      <dxi-data-grid-item
+        location="after"
+        template="chartButtonTemplate"
+      ></dxi-data-grid-item>
     </dxo-data-grid-toolbar>
 
     <div *dxTemplate="let _ of 'chartButtonTemplate'">
