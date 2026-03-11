@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, type Ref, watchEffect } from 'vue';
+import { ref, computed, watch, type Ref } from 'vue';
 
 import 'devextreme/dist/css/dx.fluent.blue.light.css';
 import DxDataGrid, {
@@ -20,6 +20,7 @@ import type dxDataGrid from 'devextreme/ui/data_grid';
 import ChartPopup from './ChartPopup.vue';
 import { gridData, type GridDataItem } from '../data/gridData';
 import { getIcon } from '../utils/helpers';
+import { getDataForChart, type ChartDataSource } from '@/utils/chartApi';
 
 const gridRef = ref<DxDataGrid>();
 const chartPopupVisible: Ref<boolean> = ref(false);
@@ -35,26 +36,23 @@ const dataSource = new DataSource({
   onChanged: () => {
     if (!gridInstance.value) return;
     isDataGridEmpty.value = gridInstance.value.totalCount() === 0;
+    chartDataSource.value = getDataForChart(gridInstance.value, selectedRowsData.value?.length > 0);
   }
 });
 
 const gridInstance = computed<dxDataGrid | undefined>(() => gridRef.value?.instance);
-
+const chartDataSource = ref<ChartDataSource>();
 const hasSelectedRows = ref(false);
 const selectedRowsData = ref<GridDataItem[]>([]);
 
-watchEffect(() => {
-  if (!gridInstance.value) return false;
-  hasSelectedRows.value = gridInstance.value.getSelectedRowsData().length > 0;
-});
-
-watchEffect(() => {
-  if (!gridInstance.value) return true;
-  isDataGridEmpty.value = gridInstance.value.totalCount() === 0;
+watch(hasSelectedRows, (onlySelected) => {
+  if (!gridInstance.value) return;
+  chartDataSource.value = getDataForChart(gridInstance.value, onlySelected);
 });
 
 function showChartPopup() {
   chartPopupVisible.value = true;
+  hasSelectedRows.value = selectedRowsData.value.length > 0;
 }
 
 function onRowClick(e: DxDataGridTypes.RowClickEvent) {
@@ -68,6 +66,8 @@ function onRowClick(e: DxDataGridTypes.RowClickEvent) {
 function onSelectionChanged(e: DxDataGridTypes.SelectionChangedEvent<GridDataItem, number>) {
   hasSelectedRows.value = e.component.getSelectedRowsData().length > 0;
   selectedRowsData.value = e.component.getSelectedRowsData();
+  if (!gridInstance.value) return;
+  chartDataSource.value = getDataForChart(gridInstance.value, hasSelectedRows.value);
 }
 
 function onContextMenuPreparing(e: DxDataGridTypes.ContextMenuPreparingEvent) {
@@ -146,7 +146,7 @@ function onContextMenuPreparing(e: DxDataGridTypes.ContextMenuPreparingEvent) {
     <ChartPopup
       v-model:visible="chartPopupVisible"
       v-model:only-selected="hasSelectedRows"
-      :grid-instance="gridInstance"
+      :chart-data-source="chartDataSource"
       :selected-rows-data="selectedRowsData"
     />
   </div>

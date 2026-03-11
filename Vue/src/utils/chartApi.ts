@@ -6,14 +6,14 @@ import type dxDataGrid from 'devextreme/ui/data_grid';
 import type { DxPieChartTypes } from 'devextreme-vue/pie-chart';
 import type { DataSource, DataSourceOptions } from 'devextreme/common/data';
 
-export type ChartDataSource<TItem = any, TKey = any> = DataSource<TItem, TKey> | DataSourceOptions<TItem, TKey>;
+export type ChartDataSource<TItem = any, TKey = any> = DataSource<TItem, TKey> | DataSourceOptions<TItem, TKey> | undefined;
 
 function getDataForChart(
   gridInstance: dxDataGrid,
   onlySelected: boolean
 ): ChartDataSource<GridDataItem, number> {
   return {
-    store: onlySelected ? gridInstance.getSelectedRowsData() : gridInstance.getDataSource()!.store(),
+    store: onlySelected ? gridInstance.getSelectedRowsData() : gridInstance.getDataSource()?.store(),
     filter: onlySelected ? null : gridInstance.getCombinedFilter(true),
     paginate: false,
   };

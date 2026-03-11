@@ -13,7 +13,7 @@ import { getChartConfig } from '../utils/chartApi';
 import type { GridDataItem } from '@/data/gridData';
 
 interface Props {
-  dataSource: ChartDataSource<GridDataItem, number>;
+  dataSource?: ChartDataSource<GridDataItem, number>;
   seriesType: DxChartTypes.SeriesType | DxPieChartTypes.PieChartType;
   category: CategoryField;
   seriesFields: SeriesField[];
