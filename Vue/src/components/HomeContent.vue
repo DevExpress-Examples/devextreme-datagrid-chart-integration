@@ -18,14 +18,23 @@ import ArrayStore from 'devextreme/data/array_store';
 import ChartPopup from './ChartPopup.vue';
 import { gridData, type GridDataItem } from '../data/gridData';
 import { getIcon } from '../utils/helpers';
+import { DataSource } from 'devextreme/common/data';
 
 const gridRef = ref<DxDataGrid>();
 const chartPopupVisible: Ref<boolean> = ref(false);
 
 const isDataGridEmpty = ref(false);
-const gridDataStore = new ArrayStore({
+const dataStore = new ArrayStore({
   data: gridData,
   key: 'Id',
+});
+
+const dataSource = new DataSource({
+  store: dataStore,
+  onChanged: () => {
+    if (!gridInstance.value) return;
+    isDataGridEmpty.value = gridInstance.value.totalCount() === 0;
+  }
 });
 
 const gridInstance = computed<dxDataGrid | undefined>(() => gridRef.value?.instance);
@@ -77,7 +86,7 @@ function onContextMenuPreparing(e: DxDataGridTypes.ContextMenuPreparingEvent) {
     <DxDataGrid
       id="grid"
       ref="gridRef"
-      :data-source="gridDataStore"
+      :data-source="dataSource"
       :show-borders="true"
       :column-auto-width="true"
       @selection-changed="onSelectionChanged"
