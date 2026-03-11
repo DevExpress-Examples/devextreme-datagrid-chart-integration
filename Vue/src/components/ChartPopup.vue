@@ -6,7 +6,6 @@ import DxToolbar, { DxItem as DxToolbarItem } from 'devextreme-vue/toolbar';
 import DxDropDownButton from 'devextreme-vue/drop-down-button';
 import DxButton from 'devextreme-vue/button';
 import DxPopover from 'devextreme-vue/popover';
-import type dxDataGrid from 'devextreme/ui/data_grid';
 import type { DxDropDownButtonTypes } from 'devextreme-vue/drop-down-button';
 
 import SeriesTypesTabs from './SeriesTypesTabs.vue';
