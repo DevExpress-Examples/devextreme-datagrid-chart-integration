@@ -1,29 +1,70 @@
 @using ASP_NET_Core.Models
 
-<h2>Home</h2>
+<h2>DevExtreme DataGrid - Chart Integration</h2>
 
-@(Html.DevExtreme().DataGrid<SampleOrder>()
+@(Html.DevExtreme().DataGrid<ProductExport>()
+    .ID("grid")
     .ShowBorders(true)
-    .DataSource(d => d.Mvc().Controller("SampleData").LoadAction("Get").Key("OrderID"))
+    .ColumnAutoWidth(true)
+    .DataSource(d => d.Mvc().Controller("ProductData").LoadAction("Get").Key("Id"))
+    .Selection(s => s.Mode(SelectionMode.Multiple))
     .Columns(columns => {
-        columns.AddFor(m => m.OrderID);
-        columns.AddFor(m => m.OrderDate);
-        columns.AddFor(m => m.CustomerName);
-        columns.AddFor(m => m.ShipCountry);
-        columns.AddFor(m => m.ShipCity);
+        columns.AddFor(m => m.Product).Width(170);
+        columns.AddFor(m => m.ExporterRegion).Width(170);
+        columns.AddFor(m => m.ExportCategory).Caption("Category").Width(170);
+        columns.AddFor(m => m.ExportValue);
+        columns.AddFor(m => m.TaxPaid);
+        columns.AddFor(m => m.LogisticsCost);
     })
     .Paging(p => p.PageSize(10))
     .FilterRow(f => f.Visible(true))
     .HeaderFilter(f => f.Visible(true))
-    .GroupPanel(p => p.Visible(true))
-    .Grouping(g => g.AutoExpandAll(false))
+    .Toolbar(t => t.Items(items => {
+        items.Add()
+            .Name("chart")
+            .Widget(w => w.Button()
+                .Text("Generate Chart")
+                .Icon("chart")
+                .StylingMode(ButtonStylingMode.Contained)
+                .Type(ButtonType.Default)
+                .OnClick("chartIntegration.showChartPopup")
+            );
+    }))
+    .OnRowClick("onRowClick")
+    .OnContextMenuPreparing("onContextMenuPreparing")
     .RemoteOperations(true)
-    .Summary(s => s
-        .TotalItems(totalItems => {
-            totalItems.AddFor(m => m.ShipCity).SummaryType(SummaryType.Count);
-        })
-        .GroupItems(groupItems => {
-            groupItems.Add().SummaryType(SummaryType.Count);
-        })
-    )
 )
+
+<div id="chart-popup"></div>
+<div id="settings-popover"></div>
+
+<script>
+    function onRowClick(e) {
+        if (e.component.isRowSelected(e.key)) {
+            e.component.deselectRows([e.key]);
+        } else {
+            e.component.selectRows([e.key], true);
+        }
+    }
+
+    function onContextMenuPreparing(e) {
+        if (e.target === 'content') {
+            e.items = [{
+                text: 'Generate Chart',
+                icon: 'chart',
+                disabled: e.component.totalCount() === 0,
+                onItemClick: function() {
+                    chartIntegration.showChartPopup();
+                }
+            }];
+        }
+    }
+
+    // Initialize chart integration when page loads
+    $(() => {
+        const grid = $('#grid').dxDataGrid('instance');
+        chartIntegration.activate('chart-popup', 'settings-popover', grid);
+        chartIntegration.enableAdaptivity();
+    });
+</script>
+
