@@ -14,17 +14,7 @@ import {
 
 import type dxChart from 'devextreme/viz/chart';
 import type { SeriesType as DevExtremeSeriesType } from 'devextreme/common/charts';
-
-import type { ChartConfig } from '../../../utils/chart-api';
-
-export interface CommonChartViewerHandle {
-  exportChart: (fileName: string, format: string) => void;
-  printChart: () => void;
-}
-
-interface CommonChartViewerProps {
-  config: ChartConfig;
-}
+import type { CommonChartViewerHandle, CommonChartViewerProps } from './types';
 
 const CommonChartViewer = forwardRef<CommonChartViewerHandle, CommonChartViewerProps>(
   function CommonChartViewer({ config }, ref) {

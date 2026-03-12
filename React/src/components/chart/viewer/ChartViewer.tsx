@@ -11,15 +11,9 @@ import CommonChartViewer from './CommonChartViewer';
 import { getChartConfig, isPieSeriesType } from '../../../utils/chart-api';
 import { useChartPopupContext } from '../popup/ChartPopupContext';
 
-import type { PieChartViewerHandle } from './PieChartViewer';
-import type { CommonChartViewerHandle } from './CommonChartViewer';
+import type { ChartViewerHandle, CommonChartViewerHandle, PieChartViewerHandle } from './types';
 
 import './ChartViewer.css';
-
-export interface ChartViewerHandle {
-  exportChart: (fileName: string, format: string) => void;
-  printChart: () => void;
-}
 
 const ChartViewer = forwardRef<ChartViewerHandle>(
   function ChartViewer(_props, ref) {

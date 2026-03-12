@@ -9,17 +9,7 @@ import {
 } from 'devextreme-react/pie-chart';
 
 import type dxPieChart from 'devextreme/viz/pie_chart';
-
-import type { ChartConfig } from '../../../utils/chart-api';
-
-export interface PieChartViewerHandle {
-  exportChart: (fileName: string, format: string) => void;
-  printChart: () => void;
-}
-
-interface PieChartViewerProps {
-  config: ChartConfig;
-}
+import type { PieChartViewerHandle, PieChartViewerProps } from './types';
 
 const PieChartViewer = forwardRef<PieChartViewerHandle, PieChartViewerProps>(
   function PieChartViewer({ config }, ref) {

@@ -11,7 +11,7 @@ import ChartViewer from '../viewer/ChartViewer';
 
 import { capitalizeFirst } from '../../../utils/helpers';
 import { EXPORT_ITEMS } from './constants';
-import type { ChartViewerHandle } from '../viewer/ChartViewer';
+import type { ChartViewerHandle } from '../viewer/types';
 
 interface PopupContentProps {
   toggleSettings: () => void;
