@@ -1,6 +1,9 @@
+import type { ChartTypes } from 'devextreme-react/chart';
+import type { PieChartTypes } from 'devextreme-react/pie-chart';
+
 export type CategoryField = 'Product' | 'ExporterRegion';
 export type SeriesField = 'ExportValue' | 'TaxPaid' | 'LogisticsCost';
-export type SeriesType = 'line' | 'area' | 'bar' | 'stackedbar' | 'pie' | 'doughnut';
+export type SeriesType = ChartTypes.SeriesType | PieChartTypes.PieChartType
 
 export const seriesTypes: SeriesType[] = ['line', 'area', 'bar', 'stackedbar', 'pie', 'doughnut'];
 export const pieSeriesTypes: SeriesType[] = ['pie', 'doughnut'];

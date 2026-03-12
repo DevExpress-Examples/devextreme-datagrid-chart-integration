@@ -3,24 +3,14 @@ import Tabs from 'devextreme-react/tabs';
 
 import { seriesTypes, defaults } from '../../../utils/chart-data';
 import { getIconExt, capitalizeFirst } from '../../../utils/helpers';
-import type { SeriesType } from '../../../utils/chart-data';
+import { useChartPopupContext } from '../popup/ChartPopupContext';
+
+import type { onSeriesTypesSelectionChangedEvent, SeriesTypesTabsProps, TabItem } from './types';
 
 import './SeriesTypesTabs.css';
 
-interface SeriesTypesTabsProps {
-  isSmall: boolean;
-  onSeriesTypeChange: (seriesType: SeriesType) => void;
-}
-
-interface TabItem {
-  text: string;
-  icon: string;
-}
-
-export default function SeriesTypesTabs({
-  isSmall,
-  onSeriesTypeChange,
-}: SeriesTypesTabsProps): JSX.Element {
+export default function SeriesTypesTabs({ isSmall }: SeriesTypesTabsProps): JSX.Element {
+  const { handleSeriesTypeChange: onSeriesTypeChange } = useChartPopupContext();
   const tabItems = useMemo<TabItem[]>(
     () =>
       seriesTypes.map((st) => ({
@@ -33,7 +23,7 @@ export default function SeriesTypesTabs({
   const tabWidth = useMemo(() => (isSmall ? 60 : 150), [isSmall]);
 
   const handleSelectionChanged = useCallback(
-    (e: { addedItems?: TabItem[] }) => {
+    (e: onSeriesTypesSelectionChangedEvent) => {
       const added = e.addedItems?.[0];
       if (!added) return;
       const index = tabItems.findIndex((item) => item.text === added.text);

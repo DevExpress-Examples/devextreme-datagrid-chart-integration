@@ -5,14 +5,13 @@ import {
   useImperativeHandle,
 } from 'react';
 
-import { getChartConfig, isPieSeriesType } from '../../../utils/chart-api';
-import type { ChartDataSource } from '../../../utils/chart-api';
-import type { CategoryField, SeriesField, SeriesType } from '../../../utils/chart-data';
-import { defaults, seriesTypes } from '../../../utils/chart-data';
-
 import PieChartViewer from './PieChartViewer';
-import type { PieChartViewerHandle } from './PieChartViewer';
 import CommonChartViewer from './CommonChartViewer';
+
+import { getChartConfig, isPieSeriesType } from '../../../utils/chart-api';
+import { useChartPopupContext } from '../popup/ChartPopupContext';
+
+import type { PieChartViewerHandle } from './PieChartViewer';
 import type { CommonChartViewerHandle } from './CommonChartViewer';
 
 import './ChartViewer.css';
@@ -22,23 +21,15 @@ export interface ChartViewerHandle {
   printChart: () => void;
 }
 
-interface ChartViewerProps {
-  dataSource: ChartDataSource;
-  seriesType?: SeriesType;
-  category?: CategoryField;
-  seriesFields?: SeriesField[];
-}
+const ChartViewer = forwardRef<ChartViewerHandle>(
+  function ChartViewer(_props, ref) {
+    const {
+      chartData: dataSource,
+      currentSeriesType: seriesType,
+      currentCategory: category,
+      currentSeriesFields: seriesFields,
+    } = useChartPopupContext();
 
-const ChartViewer = forwardRef<ChartViewerHandle, ChartViewerProps>(
-  function ChartViewer(
-    {
-      dataSource,
-      seriesType = seriesTypes[defaults.seriesTypeIndex],
-      category = defaults.category,
-      seriesFields = defaults.series,
-    },
-    ref,
-  ) {
     const commonChartRef = useRef<CommonChartViewerHandle>(null);
     const pieChartRef = useRef<PieChartViewerHandle>(null);
 

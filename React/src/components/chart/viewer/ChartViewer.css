@@ -1,3 +1,9 @@
+:host {
+  height: calc(100% - 48px);
+  display: flex;
+  width: 100%;
+}
+
 .popup-content-chart {
   width: 100%;
   flex-grow: 1;
