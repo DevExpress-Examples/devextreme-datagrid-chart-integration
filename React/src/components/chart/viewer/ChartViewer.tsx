@@ -5,8 +5,8 @@ import {
   useImperativeHandle,
 } from 'react';
 
-import PieChartViewer from './PieChartViewer';
-import CommonChartViewer from './CommonChartViewer';
+import PieChartViewer from './PieChartViewer.tsx';
+import CommonChartViewer from './CommonChartViewer.tsx';
 
 import { getChartConfig, isPieSeriesType } from '../../../utils/chart-api';
 import { useChartPopupContext } from '../popup/ChartPopupContext';
@@ -16,7 +16,7 @@ import type { ChartViewerHandle, CommonChartViewerHandle, PieChartViewerHandle }
 import './ChartViewer.css';
 
 const ChartViewer = forwardRef<ChartViewerHandle>(
-  function ChartViewer(_props, ref) {
+  (_props, ref) => {
     const {
       chartData: dataSource,
       currentSeriesType: seriesType,
@@ -55,12 +55,14 @@ const ChartViewer = forwardRef<ChartViewerHandle>(
       [isPie],
     );
 
-    if(!seriesType) return null;
+    if (!seriesType) return null;
 
     return isPie
       ? <PieChartViewer ref={pieChartRef} config={config} />
       : <CommonChartViewer ref={commonChartRef} config={config} />;
   },
 );
+
+ChartViewer.displayName = 'ChartViewer';
 
 export default ChartViewer;

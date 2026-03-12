@@ -1,4 +1,4 @@
-import { useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback } from 'react';
 
 import DataGrid, {
   Column,
@@ -11,7 +11,7 @@ import DataGrid, {
 } from 'devextreme-react/data-grid';
 import Button from 'devextreme-react/button';
 
-import ChartPopup from './chart/popup/ChartPopup';
+import ChartPopup from './chart/popup/ChartPopup.tsx';
 import { useGridData } from '../hooks/useGridData';
 import { getIcon } from '../utils/helpers';
 
@@ -45,13 +45,13 @@ export default function Home(): JSX.Element {
         disabled={isDataGridEmpty}
         onClick={showChartPopup}
         render={() => (
-          <>
+          <React.Fragment>
             <i
               className="dx-icon dx-svg-icon"
               dangerouslySetInnerHTML={{ __html: generateChartButtonIcon }}
             />
             <span className="dx-button-text">Generate Chart</span>
-          </>
+          </React.Fragment>
         )}
       />
     ),

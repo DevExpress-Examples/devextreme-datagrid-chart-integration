@@ -1,4 +1,6 @@
-import { useRef, useState, useCallback, useMemo } from 'react';
+import {
+  useRef, useState, useCallback, useMemo,
+} from 'react';
 
 import DataSource from 'devextreme/data/data_source';
 import ArrayStore from 'devextreme/data/array_store';
@@ -54,16 +56,14 @@ export function useGridData(): GridDataState {
     [selectedRowsData, onlySelected],
   );
 
-  const gridDataSource = useMemo(() => {
-    return new DataSource<GridDataItem, number>({
-      store: dataStore,
-      onChanged: () => {
-        const totalCount = gridRef.current?.instance()?.totalCount() ?? 0;
-        setIsDataGridEmpty(totalCount === 0);
-        updateChartData();
-      },
-    });
-  }, [updateChartData]);
+  const gridDataSource = useMemo(() => new DataSource<GridDataItem, number>({
+    store: dataStore,
+    onChanged: () => {
+      const totalCount = gridRef.current?.instance()?.totalCount() ?? 0;
+      setIsDataGridEmpty(totalCount === 0);
+      updateChartData();
+    },
+  }), [updateChartData]);
 
   const showChartPopup = useCallback(() => {
     setChartPopupVisible(true);

@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 
 const BREAKPOINT_SMALL = 800;
 
-export function useScreenSize(): { isSmall: boolean } {
+export default function useScreenSize(): { isSmall: boolean } {
   const [isSmall, setIsSmall] = useState(
     () => window.innerWidth <= BREAKPOINT_SMALL,
   );

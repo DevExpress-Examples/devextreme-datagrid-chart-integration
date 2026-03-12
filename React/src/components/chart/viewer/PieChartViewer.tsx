@@ -12,7 +12,7 @@ import type dxPieChart from 'devextreme/viz/pie_chart';
 import type { PieChartViewerHandle, PieChartViewerProps } from './types';
 
 const PieChartViewer = forwardRef<PieChartViewerHandle, PieChartViewerProps>(
-  function PieChartViewer({ config }, ref) {
+  ({ config }, ref) => {
     const pieChartRef = useRef<PieChartRef>(null);
 
     useImperativeHandle(
@@ -50,5 +50,7 @@ const PieChartViewer = forwardRef<PieChartViewerHandle, PieChartViewerProps>(
     );
   },
 );
+
+PieChartViewer.displayName = 'PieChartViewer';
 
 export default PieChartViewer;

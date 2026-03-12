@@ -17,7 +17,7 @@ import type { SeriesType as DevExtremeSeriesType } from 'devextreme/common/chart
 import type { CommonChartViewerHandle, CommonChartViewerProps } from './types';
 
 const CommonChartViewer = forwardRef<CommonChartViewerHandle, CommonChartViewerProps>(
-  function CommonChartViewer({ config }, ref) {
+  ({ config }, ref) => {
     const chartRef = useRef<ChartRef>(null);
 
     useImperativeHandle(
@@ -63,5 +63,7 @@ const CommonChartViewer = forwardRef<CommonChartViewerHandle, CommonChartViewerP
     );
   },
 );
+
+CommonChartViewer.displayName = 'CommonChartViewer';
 
 export default CommonChartViewer;

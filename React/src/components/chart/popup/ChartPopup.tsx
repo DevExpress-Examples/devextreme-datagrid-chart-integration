@@ -3,10 +3,10 @@ import { useCallback, useMemo } from 'react';
 import Popup from 'devextreme-react/popup';
 import Popover from 'devextreme-react/popover';
 
-import { useScreenSize } from '../../../hooks/useScreenSize';
+import useScreenSize from '../../../hooks/useScreenSize';
 import { useChartSettings } from '../../../hooks/useChartSettings';
-import PopupContent from './PopupContent';
-import ChartSettings from '../settings/ChartSettings';
+import PopupContent from './PopupContent.tsx';
+import ChartSettings from '../settings/ChartSettings.tsx';
 
 import { POPOVER_POSITION, POPOVER_WRAPPER_ATTR, POPUP_WRAPPER_ATTR } from './constants';
 import { ChartPopupContext } from './ChartPopupContext';

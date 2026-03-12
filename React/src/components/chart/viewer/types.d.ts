@@ -1,4 +1,4 @@
-import type { ChartConfig } from "../../../utils/chart-api";
+import type { ChartConfig } from '../../../utils/chart-api';
 
 export interface ChartViewerHandle {
   exportChart: (fileName: string, format: string) => void;

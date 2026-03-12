@@ -1,4 +1,4 @@
-import type { ChartDataSource } from "../../../utils/chart-api";
+import type { ChartDataSource } from '../../../utils/chart-api';
 
 interface ChartPopupProps {
   visible: boolean;

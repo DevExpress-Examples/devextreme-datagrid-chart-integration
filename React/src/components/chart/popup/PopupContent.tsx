@@ -1,13 +1,13 @@
-import { useRef, useCallback, useMemo } from 'react';
+import React, { useRef, useCallback, useMemo } from 'react';
 
 import Toolbar, { Item as ToolbarItem } from 'devextreme-react/toolbar';
 import Button from 'devextreme-react/button';
 import DropDownButton from 'devextreme-react/drop-down-button';
 
-import { useScreenSize } from '../../../hooks/useScreenSize';
+import useScreenSize from '../../../hooks/useScreenSize';
 import { useChartPopupContext } from './ChartPopupContext';
-import SeriesTypesTabs from '../series-types-tabs/SeriesTypesTabs';
-import ChartViewer from '../viewer/ChartViewer';
+import SeriesTypesTabs from '../series-types-tabs/SeriesTypesTabs.tsx';
+import ChartViewer from '../viewer/ChartViewer.tsx';
 
 import { capitalizeFirst } from '../../../utils/helpers';
 import { EXPORT_ITEMS } from './constants';
@@ -23,11 +23,11 @@ function ChartTitle({ title }: { title: string }) {
 
 function SettingsButtonContent() {
   return (
-    <>
+    <React.Fragment>
       <i className="dx-icon dx-icon-optionsoutline" />
       <span className="dx-button-text">Settings</span>
       <i className="dx-icon dx-icon-spindown" />
-    </>
+    </React.Fragment>
   );
 }
 

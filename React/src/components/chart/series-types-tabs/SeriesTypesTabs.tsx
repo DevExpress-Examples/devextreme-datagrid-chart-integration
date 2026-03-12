@@ -12,11 +12,10 @@ import './SeriesTypesTabs.css';
 export default function SeriesTypesTabs({ isSmall }: SeriesTypesTabsProps): JSX.Element {
   const { handleSeriesTypeChange: onSeriesTypeChange } = useChartPopupContext();
   const tabItems = useMemo<TabItem[]>(
-    () =>
-      seriesTypes.map((st) => ({
-        text: capitalizeFirst(st),
-        icon: getIconExt(st),
-      })),
+    () => seriesTypes.map((st) => ({
+      text: capitalizeFirst(st),
+      icon: getIconExt(st),
+    })),
     [],
   );
 

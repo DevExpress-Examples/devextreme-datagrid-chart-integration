@@ -1,6 +1,6 @@
 import 'devextreme/dist/css/dx.fluent.blue.light.css';
 import './App.css';
-import Home from './components/Home';
+import Home from './components/Home.tsx';
 
 function App(): JSX.Element {
   return <Home />;
