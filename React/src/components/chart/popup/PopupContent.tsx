@@ -108,7 +108,7 @@ function PopupContent({ toggleSettings }: PopupContentProps) {
       <SeriesTypesTabs isSmall={isSmall} />
 
       <div id="popup-content-data">
-        <Toolbar id="popup-content-toolbar">
+        <Toolbar id="popup-content-toolbar" key={locateInMenu}>
           <ToolbarItem location="before" render={renderChartTitle} />
 
           <ToolbarItem location="after" locateInMenu={locateInMenu} render={renderExportButton} />
