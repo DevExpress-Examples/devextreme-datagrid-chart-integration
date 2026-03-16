@@ -4,10 +4,29 @@
 
 @(Html.DevExtreme().DataGrid<ProductExport>()
     .ID("grid")
-    .ShowBorders(true)
-    .ColumnAutoWidth(true)
     .DataSource(d => d.Mvc().Controller("ProductData").LoadAction("Get").Key("Id"))
+    .DataSourceOptions(options => options
+        .OnLoadingChanged("onLoadingChanged")
+    )
+    .ShowBorders(true)
+    .ColumnAutoWidth(true)   
     .Selection(s => s.Mode(SelectionMode.Multiple))
+    .HeaderFilter(f => f.Visible(true))
+    .FilterRow(f => f.Visible(true))
+    .Paging(p => p.PageSize(10))
+    .Toolbar(t => t.Items(items => {
+        items.Add()
+            .Name("chart")
+            .Widget(w => w.Button()
+                .Text("Generate Chart")
+                .Icon(new JS("helpers.getIcon('pie', false)"))
+                .StylingMode(ButtonStylingMode.Contained)
+                .Type(ButtonType.Default)
+                .OnClick("chartIntegration.showChartPopup")
+            );
+    }))
+    .OnContextMenuPreparing("onContextMenuPreparing")
+    .OnRowClick("onRowClick")
     .Columns(columns => {
         columns.AddFor(m => m.Product).Width(170);
         columns.AddFor(m => m.ExporterRegion).Width(170);
@@ -16,29 +35,40 @@
         columns.AddFor(m => m.TaxPaid);
         columns.AddFor(m => m.LogisticsCost);
     })
-    .Paging(p => p.PageSize(10))
-    .FilterRow(f => f.Visible(true))
-    .HeaderFilter(f => f.Visible(true))
-    .Toolbar(t => t.Items(items => {
-        items.Add()
-            .Name("chart")
-            .Widget(w => w.Button()
-                .Text("Generate Chart")
-                .Icon("chart")
-                .StylingMode(ButtonStylingMode.Contained)
-                .Type(ButtonType.Default)
-                .OnClick("chartIntegration.showChartPopup")
-            );
-    }))
-    .OnRowClick("onRowClick")
-    .OnContextMenuPreparing("onContextMenuPreparing")
+    
+    
+    
+   
+    
+   
     .RemoteOperations(true)
 )
+
+@await Html.PartialAsync("_ChartPopup")
 
 <div id="chart-popup"></div>
 <div id="settings-popover"></div>
 
 <script>
+    function onLoadingChanged(isLoading){
+        // if (!isLoading) {
+        //   const toolbarItems = grid.option('toolbar.items');
+        //   toolbarItems.find(ti => ti.name === 'chart').disabled = helpers.isDataGridEmpty();
+        //   grid.option('toolbar.items', toolbarItems);
+        // }
+    }
+
+    function onContextMenuPreparing(e) {
+        if (e.target === 'content') {
+            e.items = [{
+                text: 'Generate Chart',
+                icon: helpers.getIcon('pie', true),
+                disabled: helpers.isDataGridEmpty(),
+                onClick: chartIntegration.showChartPopup
+            }];
+        }
+    }
+
     function onRowClick(e) {
         if (e.component.isRowSelected(e.key)) {
             e.component.deselectRows([e.key]);
@@ -46,24 +76,11 @@
             e.component.selectRows([e.key], true);
         }
     }
-
-    function onContextMenuPreparing(e) {
-        if (e.target === 'content') {
-            e.items = [{
-                text: 'Generate Chart',
-                icon: 'chart',
-                disabled: e.component.totalCount() === 0,
-                onItemClick: function() {
-                    chartIntegration.showChartPopup();
-                }
-            }];
-        }
-    }
-
+   
     $(() => {
-        const grid = $('#grid').dxDataGrid('instance');
-        chartIntegration.activate('chart-popup', 'settings-popover', grid);
-        chartIntegration.enableAdaptivity();
+        // const grid = $('#grid').dxDataGrid('instance');
+        // chartIntegration.activate('chart-popup', 'settings-popover', grid);
+        // chartIntegration.enableAdaptivity();
     });
 </script>
 
