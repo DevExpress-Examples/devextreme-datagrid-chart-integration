@@ -1,0 +1,104 @@
+@using ASP_NET_Core.Models
+@using DevExtreme.AspNet.Mvc
+
+@{
+    var seriesTypes = ChartConfiguration.SeriesTypes;
+    var pieSeriesTypes = ChartConfiguration.PieSeriesTypes;
+    var categories = ChartConfiguration.Categories;
+    var seriesFields = ChartConfiguration.SeriesFields;
+    var seriesNames = ChartConfiguration.SeriesNames;
+}
+
+@(Html.DevExtreme().Popup()
+    .Visible(true)
+    .ID("chart-popup")
+    .Width(800)
+    .Height(550)
+    .WrapperAttr(new { @class = "chart-popup" })
+    .Title("Chart Preview")
+    .OnShowing("popupOnShowing")  
+    .ShowCloseButton(true)
+    .ContentTemplate(@<text>
+        <div id="popup-content">
+           @await Html.PartialAsync("_SeriesTypesTabs")
+            
+            <div id="popup-content-data">
+                @await Html.PartialAsync("_ChartToolbar")
+                @await Html.PartialAsync("_Chart")
+                
+                
+          
+                
+            
+            </div>
+        </div>
+    </text>)
+)
+
+@(Html.DevExtreme().Popover()
+    .Visible(true)
+    .ID("settings-popover")
+    .DeferRendering(false)
+    .ShowTitle(false)
+    .Width(240)
+    .Shading(false)
+    .HideOnOutsideClick(new JS("popoverHideOnOutsideClick"))
+    .Container("#popup-content")
+    .WrapperAttr(new { @class = "dx-dropdownbutton-popup-wrapper" })
+    .Position(p => p
+        .Of("#settings-button")
+        .At(HorizontalAlignment.Right, VerticalAlignment.Bottom)
+        .My(HorizontalAlignment.Right, VerticalAlignment.Top)
+        .Offset(0, -8)
+    )
+    .ContentTemplate(@<text>
+        <div id="popup-content-data-panel">
+            @(Html.DevExtreme().Form()
+                .ID("popup-data-form")
+                .LabelMode(FormLabelMode.Outside)
+                .ShowColonAfterLabel(false)
+                .Items(items => {
+                    items.AddSimple()
+                        .DataField("CategoryAxis")
+                        .Editor(e => e.SelectBox()
+                            .ID("category-editor")
+                            .Items(categories)
+                            .Value(ChartConfiguration.Defaults.Category)
+                            @* .OnValueChanged("onCategoryAxisChanged") *@
+                        );
+                    
+                    items.AddSimple()
+                        .DataField("Series")
+                        .Editor(e => e.TagBox()
+                            .ID("series-editor")
+                            .Items(seriesFields)
+                            .Value(ChartConfiguration.Defaults.Series)
+                            @* .OnValueChanged("onSeriesChanged") *@
+                        );
+                    
+                    items.AddSimple()
+                        .DataField("OnlySelected")
+                        .Label(l => l
+                            .Location(FormLabelLocation.Left)
+                            .Alignment(HorizontalAlignment.Left)
+                        )
+                        .CssClass("label-v-center")
+                        .Editor(e => e.Switch()
+                            .ID("only-selected-switch")
+                            .Value(false)
+                            @* .OnValueChanged("onOnlySelectedChanged") *@
+                        );
+                })
+            )
+        </div>
+ 
+    </text>)
+)
+
+@using (Html.DevExtreme().NamedTemplate("settingButtonTemplate")) {
+   <div class="dx-button-content">
+        <i class="dx-icon dx-icon-optionsoutline"></i>
+        <span class="dx-button-text">Settings</span>
+        <i class="dx-icon dx-icon-spindown"></i>
+    </div>
+}

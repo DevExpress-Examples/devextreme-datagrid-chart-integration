@@ -1,0 +1,59 @@
+@using ASP_NET_Core.Models
+
+@(Html.DevExtreme().Toolbar()
+    .ID("popup-content-toolbar")
+    .OnInitialized("toolbarOnInitialized") //to set items' LocateInMenu
+    .Items(items => {
+        items.Add()
+            .Location(ToolbarItemLocation.Before)
+            .Text(new JS("chartData.seriesTypes[chartData.defaults.seriesTypeIndex].charAt(0).toUpperCase() + chartData.seriesTypes[chartData.defaults.seriesTypeIndex].slice(1) + ' Chart'"))
+            .CssClass("chart-title");
+
+        items.Add()
+            .Location(ToolbarItemLocation.After)
+            @* .LocateInMenu(new JS("helpers.isSmallScreen() ? 'always' : 'auto'")) *@
+            .Widget(w => w
+                .DropDownButton()
+                .Icon("export")
+                .Text("Export")
+                .Items(items => {
+                    items.Add()
+                        .Icon("image")
+                        .Text("PNG"); 
+                    items.Add()
+                        .Icon("pdffile")
+                        .Text("PDF"); 
+                    items.Add()
+                        .Icon("jpgfile")
+                        .Text("JPEG");
+                    items.Add()
+                        .Icon("jpgfile")
+                        .Text("JPEG");
+                })
+                .OnItemClick("onExportChart") 
+            );
+                                
+        items.Add()
+            .Location(ToolbarItemLocation.After)
+            @* .LocateInMenu(new JS("helpers.isSmallScreen() ? 'always' : 'auto'")) *@
+            .Widget(w => w
+                .Button()
+                .Icon("print")
+                .Text("Print")
+                .OnClick("onPrintChart")
+            );
+                           
+
+        items.Add()
+            .Location(ToolbarItemLocation.After)
+            .Widget(w => w
+                .Button()
+                .ElementAttr(new { @id = "settings-button" })
+                .Icon("optionsoutline")
+                .Text("Settings")
+                .Template(new TemplateName("settingButtonTemplate"))
+                .OnClick("settingOnClick")
+            );
+                            
+    })
+)
