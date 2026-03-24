@@ -1,2 +1,44 @@
 @using ASP_NET_Core.Models
+@using DevExtreme.AspNet.Mvc
 
+<div id="chart-container">
+    @* Regular Chart (Bar, Line, Area, etc.) *@
+    <div class="chart-wrapper" data-chart-type="regular">
+        @(Html.DevExtreme().Chart()
+            .ID("popup-chart")
+            .OnInitialized("chartAPI.onRegularChartInit")
+            .Legend(l => l
+                .VerticalAlignment(VerticalEdge.Bottom)
+                .HorizontalAlignment(HorizontalAlignment.Center)
+                .ColumnItemSpacing(24)
+                .ItemTextPosition(Position.Right)
+            )
+            .Animation(a => a.Enabled(false))
+            .ArgumentAxis(a => a
+                .Label(l => l
+                    .DisplayMode(ChartLabelDisplayMode.Rotate)
+                    .RotationAngle(45)
+                )
+            )
+            .ValueAxis(v => v
+                .Add()
+                    .Visible(false)
+                    .Tick(t => t.Visible(false))
+            )
+        )
+    </div>
+
+    @* Pie Chart (Pie, Doughnut) *@
+    <div class="chart-wrapper" data-chart-type="pie" style="display: none;">
+        @(Html.DevExtreme().PieChart()
+            .ID("popup-pie-chart")
+            .OnInitialized("chartAPI.onPieChartInit")
+            .Legend(l => l
+                .VerticalAlignment(VerticalEdge.Bottom)
+                .HorizontalAlignment(HorizontalAlignment.Center)
+                .ColumnItemSpacing(24)
+            )
+            .Animation(a => a.Enabled(false))
+        )
+    </div>
+</div>

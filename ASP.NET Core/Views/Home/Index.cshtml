@@ -45,6 +45,25 @@
 
 <script>
 
+    function onOnlySelectedChanged(e){
+        if (chartInPopup) {
+            chartInPopup.option('dataSource', chartAPI.getDataForChart(e.value));
+        } else {
+            createChart($('#' + constants.POPUP_CHART_ID), getters.currentSeriesType());
+        }
+    }
+
+    function onSeriesChanged(e){
+        // const newSeries = e.value.map(v => ({
+        //     valueField: v, name: v
+        // }));
+        // chartInPopup.option('series', newSeries);
+    }
+
+    function onCategoryAxisChanged(e){
+        //chartInPopup.option('commonSeriesSettings.argumentField', e.value)
+    }
+
     function settingOnClick(e){
         // if (settingsPopoverInstance.option('visible')) {
         //     settingsPopoverInstance.hide();
@@ -62,7 +81,7 @@
     }
 
     function popoverHideOnOutsideClick(e){
-        return !$("#settings-button").has($(e.target)).length;
+        //return !$("#settings-button").has($(e.target)).length;
     }
 
     function popupOnShowing(e) {
@@ -113,8 +132,8 @@
             e.component.selectRows([e.key], true);
         }
     }
-   
-    $(() => {
+
+    $(document).ready(() => {
         const grid = $('#grid').dxDataGrid('instance');
         chartIntegration.activate('chart-popup', 'settings-popover', grid);
         // chartIntegration.enableAdaptivity();

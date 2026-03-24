@@ -10,7 +10,7 @@
 }
 
 @(Html.DevExtreme().Popup()
-    .Visible(true)
+    .DeferRendering(false)
     .ID("chart-popup")
     .Width(800)
     .Height(550)
@@ -24,12 +24,7 @@
             
             <div id="popup-content-data">
                 @await Html.PartialAsync("_ChartToolbar")
-                @await Html.PartialAsync("_Chart")
-                
-                
-          
-                
-            
+                @await Html.PartialAsync("_Chart")       
             </div>
         </div>
     </text>)
@@ -37,8 +32,8 @@
 
 @(Html.DevExtreme().Popover()
     .Visible(true)
-    .ID("settings-popover")
     .DeferRendering(false)
+    .ID("settings-popover")
     .ShowTitle(false)
     .Width(240)
     .Shading(false)
@@ -62,31 +57,32 @@
                         .DataField("CategoryAxis")
                         .Editor(e => e.SelectBox()
                             .ID("category-editor")
-                            .Items(categories)
-                            .Value(ChartConfiguration.Defaults.Category)
-                            @* .OnValueChanged("onCategoryAxisChanged") *@
+                            .DataSource(new JS("chartData.categories"))
+                            .Value(new JS("chartData.defaults.category"))
+                             @* Check this later *@
+                            .OnValueChanged("onCategoryAxisChanged")
                         );
                     
                     items.AddSimple()
                         .DataField("Series")
                         .Editor(e => e.TagBox()
                             .ID("series-editor")
-                            .Items(seriesFields)
-                            .Value(ChartConfiguration.Defaults.Series)
-                            @* .OnValueChanged("onSeriesChanged") *@
+                            .DataSource(new JS("chartData.defaults.series"))
+                            .Value(new JS("chartData.defaults.series"))
+                            .OnValueChanged("onSeriesChanged")
                         );
                     
                     items.AddSimple()
                         .DataField("OnlySelected")
+                        .CssClass("label-v-center")
                         .Label(l => l
                             .Location(FormLabelLocation.Left)
                             .Alignment(HorizontalAlignment.Left)
                         )
-                        .CssClass("label-v-center")
                         .Editor(e => e.Switch()
-                            .ID("only-selected-switch")
+                            .ID("only-selected-box")
                             .Value(false)
-                            @* .OnValueChanged("onOnlySelectedChanged") *@
+                            .OnValueChanged("onOnlySelectedChanged")
                         );
                 })
             )
