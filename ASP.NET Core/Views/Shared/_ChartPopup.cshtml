@@ -31,7 +31,6 @@
 )
 
 @(Html.DevExtreme().Popover()
-    .Visible(true)
     .DeferRendering(false)
     .ID("settings-popover")
     .ShowTitle(false)
@@ -59,7 +58,6 @@
                             .ID("category-editor")
                             .DataSource(new JS("chartData.categories"))
                             .Value(new JS("chartData.defaults.category"))
-                             @* Check this later *@
                             .OnValueChanged("onCategoryAxisChanged")
                         );
                     

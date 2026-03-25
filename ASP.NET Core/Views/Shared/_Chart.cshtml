@@ -8,9 +8,9 @@
             .ID("popup-chart")
             .OnInitialized("chartAPI.onRegularChartInit")
             .Legend(l => l
+                .ColumnItemSpacing(24)
                 .VerticalAlignment(VerticalEdge.Bottom)
                 .HorizontalAlignment(HorizontalAlignment.Center)
-                .ColumnItemSpacing(24)
                 .ItemTextPosition(Position.Right)
             )
             .Animation(a => a.Enabled(false))
@@ -31,14 +31,15 @@
     @* Pie Chart (Pie, Doughnut) *@
     <div class="chart-wrapper" data-chart-type="pie" style="display: none;">
         @(Html.DevExtreme().PieChart()
+            .Animation(a => a.Enabled(false))
             .ID("popup-pie-chart")
             .OnInitialized("chartAPI.onPieChartInit")
             .Legend(l => l
                 .VerticalAlignment(VerticalEdge.Bottom)
                 .HorizontalAlignment(HorizontalAlignment.Center)
                 .ColumnItemSpacing(24)
+                .ItemTextPosition(Position.Right)
             )
-            .Animation(a => a.Enabled(false))
         )
     </div>
 </div>
