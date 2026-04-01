@@ -2,7 +2,6 @@ import React, { useRef, useCallback, useMemo } from 'react';
 
 import Toolbar, { Item as ToolbarItem } from 'devextreme-react/toolbar';
 import Button from 'devextreme-react/button';
-import DropDownButton from 'devextreme-react/drop-down-button';
 
 import useScreenSize from '../../../hooks/useScreenSize';
 import { useChartPopupContext } from './ChartPopupContext';
@@ -71,18 +70,16 @@ function PopupContent({ toggleSettings }: PopupContentProps) {
     [chartTitle],
   );
 
-  const renderExportButton = useCallback(
-    () => (
-      <DropDownButton
-        stylingMode="text"
-        icon="export"
-        text="Export"
-        displayExpr="text"
-        keyExpr="text"
-        items={EXPORT_ITEMS}
-        onItemClick={handleExportItemClick}
-      />
-    ),
+  const exportButtonOptions = useMemo(
+    () => ({
+      stylingMode: 'text' as const,
+      icon: 'export',
+      text: 'Export',
+      displayExpr: 'text',
+      keyExpr: 'text',
+      items: EXPORT_ITEMS,
+      onItemClick: handleExportItemClick,
+    }),
     [handleExportItemClick],
   );
 
@@ -111,7 +108,7 @@ function PopupContent({ toggleSettings }: PopupContentProps) {
         <Toolbar id="popup-content-toolbar" key={locateInMenu}>
           <ToolbarItem location="before" render={renderChartTitle} />
 
-          <ToolbarItem location="after" locateInMenu={locateInMenu} render={renderExportButton} />
+          <ToolbarItem location="after" locateInMenu={locateInMenu} widget="dxDropDownButton" options={exportButtonOptions} />
 
           <ToolbarItem location="after" locateInMenu={locateInMenu} widget="dxButton" options={printButtonOptions} />
 
