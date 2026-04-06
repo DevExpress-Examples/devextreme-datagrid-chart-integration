@@ -304,10 +304,10 @@ TesterMetadata.xml
 # Backup files
 *.bak
 
-*/wwwroot/*
+# Ignore generated vendor files in wwwroot
+*/wwwroot/css/vendor.css
+*/wwwroot/css/fonts/
+*/wwwroot/css/icons/
+*/wwwroot/js/vendor.js
 
-!*/wwwroot/css/Site.css
-!*/wwwroot/css/dx-styles.css
-!*/wwwroot/css/index.css
-!*/wwwroot/js/chart-integration
 *.DS_Store

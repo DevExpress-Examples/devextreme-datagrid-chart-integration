@@ -1,0 +1,51 @@
+.demo-container {
+    margin: 50px;
+    width: 90vw;
+}
+
+#popup-content-series-list {
+    width: 150px;
+    padding-right: 24px;
+    box-sizing: border-box;
+}
+
+#popup-content {
+    display: flex;
+    height: 100%;
+}
+
+#grid {
+    min-width: 580px;
+}
+
+#popup-content-chart {
+    flex: 1; /* Take all remaining vertical space */
+    width: 100%;
+    min-height: 0; /* Critical for flex child to respect parent height */
+    overflow: hidden;
+    position: relative;
+}
+
+#popup-content-data {
+    flex: 1;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    background: var(--fluent-colors-grey-0, #FFF);
+    box-shadow: 0 4px 12px 0 rgb(0 0 0 / 4%), 0 4px 24px 0 rgb(0 0 0 / 2%);
+    padding: 24px;
+    row-gap: 24px;
+}
+
+#only-selected-box {
+    float: right;
+    margin-top: 0;
+    margin-bottom: 4px;
+}
+
+.custom-icon {
+    width: 20px;
+    height: 20px;
+    fill: #0f6cbd;
+}

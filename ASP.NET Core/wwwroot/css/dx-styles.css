@@ -1,0 +1,66 @@
+.chart-popup {
+    & > .dx-overlay-content {
+        background: #fafafa;
+    }
+
+    .dx-popup-content {
+        padding: 24px;
+    }
+}
+
+#popup-content-series-list {
+    .dx-tab-text {
+        column-gap: 6px;
+    }
+
+    .dx-item.dx-tab.dx-state-hover {
+        background-color: #f5f5f5;
+    }
+
+    .dx-item-content.dx-tab-content {
+        padding-left: 2px;
+    }
+
+    &.dx-tabs-styling-mode-secondary.dx-tab-indicator-position-right .dx-tab::after {
+        left: 0;
+    }
+}
+
+.dx-item.dx-tab.dx-tab-selected .custom-icon {
+    .icon-filled {
+        display: inline-block;
+    }
+
+    .icon-outline {
+        display: none;
+    }
+}
+
+.dx-item.dx-tab:not(.dx-tab-selected) .custom-icon .icon-filled {
+    display: none;
+}
+
+.dx-toolbar-label.chart-title {
+    font-size: 16px;
+    color: var(--fluent-colors-grey-900);
+}
+
+#popup-data-form .dx-layout-manager .label-v-center.dx-label-h-align.dx-flex-layout:not(.dx-field-item-label-align) {
+    align-items: center;
+}
+
+.dx-button-default .custom-icon {
+    fill: #fff;
+}
+
+.dx-menu-item-has-icon .custom-icon {
+    fill: unset;
+}
+
+.dx-toolbar-menu-section .dx-list-item-content:has(.dx-dropdownbutton) {
+    padding: 0;
+}
+
+#settings-button .dx-icon-spindown {
+    margin-inline: 0 8px;
+}
