@@ -1,0 +1,13 @@
+#popup-content-data-panel {
+  padding: 16px;
+}
+
+#popup-data-form .label-v-center.dx-label-h-align.dx-flex-layout:not(.dx-field-item-label-align) {
+  align-items: center;
+}
+
+#only-selected-box {
+  float: right;
+  margin-top: 0;
+  margin-bottom: 4px;
+}
