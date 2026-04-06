@@ -307,4 +307,7 @@ TesterMetadata.xml
 */wwwroot/*
 
 !*/wwwroot/css/Site.css
+!*/wwwroot/css/dx-styles.css
+!*/wwwroot/css/index.css
+!*/wwwroot/js/chart-integration
 *.DS_Store
