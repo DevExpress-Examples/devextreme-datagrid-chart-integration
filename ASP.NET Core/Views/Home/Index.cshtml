@@ -82,8 +82,8 @@
     }
 
     function popupOnShowing(e) {
-         // getters.onlySelectedEditor().option('value', getters.hasSelectedRows());
-         // getters.onlySelectedEditor().option('disabled', !getters.hasSelectedRows());
+         getters.onlySelectedEditor().option('value', getters.hasSelectedRows());
+         getters.onlySelectedEditor().option('disabled', !getters.hasSelectedRows());
     }
 
     function toolbarOnInitialized(e){
