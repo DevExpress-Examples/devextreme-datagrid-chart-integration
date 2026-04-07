@@ -1,14 +1,6 @@
 @using ASP_NET_Core.Models
 @using DevExtreme.AspNet.Mvc
 
-@{
-    var seriesTypes = ChartConfiguration.SeriesTypes;
-    var pieSeriesTypes = ChartConfiguration.PieSeriesTypes;
-    var categories = ChartConfiguration.Categories;
-    var seriesFields = ChartConfiguration.SeriesFields;
-    var seriesNames = ChartConfiguration.SeriesNames;
-}
-
 @(Html.DevExtreme().Popup()
     .DeferRendering(false)
     .ID("chart-popup")
