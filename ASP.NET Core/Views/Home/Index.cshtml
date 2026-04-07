@@ -40,9 +40,6 @@
 
 @await Html.PartialAsync("_ChartPopup")
 
-<div id="chart-popup"></div>
-<div id="settings-popover"></div>
-
 <script>
 
     function onOnlySelectedChanged(e){
@@ -107,11 +104,12 @@
     }
 
     function onLoadingChanged(isLoading){
-        // if (!isLoading) {
-        //   const toolbarItems = grid.option('toolbar.items');
-        //   toolbarItems.find(ti => ti.name === 'chart').disabled = helpers.isDataGridEmpty();
-        //   grid.option('toolbar.items', toolbarItems);
-        // }
+        if (!isLoading) {
+          let grid = getters.grid();
+          const toolbarItems = grid.option('toolbar.items');
+          toolbarItems.find(ti => ti.name === 'chart').disabled = helpers.isDataGridEmpty();
+          grid.option('toolbar.items', toolbarItems);
+        }
     }
 
     function onContextMenuPreparing(e) {
@@ -133,7 +131,7 @@
         }
     }
 
-    $(document).ready(() => {
+    $(()=>{
         const grid = $('#grid').dxDataGrid('instance');
         chartIntegration.activate('chart-popup', 'settings-popover', grid);
         // chartIntegration.enableAdaptivity();

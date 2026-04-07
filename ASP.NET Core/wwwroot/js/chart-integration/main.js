@@ -98,54 +98,7 @@ const chartIntegration = (function () {
 
     function activate(popupElementId, settingsElementId, grid) {
         getters.grid = () => grid;
-
         popupInstance = $(`#${popupElementId}`).dxPopup('instance');
-        //popupInstance = $(`#${popupElementId}`).dxPopup({
-        //    showCloseButton: true,
-        //    width: 800,
-        //    height: 550,
-        //    wrapperAttr: { class: 'chart-popup' },
-        //    title: "Chart Preview",
-        //    onShowing: () => {
-        //        getters.onlySelectedEditor().option('value', getters.hasSelectedRows());
-        //        getters.onlySelectedEditor().option('disabled', !getters.hasSelectedRows());
-        //    },
-        //    contentTemplate: () => {
-        //        const content = $("<div id='popup-content' />");
-        //        const tabsContainer = $(`<div id='${constants.POPUP_SERIES_LIST_ID}' />`);
-        //        const dataContainer = $(`<div id='popup-content-data' />`);
-        //        const toolbarContainer = $(`<div id='${constants.POPUP_EXPORT_TOOLBAR_ID}' />`);
-        //        const chartContainer = $(`<div id='${constants.POPUP_CHART_ID}' />`);
-        //        dataContainer.append(toolbarContainer, chartContainer);
-        //        content.append(tabsContainer, dataContainer);
-        //        createSeriesListTabs(tabsContainer, chartContainer);
-        //        createChartPopupToolbar(toolbarContainer);
-        //        return content;
-        //    },
-        //}).dxPopup('instance');
-
-
-        //Convert to Razor
-
-        //settingsPopoverInstance = $(`#${settingsElementId}`).dxPopover({
-        //    deferRendering: false,
-        //    showTitle: false,
-        //    width: 240,
-        //    height: 'auto',
-        //    shading: false,
-        //    hideOnOutsideClick: (e) => {
-        //        return !$("#settings-button").has($(e.target)).length;
-        //    },
-        //    container: '#popup-content',
-        //    wrapperAttr: { class: 'dx-dropdownbutton-popup-wrapper' },
-        //    position: {
-        //        of: '#settings-button',
-        //        at: 'bottom right',
-        //        my: 'top right',
-        //        offset: { y: -8 },
-        //    },
-        //    contentTemplate: getSettingsContent,
-        //}).dxPopover('instance');
     }
 
     function getSettingsContent() {
