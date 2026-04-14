@@ -1,9 +1,6 @@
 @using ASP_NET_Core.Models
 @using DevExtreme.AspNet.Mvc
 
-
-@* Regular Chart (Bar, Line, Area, etc.) *@
-
     @(Html.DevExtreme().Chart()
         .ID("popup-content-chart")
         .OnInitialized("chartAPI.onRegularChartInit")
@@ -29,7 +26,6 @@
 
     @(Html.DevExtreme().PieChart()
         .Animation(a => a.Enabled(false))
-        //check for this case later
         .ID("popup-content-chart-pie")
         .OnInitialized("chartAPI.onPieChartInit")
         .Legend(l => l

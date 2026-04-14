@@ -5,7 +5,18 @@ function toolbarOnInitialized(e) {
 }
 
 function onExportChart(e) {
-    console.log('onExportChart')
-    console.log(chartIntegration.chart);
-    chartIntegration.chart.exportTo('Grid Data', e.itemData.text);
+    console.log(chartIntegration)
+    chartAPI.getCurrentChart().exportTo('Grid Data', e.itemData.text);
+}
+function onPrintChart(e) {
+    chartAPI.getCurrentChart().print();
+}
+
+function settingOnClick(e) {
+    let settingsPopoverInstance = $(`#settings-popover`).dxPopover('instance');
+    if (settingsPopoverInstance.option('visible')) {
+        settingsPopoverInstance.hide();
+    } else {
+        settingsPopoverInstance.show();
+    }
 }

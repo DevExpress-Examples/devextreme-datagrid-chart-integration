@@ -1,8 +1,6 @@
 const chartAPI = (function () {
-
     let regularChartInstance = null;
     let pieChartInstance = null;
-
     function getDataForChart(onlySelected) {
         const grid = getters.grid();
         return {
@@ -11,7 +9,6 @@ const chartAPI = (function () {
             paginate: false,
         };
     }
-
     function getChartConfig(dataSource, argument, values, seriesType) {
         const commonConfig = {
             dataSource,
@@ -51,26 +48,18 @@ const chartAPI = (function () {
             },
         };
     }
-
     function extendPieChartConfig(config, seriesType) {
         config.type = seriesType;
         return config;
     }
-
-    // Initialize regular chart instance
     function onRegularChartInit(e) {
         regularChartInstance = e.component;
-        console.log(regularChartInstance)
-        console.log('Regular chart initialized');
     }
 
-    // Initialize pie chart instance
     function onPieChartInit(e) {
         pieChartInstance = e.component;
-        console.log('Pie chart initialized');
     }
 
-    // Main createChart function - adapted for pre-rendered charts
     function createChart(container, seriesType) {
         const categoryEditor = getters.categoryEditor();
         const seriesEditor = getters.seriesEditor();
@@ -80,44 +69,41 @@ const chartAPI = (function () {
             seriesEditor ? seriesEditor.option('value') : defaults.series,
             seriesType
         );
-        //return chartData.pieSeriesTypes.includes(seriesType)
-        //    ? container.dxPieChart(chartConfig).dxPieChart('instance')
-        //    : container.dxChart(chartConfig).dxChart('instance')
+        
         const isPieChart = chartData.pieSeriesTypes.includes(seriesType);
 
-        // Toggle visibility
-        $('#popup-content-chart').toggle(!isPieChart);
-        $('#popup-content-chart-pie').toggle(isPieChart);
-
-        // Apply configuration to the appropriate chart instance
         if (isPieChart) {
-            if (pieChartInstance) {
-                // Apply full configuration
-                pieChartInstance.option(chartConfig);
-                return pieChartInstance;
-            } else {
-                console.warn('Pie chart instance not yet initialized');
-                return null;
-            }
+            $('#popup-content-chart').hide();
+            $('#popup-content-chart-pie').show();
         } else {
-            if (regularChartInstance) {
-                // Apply full configuration
-                regularChartInstance.option(chartConfig);
-                return regularChartInstance;
-            } else {
-                console.warn('Regular chart instance not yet initialized');
-                return null;
-            }
+            $('#popup-content-chart-pie').hide();
+            $('#popup-content-chart').show();
         }
+ 
+        setTimeout(() => {
+            if (isPieChart) {
+                if (pieChartInstance) {
+                    pieChartInstance.option(chartConfig);
+                    return pieChartInstance;
+                } else {
+                    return null;
+                }
+            } else {
+                if (regularChartInstance) {
+                    regularChartInstance.option(chartConfig);
+                    return regularChartInstance;
+                } else {
+                    return null;
+                }
+            }
+        }, 150)
     }
 
-    // Refresh current chart
     function refreshChart() {
         const currentSeriesType = getters.currentSeriesType();
         return createChart(null, currentSeriesType);
     }
 
-    // Get current active chart instance
     function getCurrentChart() {
         const isPieVisible = $('[data-chart-type="pie"]').is(':visible');
         return isPieVisible ? pieChartInstance : regularChartInstance;
@@ -134,7 +120,6 @@ const chartAPI = (function () {
 })();
 
 window.chartAPI = chartAPI;
-
 // Expose init functions globally for Razor OnInitialized callbacks
 window.onRegularChartInit = (e) => chartAPI.onRegularChartInit(e);
 window.onPieChartInit = (e) => chartAPI.onPieChartInit(e);

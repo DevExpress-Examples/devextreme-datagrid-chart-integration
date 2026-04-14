@@ -2,7 +2,7 @@
 
 @(Html.DevExtreme().Toolbar()
     .ID("popup-content-toolbar")
-    .OnInitialized("toolbarOnInitialized") //to set items' LocateInMenu
+    .OnInitialized("toolbarOnInitialized")
     .Items(items => {
         items.Add()
             .Location(ToolbarItemLocation.Before)
@@ -11,7 +11,6 @@
 
         items.Add()
             .Location(ToolbarItemLocation.After)
-            @* .LocateInMenu(new JS("helpers.isSmallScreen() ? 'always' : 'auto'")) *@
             .Widget(w => w
                 .DropDownButton()
                 .Icon("export")
@@ -27,15 +26,14 @@
                         .Icon("jpgfile")
                         .Text("JPEG");
                     items.Add()
-                        .Icon("jpgfile")
-                        .Text("JPEG");
+                        .Icon("svgfile")
+                        .Text("SVG");
                 })
                 .OnItemClick("onExportChart") 
             );
                                 
         items.Add()
             .Location(ToolbarItemLocation.After)
-            @* .LocateInMenu(new JS("helpers.isSmallScreen() ? 'always' : 'auto'")) *@
             .Widget(w => w
                 .Button()
                 .Icon("print")

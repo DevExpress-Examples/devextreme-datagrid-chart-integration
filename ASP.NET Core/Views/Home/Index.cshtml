@@ -41,18 +41,6 @@
 @await Html.PartialAsync("_ChartPopup")
 
 <script>
-    function settingOnClick(e){
-        // if (settingsPopoverInstance.option('visible')) {
-        //     settingsPopoverInstance.hide();
-        // } else {
-        //     settingsPopoverInstance.show();
-        // }
-    }
-
-    function onPrintChart(e){
-        //chartInPopup.print();
-    }
-
     function onLoadingChanged(isLoading){
         if (!isLoading) {
           let grid = getters.grid();
@@ -84,7 +72,7 @@
     $(()=>{
         const grid = $('#grid').dxDataGrid('instance');
         chartIntegration.activate('chart-popup', 'settings-popover', grid);
-        // chartIntegration.enableAdaptivity();
+        chartIntegration.enableAdaptivity();
     });
 </script>
 

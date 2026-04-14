@@ -18,7 +18,7 @@
     min-width: 580px;
 }
 
-#popup-content-chart {
+#popup-content-chart, #popup-content-chart-pie {
     flex: 1; /* Take all remaining vertical space */
     width: 100%;
     min-height: 0; /* Critical for flex child to respect parent height */
