@@ -5,7 +5,6 @@ function toolbarOnInitialized(e) {
 }
 
 function onExportChart(e) {
-    console.log(chartIntegration)
     chartAPI.getCurrentChart().exportTo('Grid Data', e.itemData.text);
 }
 function onPrintChart(e) {

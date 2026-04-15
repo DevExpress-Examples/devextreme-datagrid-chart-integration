@@ -14,6 +14,6 @@ function updateToolbarTitle(newTitle) {
 
 
 function tabSelectionChanged(e) {
-    chartIntegration.createChart($(`<div id='${constants.POPUP_CHART_ID}' />`), getters.currentSeriesType());
+    chartIntegration.createChart(getters.currentSeriesType());
     updateToolbarTitle(e.addedItems[0].text + ' Chart');
 }

@@ -28,6 +28,6 @@ function onOnlySelectedChanged(e) {
     if (chartInstance) {
         chartInstance.option('dataSource', chartAPI.getDataForChart(e.value));
     } else {
-        chartIntegration.createChart($('#' + constants.POPUP_CHART_ID), getters.currentSeriesType());
+        chartIntegration.createChart(getters.currentSeriesType());
     }
 }

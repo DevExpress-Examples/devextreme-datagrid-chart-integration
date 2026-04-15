@@ -60,7 +60,7 @@ const chartAPI = (function () {
         pieChartInstance = e.component;
     }
 
-    function createChart(container, seriesType) {
+    function createChart(seriesType) {
         const categoryEditor = getters.categoryEditor();
         const seriesEditor = getters.seriesEditor();
         const chartConfig = getChartConfig(
@@ -99,19 +99,13 @@ const chartAPI = (function () {
         }, 150)
     }
 
-    function refreshChart() {
-        const currentSeriesType = getters.currentSeriesType();
-        return createChart(null, currentSeriesType);
-    }
-
     function getCurrentChart() {
-        const isPieVisible = $('[data-chart-type="pie"]').is(':visible');
+        const isPieVisible = $('#popup-content-chart-pie').is(':visible');
         return isPieVisible ? pieChartInstance : regularChartInstance;
     }
 
     return {
         createChart,
-        refreshChart,
         getDataForChart,
         getCurrentChart,
         onRegularChartInit,
@@ -120,6 +114,3 @@ const chartAPI = (function () {
 })();
 
 window.chartAPI = chartAPI;
-// Expose init functions globally for Razor OnInitialized callbacks
-window.onRegularChartInit = (e) => chartAPI.onRegularChartInit(e);
-window.onPieChartInit = (e) => chartAPI.onPieChartInit(e);
