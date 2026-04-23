@@ -83,11 +83,6 @@ const chartAPI = (function () {
 
         toggleChartVisibility(isPieChart);
 
-        console.log(isPieChart);
-        console.log(chartConfig);
-        console.log(regularChartInstance);
-        console.log(pieChartInstance);
-
         if (isPieChart && pieChartInstance) {
             pieChartInstance.option(chartConfig);
             pieChartInstance.render();
