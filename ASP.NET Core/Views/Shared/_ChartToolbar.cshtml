@@ -6,16 +6,20 @@
     var initialTitle = char.ToUpper(initialSeriesType[0]) + initialSeriesType[1..] + " Chart";
 }
 
-@(Html.DevExtreme().Toolbar()
+@(
+
+Html.DevExtreme().Toolbar()
     .ID("popup-content-toolbar")
-    .OnInitialized("chartToolbar.toolbarOnInitialized")
     .Items(items => {
         items.Add()
+            .Option("locateInMenu", new JS("helpers.isSmallScreen() ? 'always' : 'auto'"))
             .Location(ToolbarItemLocation.Before)
             .Text(initialTitle)
             .CssClass("chart-title");
+            
 
         items.Add()
+            .Option("locateInMenu", new JS("helpers.isSmallScreen() ? 'always' : 'auto'"))
             .Location(ToolbarItemLocation.After)
             .Widget(w => w
                 .DropDownButton()
@@ -31,6 +35,7 @@
             );
 
         items.Add()
+            .Option("locateInMenu", new JS("helpers.isSmallScreen() ? 'always' : 'auto'"))
             .Location(ToolbarItemLocation.After)
             .Widget(w => w
                 .Button()
@@ -40,6 +45,7 @@
             );
 
         items.Add()
+            .Option("locateInMenu", new JS("helpers.isSmallScreen() ? 'always' : 'auto'"))
             .Location(ToolbarItemLocation.After)
             .Widget(w => w
                 .Button()

@@ -1,14 +1,4 @@
 const chartToolbar = (function () {
-    function toolbarOnInitialized(e) {
-        const toolbarItems = e.component.option('items');
-
-        toolbarItems.forEach(item => {
-            item.locateInMenu = helpers.isSmallScreen() ? 'always' : 'auto';
-        });
-
-        e.component.option('items', toolbarItems);
-    }
-
     function onExportChart(e) {
         chartAPI.getCurrentChart().exportTo('Grid Data', e.itemData.text);
     }
@@ -36,7 +26,6 @@ const chartToolbar = (function () {
     }
 
     return {
-        toolbarOnInitialized,
         onExportChart,
         onPrintChart,
         settingOnClick,
