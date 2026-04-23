@@ -1,4 +1,5 @@
 const constants = {
+  GRID_ID: 'grid',
   POPUP_SERIES_LIST_ID: 'popup-content-series-list',
   POPUP_CHART_ID: 'popup-content-chart',
   POPUP_EXPORT_TOOLBAR_ID: 'popup-content-toolbar',
@@ -8,6 +9,7 @@ const constants = {
 };
 
 const getters = {
+  grid: () => $('#' + constants.GRID_ID).dxDataGrid('instance'),
   toolbar: () => $('#' + constants.POPUP_EXPORT_TOOLBAR_ID).dxToolbar('instance'),
   categoryEditor: () => $('#' + constants.POPUP_CATEGORY_ID).dxSelectBox('instance'),
   seriesEditor: () => $('#' + constants.POPUP_SERIES_ID).dxTagBox('instance'),
@@ -33,7 +35,8 @@ const helpers = {
     return document.documentElement.clientWidth < 800;
   },
   isDataGridEmpty: function () {
-    return getters.grid().totalCount() === 0;
+    const grid = getters.grid();
+    return !grid || grid.totalCount() === 0;
   }
 };
 

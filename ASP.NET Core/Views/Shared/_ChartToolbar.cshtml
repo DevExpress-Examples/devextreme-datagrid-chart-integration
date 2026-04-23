@@ -1,10 +1,18 @@
+@using ASP_NET_Core.Models
+
+@{
+    var chartConfiguration = ChartConfiguration.Create();
+    var initialSeriesType = chartConfiguration.SeriesTypes[chartConfiguration.Defaults.SeriesTypeIndex];
+    var initialTitle = char.ToUpper(initialSeriesType[0]) + initialSeriesType[1..] + " Chart";
+}
+
 @(Html.DevExtreme().Toolbar()
     .ID("popup-content-toolbar")
-    .OnInitialized("toolbarOnInitialized")
+    .OnInitialized("chartToolbar.toolbarOnInitialized")
     .Items(items => {
         items.Add()
             .Location(ToolbarItemLocation.Before)
-            .Text(new JS("chartData.seriesTypes[chartData.defaults.seriesTypeIndex].charAt(0).toUpperCase() + chartData.seriesTypes[chartData.defaults.seriesTypeIndex].slice(1) + ' Chart'"))
+            .Text(initialTitle)
             .CssClass("chart-title");
 
         items.Add()
@@ -14,31 +22,22 @@
                 .Icon("export")
                 .Text("Export")
                 .Items(items => {
-                    items.Add()
-                        .Icon("image")
-                        .Text("PNG"); 
-                    items.Add()
-                        .Icon("pdffile")
-                        .Text("PDF"); 
-                    items.Add()
-                        .Icon("jpgfile")
-                        .Text("JPEG");
-                    items.Add()
-                        .Icon("svgfile")
-                        .Text("SVG");
+                    items.Add().Icon("image").Text("PNG");
+                    items.Add().Icon("pdffile").Text("PDF");
+                    items.Add().Icon("jpgfile").Text("JPEG");
+                    items.Add().Icon("svgfile").Text("SVG");
                 })
-                .OnItemClick("onExportChart") 
+                .OnItemClick("chartToolbar.onExportChart")
             );
-                                
+
         items.Add()
             .Location(ToolbarItemLocation.After)
             .Widget(w => w
                 .Button()
                 .Icon("print")
                 .Text("Print")
-                .OnClick("onPrintChart")
+                .OnClick("chartToolbar.onPrintChart")
             );
-                           
 
         items.Add()
             .Location(ToolbarItemLocation.After)
@@ -47,9 +46,16 @@
                 .ElementAttr(new { @id = "settings-button" })
                 .Icon("optionsoutline")
                 .Text("Settings")
-                .Template(new TemplateName("settingButtonTemplate"))
-                .OnClick("settingOnClick")
+                .Template(@<text>
+                    <i class="dx-icon dx-icon-optionsoutline"></i>
+                    <span class="dx-button-text">Settings</span>
+                    <i class="dx-icon dx-icon-spindown"></i>
+                </text>)
+                .OnClick("chartToolbar.settingOnClick")
             );
-                            
     })
 )
+
+
+
+

@@ -1,7 +1,5 @@
 @using ASP_NET_Core.Models
 
-<h2>DevExtreme DataGrid - Chart Integration</h2>
-
 @(Html.DevExtreme().DataGrid<ProductExport>()
     .ID("grid")
     .DataSource(d => d.Mvc().Controller("ProductData").LoadAction("Get").Key("Id"))
@@ -69,10 +67,15 @@
         }
     }
 
-    $(()=>{
-        const grid = $('#grid').dxDataGrid('instance');
-        chartIntegration.activate('chart-popup', grid);
-        chartIntegration.enableAdaptivity();
+    $(() => {
+        (async () => {
+            await chartData.load();
+
+            seriesTabs.bindData();
+
+            chartIntegration.activate('chart-popup');
+            chartIntegration.enableAdaptivity();
+        })();
     });
 </script>
 

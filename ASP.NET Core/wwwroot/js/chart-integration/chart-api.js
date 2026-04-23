@@ -60,43 +60,43 @@ const chartAPI = (function () {
         pieChartInstance = e.component;
     }
 
+    function toggleChartVisibility(isPieChart) {
+        $('#popup-content-chart').toggle(!isPieChart);
+        $('#popup-content-chart-pie').toggle(isPieChart);
+    }
+
     function createChart(seriesType) {
-        const categoryEditor = getters.categoryEditor();
-        const seriesEditor = getters.seriesEditor();
-        const chartConfig = getChartConfig(
-            getDataForChart(getters.onlySelectedValue()),
-            categoryEditor ? categoryEditor.option('value') : defaults.category,
-            seriesEditor ? seriesEditor.option('value') : defaults.series,
-            seriesType
-        );
-        
+        const categoryValue =
+            getters.categoryEditor()?.option('value') ?? chartData.defaults.category;
+
+        const seriesValue =
+            getters.seriesEditor()?.option('value') ?? chartData.defaults.series;
+
         const isPieChart = chartData.pieSeriesTypes.includes(seriesType);
 
-        if (isPieChart) {
-            $('#popup-content-chart').hide();
-            $('#popup-content-chart-pie').show();
-        } else {
-            $('#popup-content-chart-pie').hide();
-            $('#popup-content-chart').show();
+        const chartConfig = getChartConfig(
+            getDataForChart(getters.onlySelectedValue()),
+            categoryValue,
+            seriesValue,
+            seriesType
+        );
+
+        toggleChartVisibility(isPieChart);
+
+        console.log(isPieChart);
+        console.log(chartConfig);
+        console.log(regularChartInstance);
+        console.log(pieChartInstance);
+
+        if (isPieChart && pieChartInstance) {
+            pieChartInstance.option(chartConfig);
+            pieChartInstance.render();
         }
- 
-        setTimeout(() => {
-            if (isPieChart) {
-                if (pieChartInstance) {
-                    pieChartInstance.option(chartConfig);
-                    return pieChartInstance;
-                } else {
-                    return null;
-                }
-            } else {
-                if (regularChartInstance) {
-                    regularChartInstance.option(chartConfig);
-                    return regularChartInstance;
-                } else {
-                    return null;
-                }
-            }
-        }, 150)
+
+        if (!isPieChart && regularChartInstance) {
+            regularChartInstance.option(chartConfig);
+            regularChartInstance.render();
+        }       
     }
 
     function getCurrentChart() {

@@ -2,10 +2,10 @@
 
 @(Html.DevExtreme().Tabs()
     .ID("popup-content-series-list")
-    .DataSource(new JS("getSeriesTypesData()"))
+    .DataSource(new JS("[]"))
     .Width(new JS("helpers.isSmallScreen() ? 60 : 150"))
     .Orientation(Orientation.Vertical)
     .IconPosition(TabsIconPosition.Start)
     .SelectedIndex(new JS("chartData.defaults.seriesTypeIndex"))
-    .OnSelectionChanged("tabSelectionChanged")
+    .OnSelectionChanged("seriesTabs.tabSelectionChanged")
 )

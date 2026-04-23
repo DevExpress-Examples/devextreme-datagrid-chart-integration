@@ -6,7 +6,7 @@ const chartIntegration = (function () {
         if (currentChart) {
             currentChart.option('dataSource', null);
         }
-        chartInPopup = chartAPI.createChart(seriesType);
+        chartAPI.createChart(seriesType);
     }
 
     function showChartPopup() {
@@ -14,8 +14,7 @@ const chartIntegration = (function () {
         createChart(getters.currentSeriesType());
     }
    
-    function activate(popupElementId, grid) {
-        getters.grid = () => grid;
+    function activate(popupElementId) {
         popupInstance = $(`#${popupElementId}`).dxPopup('instance');
     }
 
@@ -42,7 +41,7 @@ const chartIntegration = (function () {
         showChartPopup,
         enableAdaptivity,
         createChart: createChart
-    }
+    };
 })();
 
 window.chartIntegration = chartIntegration;
