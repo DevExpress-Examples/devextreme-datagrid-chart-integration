@@ -1,4 +1,13 @@
 const chartToolbar = (function () {
+    function getTitle(seriesType) {
+        return seriesType.charAt(0).toUpperCase() + seriesType.slice(1) + ' Chart';
+    }
+
+    function bindTitle() {
+        const initialSeriesType = chartData.seriesTypes[chartData.defaults.seriesTypeIndex];
+        updateToolbarTitle(getTitle(initialSeriesType));
+    }
+
     function onExportChart(e) {
         chartAPI.getCurrentChart().exportTo('Grid Data', e.itemData.text);
     }
@@ -26,6 +35,7 @@ const chartToolbar = (function () {
     }
 
     return {
+        bindTitle,
         onExportChart,
         onPrintChart,
         settingOnClick,

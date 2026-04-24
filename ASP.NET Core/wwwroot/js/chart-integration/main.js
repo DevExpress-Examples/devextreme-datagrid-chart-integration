@@ -14,8 +14,15 @@ const chartIntegration = (function () {
         createChart(getters.currentSeriesType());
     }
    
-    function activate(popupElementId) {
+    async function activate(popupElementId) {
+        await chartData.load();
+
+        seriesTabs.bindData();
+        chartPopup.bindEditors();
+        chartToolbar.bindTitle();
+
         popupInstance = $(`#${popupElementId}`).dxPopup('instance');
+       
     }
 
     function enableAdaptivity() {

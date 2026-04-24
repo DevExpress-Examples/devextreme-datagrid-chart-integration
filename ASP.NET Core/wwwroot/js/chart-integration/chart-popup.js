@@ -1,4 +1,19 @@
 const chartPopup = (function () {
+    function bindEditors() {
+        const categoryEditor = getters.categoryEditor();
+        const seriesEditor = getters.seriesEditor();
+
+        if (categoryEditor) {
+            categoryEditor.option('dataSource', chartData.categories);
+            categoryEditor.option('value', chartData.defaults.category);
+        }
+
+        if (seriesEditor) {
+            seriesEditor.option('dataSource', chartData.series);
+            seriesEditor.option('value', chartData.defaults.series);
+        }
+    }
+
     function popupOnShowing() {
         getters.onlySelectedEditor().option('value', getters.hasSelectedRows());
         getters.onlySelectedEditor().option('disabled', !getters.hasSelectedRows());
@@ -35,6 +50,7 @@ const chartPopup = (function () {
     }
 
     return {
+        bindEditors,
         popupOnShowing,
         popoverHideOnOutsideClick,
         onCategoryAxisChanged,

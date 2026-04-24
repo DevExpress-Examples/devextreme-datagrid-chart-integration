@@ -1,9 +1,4 @@
-@using ASP_NET_Core.Models
 @using DevExtreme.AspNet.Mvc
-
-@{
-    var chartConfig = ChartConfiguration.Create();
-}
 
 @(Html.DevExtreme().Popup()
     .DeferRendering(false)
@@ -52,8 +47,7 @@
                         .DataField("CategoryAxis")
                         .Editor(e => e.SelectBox()
                             .ID("category-editor")
-                            .Items(chartConfig.Categories)
-                            .Value(chartConfig.Defaults.Category)
+                            .DataSource(new JS("[]"))
                             .OnValueChanged("chartPopup.onCategoryAxisChanged")
                         );
 
@@ -61,8 +55,8 @@
                         .DataField("Series")
                         .Editor(e => e.TagBox()
                             .ID("series-editor")
-                            .Items(chartConfig.Series)
-                            .Value(chartConfig.Defaults.Series.ToArray())
+                            .DataSource(new JS("[]"))
+                            .Value(new JS("[]"))
                             .OnValueChanged("chartPopup.onSeriesChanged")
                         );
 

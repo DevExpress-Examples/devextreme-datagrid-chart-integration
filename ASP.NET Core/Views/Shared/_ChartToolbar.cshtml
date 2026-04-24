@@ -1,11 +1,3 @@
-@using ASP_NET_Core.Models
-
-@{
-    var chartConfiguration = ChartConfiguration.Create();
-    var initialSeriesType = chartConfiguration.SeriesTypes[chartConfiguration.Defaults.SeriesTypeIndex];
-    var initialTitle = char.ToUpper(initialSeriesType[0]) + initialSeriesType[1..] + " Chart";
-}
-
 @(
 
 Html.DevExtreme().Toolbar()
@@ -14,9 +6,8 @@ Html.DevExtreme().Toolbar()
         items.Add()
             .Option("locateInMenu", new JS("helpers.isSmallScreen() ? 'always' : 'auto'"))
             .Location(ToolbarItemLocation.Before)
-            .Text(initialTitle)
+            .Text(string.Empty)
             .CssClass("chart-title");
-            
 
         items.Add()
             .Option("locateInMenu", new JS("helpers.isSmallScreen() ? 'always' : 'auto'"))
@@ -61,7 +52,3 @@ Html.DevExtreme().Toolbar()
             );
     })
 )
-
-
-
-

@@ -69,11 +69,7 @@
 
     $(() => {
         (async () => {
-            await chartData.load();
-
-            seriesTabs.bindData();
-
-            chartIntegration.activate('chart-popup');
+            await chartIntegration.activate('chart-popup');
             chartIntegration.enableAdaptivity();
         })();
     });
