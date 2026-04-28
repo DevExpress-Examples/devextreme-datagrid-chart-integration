@@ -1,0 +1,36 @@
+@using DevExtreme.AspNet.Mvc
+
+    @(Html.DevExtreme().Chart()
+        .ID("popup-content-chart")
+        .OnInitialized("chartAPI.onRegularChartInit")
+        .Legend(l => l
+            .ColumnItemSpacing(24)
+            .VerticalAlignment(VerticalEdge.Bottom)
+            .HorizontalAlignment(HorizontalAlignment.Center)
+            .ItemTextPosition(Position.Right)
+        )
+        .Animation(a => a.Enabled(false))
+        .ArgumentAxis(a => a
+            .Label(l => l
+                .DisplayMode(ChartLabelDisplayMode.Rotate)
+                .RotationAngle(45)
+            )
+        )
+        .ValueAxis(v => v
+            .Add()
+                .Visible(false)
+                .Tick(t => t.Visible(false))
+        )
+    )
+
+    @(Html.DevExtreme().PieChart()
+        .Animation(a => a.Enabled(false))
+        .ID("popup-content-chart-pie")
+        .OnInitialized("chartAPI.onPieChartInit")
+        .Legend(l => l
+            .VerticalAlignment(VerticalEdge.Bottom)
+            .HorizontalAlignment(HorizontalAlignment.Center)
+            .ColumnItemSpacing(24)
+            .ItemTextPosition(Position.Right)
+        )
+    )

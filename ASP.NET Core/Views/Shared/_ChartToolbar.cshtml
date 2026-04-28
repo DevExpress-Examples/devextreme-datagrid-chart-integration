@@ -1,0 +1,54 @@
+@(
+
+Html.DevExtreme().Toolbar()
+    .ID("popup-content-toolbar")
+    .Items(items => {
+        items.Add()
+            .Option("locateInMenu", new JS("helpers.isSmallScreen() ? 'always' : 'auto'"))
+            .Location(ToolbarItemLocation.Before)
+            .Text(string.Empty)
+            .CssClass("chart-title");
+
+        items.Add()
+            .Option("locateInMenu", new JS("helpers.isSmallScreen() ? 'always' : 'auto'"))
+            .Location(ToolbarItemLocation.After)
+            .Widget(w => w
+                .DropDownButton()
+                .Icon("export")
+                .Text("Export")
+                .Items(items => {
+                    items.Add().Icon("image").Text("PNG");
+                    items.Add().Icon("pdffile").Text("PDF");
+                    items.Add().Icon("jpgfile").Text("JPEG");
+                    items.Add().Icon("svgfile").Text("SVG");
+                })
+                .OnItemClick("chartToolbar.onExportChart")
+            );
+
+        items.Add()
+            .Option("locateInMenu", new JS("helpers.isSmallScreen() ? 'always' : 'auto'"))
+            .Location(ToolbarItemLocation.After)
+            .Widget(w => w
+                .Button()
+                .Icon("print")
+                .Text("Print")
+                .OnClick("chartToolbar.onPrintChart")
+            );
+
+        items.Add()
+            .Option("locateInMenu", new JS("helpers.isSmallScreen() ? 'always' : 'auto'"))
+            .Location(ToolbarItemLocation.After)
+            .Widget(w => w
+                .Button()
+                .ElementAttr(new { @id = "settings-button" })
+                .Icon("optionsoutline")
+                .Text("Settings")
+                .Template(@<text>
+                    <i class="dx-icon dx-icon-optionsoutline"></i>
+                    <span class="dx-button-text">Settings</span>
+                    <i class="dx-icon dx-icon-spindown"></i>
+                </text>)
+                .OnClick("chartToolbar.settingOnClick")
+            );
+    })
+)

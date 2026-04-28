@@ -6,356 +6,213 @@ using System.Threading.Tasks;
 
 namespace ASP_NET_Core.Models;
 static class SampleData {
-    public static List<SampleOrder> Orders = [
-        new SampleOrder {
-            OrderID = 10248,
-            OrderDate = new DateTime(1996, 7, 4),
-            ShipCountry = "France",
-            ShipCity = "Reims",
-            CustomerName = "Paul Henriot"
+    public static List<ProductExport> Products = [
+        new ProductExport {
+            Id = 1,
+            Product = "Wheat",
+            ExportCategory = "Agriculture",
+            ExportValue = 1250000,
+            TaxPaid = 95000,
+            LogisticsCost = 140000,
+            ExporterRegion = "North Region"
         },
-        new SampleOrder {
-            OrderID = 10249,
-            OrderDate = new DateTime(1996, 7, 5),
-            ShipCountry = "Germany",
-            ShipCity = "Münster",
-            CustomerName = "Karin Josephs"
+        new ProductExport {
+            Id = 2,
+            Product = "Corn",
+            ExportCategory = "Agriculture",
+            ExportValue = 980000,
+            TaxPaid = 72000,
+            LogisticsCost = 110000,
+            ExporterRegion = "Valley District"
         },
-        new SampleOrder {
-            OrderID = 10250,
-            OrderDate = new DateTime(1996, 7, 8),
-            ShipCountry = "Brazil",
-            ShipCity = "Rio de Janeiro",
-            CustomerName = "Mario Pontes"
+        new ProductExport {
+            Id = 3,
+            Product = "Fresh Apples",
+            ExportCategory = "Agriculture",
+            ExportValue = 740000,
+            TaxPaid = 52000,
+            LogisticsCost = 98000,
+            ExporterRegion = "Orchard Belt"
         },
-        new SampleOrder {
-            OrderID = 10251,
-            OrderDate = new DateTime(1996, 7, 8),
-            ShipCountry = "France",
-            ShipCity = "Lyon",
-            CustomerName = "Mary Saveley"
+        new ProductExport {
+            Id = 4,
+            Product = "Textile Fabric",
+            ExportCategory = "Manufacturing",
+            ExportValue = 980000,
+            TaxPaid = 74000,
+            LogisticsCost = 90000,
+            ExporterRegion = "Central Industrial Area"
         },
-        new SampleOrder {
-            OrderID = 10252,
-            OrderDate = new DateTime(1996, 7, 9),
-            ShipCountry = "Belgium",
-            ShipCity = "Charleroi",
-            CustomerName = "Pascale Cartrain"
+        new ProductExport {
+            Id = 5,
+            Product = "Furniture",
+            ExportCategory = "Manufacturing",
+            ExportValue = 860000,
+            TaxPaid = 68000,
+            LogisticsCost = 105000,
+            ExporterRegion = "Forest Industrial Area"
         },
-        new SampleOrder {
-            OrderID = 10253,
-            OrderDate = new DateTime(1996, 7, 10),
-            ShipCountry = "Brazil",
-            ShipCity = "Rio de Janeiro",
-            CustomerName = "Mario Pontes"
+        new ProductExport {
+            Id = 6,
+            Product = "Plastic Packaging",
+            ExportCategory = "Manufacturing",
+            ExportValue = 930000,
+            TaxPaid = 71000,
+            LogisticsCost = 88000,
+            ExporterRegion = "Polymer Cluster"
         },
-        new SampleOrder {
-            OrderID = 10254,
-            OrderDate = new DateTime(1996, 7, 11),
-            ShipCountry = "Switzerland",
-            ShipCity = "Bern",
-            CustomerName = "Yang Wang"
+        new ProductExport {
+            Id = 7,
+            Product = "Glass Bottles",
+            ExportCategory = "Manufacturing",
+            ExportValue = 770000,
+            TaxPaid = 59000,
+            LogisticsCost = 82000,
+            ExporterRegion = "Glassworks Zone"
         },
-        new SampleOrder {
-            OrderID = 10255,
-            OrderDate = new DateTime(1996, 7, 12),
-            ShipCountry = "Switzerland",
-            ShipCity = "Genève",
-            CustomerName = "Michael Holz"
+        new ProductExport {
+            Id = 8,
+            Product = "Refined Oil",
+            ExportCategory = "Energy",
+            ExportValue = 2890000,
+            TaxPaid = 320000,
+            LogisticsCost = 260000,
+            ExporterRegion = "Coastal Zone"
         },
-        new SampleOrder {
-            OrderID = 10256,
-            OrderDate = new DateTime(1996, 7, 15),
-            ShipCountry = "Brazil",
-            ShipCity = "Resende",
-            CustomerName = "Paula Parente"
+        new ProductExport {
+            Id = 9,
+            Product = "Natural Gas",
+            ExportCategory = "Energy",
+            ExportValue = 3340000,
+            TaxPaid = 410000,
+            LogisticsCost = 310000,
+            ExporterRegion = "Offshore Fields"
         },
-        new SampleOrder {
-            OrderID = 10257,
-            OrderDate = new DateTime(1996, 7, 16),
-            ShipCountry = "Venezuela",
-            ShipCity = "San Cristóbal",
-            CustomerName = "Carlos Hernández"
+        new ProductExport {
+            Id = 10,
+            Product = "Coal",
+            ExportCategory = "Energy",
+            ExportValue = 2100000,
+            TaxPaid = 245000,
+            LogisticsCost = 230000,
+            ExporterRegion = "Eastern Basin"
         },
-        new SampleOrder {
-            OrderID = 10258,
-            OrderDate = new DateTime(1996, 7, 17),
-            ShipCountry = "Austria",
-            ShipCity = "Graz",
-            CustomerName = "Roland Mendel"
+        new ProductExport {
+            Id = 11,
+            Product = "Solar Panels",
+            ExportCategory = "Technology",
+            ExportValue = 3150000,
+            TaxPaid = 255000,
+            LogisticsCost = 190000,
+            ExporterRegion = "Green Energy Zone"
         },
-        new SampleOrder {
-            OrderID = 10259,
-            OrderDate = new DateTime(1996, 7, 18),
-            ShipCountry = "Mexico",
-            ShipCity = "México D.F.",
-            CustomerName = "Francisco Chang"
+        new ProductExport {
+            Id = 12,
+            Product = "Electronic Components",
+            ExportCategory = "Technology",
+            ExportValue = 4250000,
+            TaxPaid = 360000,
+            LogisticsCost = 220000,
+            ExporterRegion = "Tech Assembly Park"
         },
-        new SampleOrder {
-            OrderID = 10260,
-            OrderDate = new DateTime(1996, 7, 19),
-            ShipCountry = "Germany",
-            ShipCity = "Köln",
-            CustomerName = "Henriette Pfalzheim"
+        new ProductExport {
+            Id = 13,
+            Product = "Industrial Sensors",
+            ExportCategory = "Technology",
+            ExportValue = 1980000,
+            TaxPaid = 164000,
+            LogisticsCost = 145000,
+            ExporterRegion = "Innovation Hub"
         },
-        new SampleOrder {
-            OrderID = 10261,
-            OrderDate = new DateTime(1996, 7, 19),
-            ShipCountry = "Brazil",
-            ShipCity = "Rio de Janeiro",
-            CustomerName = "Bernardo Batista"
+        new ProductExport {
+            Id = 14,
+            Product = "Steel Sheets",
+            ExportCategory = "Metallurgy",
+            ExportValue = 2650000,
+            TaxPaid = 210000,
+            LogisticsCost = 240000,
+            ExporterRegion = "Heavy Industry Belt"
         },
-        new SampleOrder {
-            OrderID = 10262,
-            OrderDate = new DateTime(1996, 7, 22),
-            ShipCountry = "USA",
-            ShipCity = "Albuquerque",
-            CustomerName = "Paula Wilson"
+        new ProductExport {
+            Id = 15,
+            Product = "Aluminum Ingots",
+            ExportCategory = "Metallurgy",
+            ExportValue = 3720000,
+            TaxPaid = 310000,
+            LogisticsCost = 280000,
+            ExporterRegion = "Smelting District"
         },
-        new SampleOrder {
-            OrderID = 10263,
-            OrderDate = new DateTime(1996, 7, 23),
-            ShipCountry = "Austria",
-            ShipCity = "Graz",
-            CustomerName = "Roland Mendel"
+        new ProductExport {
+            Id = 16,
+            Product = "Copper Ore",
+            ExportCategory = "Metallurgy",
+            ExportValue = 3400000,
+            TaxPaid = 285000,
+            LogisticsCost = 300000,
+            ExporterRegion = "Mining Zone"
         },
-        new SampleOrder {
-            OrderID = 10264,
-            OrderDate = new DateTime(1996, 7, 24),
-            ShipCountry = "Sweden",
-            ShipCity = "Bräcke",
-            CustomerName = "Maria Larsson"
+        new ProductExport {
+            Id = 17,
+            Product = "Fertilizers",
+            ExportCategory = "Chemicals",
+            ExportValue = 2480000,
+            TaxPaid = 205000,
+            LogisticsCost = 185000,
+            ExporterRegion = "Chemical Valley"
         },
-        new SampleOrder {
-            OrderID = 10265,
-            OrderDate = new DateTime(1996, 7, 25),
-            ShipCountry = "France",
-            ShipCity = "Strasbourg",
-            CustomerName = "Frédérique Citeaux"
+        new ProductExport {
+            Id = 18,
+            Product = "Industrial Plastics",
+            ExportCategory = "Chemicals",
+            ExportValue = 1890000,
+            TaxPaid = 152000,
+            LogisticsCost = 165000,
+            ExporterRegion = "Polymer Hub"
         },
-        new SampleOrder {
-            OrderID = 10266,
-            OrderDate = new DateTime(1996, 7, 26),
-            ShipCountry = "Finland",
-            ShipCity = "Oulu",
-            CustomerName = "Pirkko Koskitalo"
+        new ProductExport {
+            Id = 19,
+            Product = "Paint Additives",
+            ExportCategory = "Chemicals",
+            ExportValue = 1320000,
+            TaxPaid = 98000,
+            LogisticsCost = 120000,
+            ExporterRegion = "Coating Cluster"
         },
-        new SampleOrder {
-            OrderID = 10267,
-            OrderDate = new DateTime(1996, 7, 29),
-            ShipCountry = "Germany",
-            ShipCity = "München",
-            CustomerName = "Peter Franken"
+        new ProductExport {
+            Id = 20,
+            Product = "Wine",
+            ExportCategory = "Food & Beverages",
+            ExportValue = 1120000,
+            TaxPaid = 86000,
+            LogisticsCost = 90000,
+            ExporterRegion = "Highland Zone"
         },
-        new SampleOrder {
-            OrderID = 10268,
-            OrderDate = new DateTime(1996, 7, 30),
-            ShipCountry = "Venezuela",
-            ShipCity = "Caracas",
-            CustomerName = "Manuel Pereira"
+        new ProductExport {
+            Id = 21,
+            Product = "Cheese",
+            ExportCategory = "Food & Beverages",
+            ExportValue = 1040000,
+            TaxPaid = 79000,
+            LogisticsCost = 85000,
+            ExporterRegion = "Mountain Farms"
         },
-        new SampleOrder {
-            OrderID = 10269,
-            OrderDate = new DateTime(1996, 7, 31),
-            ShipCountry = "USA",
-            ShipCity = "Seattle",
-            CustomerName = "Karl Jablonski"
+        new ProductExport {
+            Id = 22,
+            Product = "Meat",
+            ExportCategory = "Food & Beverages",
+            ExportValue = 1560000,
+            TaxPaid = 118000,
+            LogisticsCost = 130000,
+            ExporterRegion = "Southern Plains"
         },
-        new SampleOrder {
-            OrderID = 10270,
-            OrderDate = new DateTime(1996, 8, 1),
-            ShipCountry = "Finland",
-            ShipCity = "Oulu",
-            CustomerName = "Pirkko Koskitalo"
-        },
-        new SampleOrder {
-            OrderID = 10271,
-            OrderDate = new DateTime(1996, 8, 1),
-            ShipCountry = "USA",
-            ShipCity = "Lander",
-            CustomerName = "Art Braunschweiger"
-        },
-        new SampleOrder {
-            OrderID = 10272,
-            OrderDate = new DateTime(1996, 8, 2),
-            ShipCountry = "USA",
-            ShipCity = "Albuquerque",
-            CustomerName = "Paula Wilson"
-        },
-        new SampleOrder {
-            OrderID = 10273,
-            OrderDate = new DateTime(1996, 8, 5),
-            ShipCountry = "Germany",
-            ShipCity = "Cunewalde",
-            CustomerName = "Horst Kloss"
-        },
-        new SampleOrder {
-            OrderID = 10274,
-            OrderDate = new DateTime(1996, 8, 6),
-            ShipCountry = "France",
-            ShipCity = "Reims",
-            CustomerName = "Paul Henriot"
-        },
-        new SampleOrder {
-            OrderID = 10275,
-            OrderDate = new DateTime(1996, 8, 7),
-            ShipCountry = "Italy",
-            ShipCity = "Bergamo",
-            CustomerName = "Giovanni Rovelli"
-        },
-        new SampleOrder {
-            OrderID = 10276,
-            OrderDate = new DateTime(1996, 8, 8),
-            ShipCountry = "Mexico",
-            ShipCity = "México D.F.",
-            CustomerName = "Miguel Angel Paolino"
-        },
-        new SampleOrder {
-            OrderID = 10277,
-            OrderDate = new DateTime(1996, 8, 9),
-            ShipCountry = "Germany",
-            ShipCity = "Leipzig",
-            CustomerName = "Alexander Feuer"
-        },
-        new SampleOrder {
-            OrderID = 10278,
-            OrderDate = new DateTime(1996, 8, 12),
-            ShipCountry = "Sweden",
-            ShipCity = "Luleå",
-            CustomerName = "Christina Berglund"
-        },
-        new SampleOrder {
-            OrderID = 10279,
-            OrderDate = new DateTime(1996, 8, 13),
-            ShipCountry = "Germany",
-            ShipCity = "Frankfurt a.M.",
-            CustomerName = "Renate Messner"
-        },
-        new SampleOrder {
-            OrderID = 10280,
-            OrderDate = new DateTime(1996, 8, 14),
-            ShipCountry = "Sweden",
-            ShipCity = "Luleå",
-            CustomerName = "Christina Berglund"
-        },
-        new SampleOrder {
-            OrderID = 10281,
-            OrderDate = new DateTime(1996, 8, 14),
-            ShipCountry = "Spain",
-            ShipCity = "Madrid",
-            CustomerName = "Alejandra Camino"
-        },
-        new SampleOrder {
-            OrderID = 10282,
-            OrderDate = new DateTime(1996, 8, 15),
-            ShipCountry = "Spain",
-            ShipCity = "Madrid",
-            CustomerName = "Alejandra Camino"
-        },
-        new SampleOrder {
-            OrderID = 10283,
-            OrderDate = new DateTime(1996, 8, 16),
-            ShipCountry = "Venezuela",
-            ShipCity = "Barquisimeto",
-            CustomerName = "Carlos González"
-        },
-        new SampleOrder {
-            OrderID = 10284,
-            OrderDate = new DateTime(1996, 8, 19),
-            ShipCountry = "Germany",
-            ShipCity = "Frankfurt a.M.",
-            CustomerName = "Renate Messner"
-        },
-        new SampleOrder {
-            OrderID = 10285,
-            OrderDate = new DateTime(1996, 8, 20),
-            ShipCountry = "Germany",
-            ShipCity = "Cunewalde",
-            CustomerName = "Horst Kloss"
-        },
-        new SampleOrder {
-            OrderID = 10286,
-            OrderDate = new DateTime(1996, 8, 21),
-            ShipCountry = "Germany",
-            ShipCity = "Cunewalde",
-            CustomerName = "Horst Kloss"
-        },
-        new SampleOrder {
-            OrderID = 10287,
-            OrderDate = new DateTime(1996, 8, 22),
-            ShipCountry = "Brazil",
-            ShipCity = "Rio de Janeiro",
-            CustomerName = "Janete Limeira"
-        },
-        new SampleOrder {
-            OrderID = 10288,
-            OrderDate = new DateTime(1996, 8, 23),
-            ShipCountry = "Italy",
-            ShipCity = "Reggio Emilia",
-            CustomerName = "Maurizio Moroni"
-        },
-        new SampleOrder {
-            OrderID = 10289,
-            OrderDate = new DateTime(1996, 8, 26),
-            ShipCountry = "UK",
-            ShipCity = "London",
-            CustomerName = "Victoria Ashworth"
-        },
-        new SampleOrder {
-            OrderID = 10290,
-            OrderDate = new DateTime(1996, 8, 27),
-            ShipCountry = "Brazil",
-            ShipCity = "Sao Paulo",
-            CustomerName = "Pedro Afonso"
-        },
-        new SampleOrder {
-            OrderID = 10291,
-            OrderDate = new DateTime(1996, 8, 27),
-            ShipCountry = "Brazil",
-            ShipCity = "Rio de Janeiro",
-            CustomerName = "Bernardo Batista"
-        },
-        new SampleOrder {
-            OrderID = 10292,
-            OrderDate = new DateTime(1996, 8, 28),
-            ShipCountry = "Brazil",
-            ShipCity = "Sao Paulo",
-            CustomerName = "Anabela Domingues"
-        },
-        new SampleOrder {
-            OrderID = 10293,
-            OrderDate = new DateTime(1996, 8, 29),
-            ShipCountry = "Mexico",
-            ShipCity = "México D.F.",
-            CustomerName = "Miguel Angel Paolino"
-        },
-        new SampleOrder {
-            OrderID = 10294,
-            OrderDate = new DateTime(1996, 8, 30),
-            ShipCountry = "USA",
-            ShipCity = "Albuquerque",
-            CustomerName = "Paula Wilson"
-        },
-        new SampleOrder {
-            OrderID = 10295,
-            OrderDate = new DateTime(1996, 9, 2),
-            ShipCountry = "France",
-            ShipCity = "Reims",
-            CustomerName = "Paul Henriot"
-        },
-        new SampleOrder {
-            OrderID = 10296,
-            OrderDate = new DateTime(1996, 9, 3),
-            ShipCountry = "Venezuela",
-            ShipCity = "Barquisimeto",
-            CustomerName = "Carlos González"
-        },
-        new SampleOrder {
-            OrderID = 10297,
-            OrderDate = new DateTime(1996, 9, 4),
-            ShipCountry = "France",
-            ShipCity = "Strasbourg",
-            CustomerName = "Frédérique Citeaux"
+        new ProductExport {
+            Id = 23,
+            Product = "Water",
+            ExportCategory = "Food & Beverages",
+            ExportValue = 610000,
+            TaxPaid = 47000,
+            LogisticsCost = 65000,
+            ExporterRegion = "Spring Source Area"
         }
     ];
 }

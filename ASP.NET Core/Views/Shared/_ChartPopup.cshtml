@@ -1,0 +1,87 @@
+@using DevExtreme.AspNet.Mvc
+
+@(Html.DevExtreme().Popup()
+    .DeferRendering(false)
+    .ID("chart-popup")
+    .Width(800)
+    .Height(550)
+    .WrapperAttr(new { @class = "chart-popup" })
+    .Title("Chart Preview")
+    .OnShowing("chartPopup.popupOnShowing")
+    .ShowCloseButton(true)
+    .ContentTemplate(@<text>
+        <div id="popup-content">
+            @await Html.PartialAsync("_SeriesTypesTabs")
+
+            <div id="popup-content-data">
+                @await Html.PartialAsync("_ChartToolbar")
+                @await Html.PartialAsync("_Chart")
+            </div>
+        </div>
+    </text>)
+)
+
+@(Html.DevExtreme().Popover()
+    .DeferRendering(false)
+    .ID("settings-popover")
+    .ShowTitle(false)
+    .Width(240)
+    .Shading(false)
+    .HideOnOutsideClick(new JS("chartPopup.popoverHideOnOutsideClick"))
+    .Container("#popup-content")
+    .WrapperAttr(new { @class = "dx-dropdownbutton-popup-wrapper" })
+    .Position(p => p
+        .Of("#settings-button")
+        .At(HorizontalAlignment.Right, VerticalAlignment.Bottom)
+        .My(HorizontalAlignment.Right, VerticalAlignment.Top)
+        .Offset(0, -8)
+    )
+    .ContentTemplate(@<text>
+        <div id="popup-content-data-panel">
+            @(Html.DevExtreme().Form()
+                .ID("popup-data-form")
+                .LabelMode(FormLabelMode.Outside)
+                .ShowColonAfterLabel(false)
+                .Items(items => {
+                    items.AddSimple()
+                        .DataField("CategoryAxis")
+                        .Editor(e => e.SelectBox()
+                            .ID("category-editor")
+                            .DataSource(new JS("[]"))
+                            .OnValueChanged("chartPopup.onCategoryAxisChanged")
+                        );
+
+                    items.AddSimple()
+                        .DataField("Series")
+                        .Editor(e => e.TagBox()
+                            .ID("series-editor")
+                            .DataSource(new JS("[]"))
+                            .Value(new JS("[]"))
+                            .OnValueChanged("chartPopup.onSeriesChanged")
+                        );
+
+                    items.AddSimple()
+                        .DataField("OnlySelected")
+                        .CssClass("label-v-center")
+                        .Label(l => l
+                            .Location(FormLabelLocation.Left)
+                            .Alignment(HorizontalAlignment.Left)
+                        )
+                        .Editor(e => e.Switch()
+                            .ID("only-selected-box")
+                            .Value(false)
+                            .OnValueChanged("chartPopup.onOnlySelectedChanged")
+                        );
+                })
+            )
+        </div>
+    </text>)
+)
+
+@using (Html.DevExtreme().NamedTemplate("settingButtonTemplate")) {
+    <div class="dx-button-content">
+        <i class="dx-icon dx-icon-optionsoutline"></i>
+        <span class="dx-button-text">Settings</span>
+        <i class="dx-icon dx-icon-spindown"></i>
+    </div>
+}
