@@ -1,6 +1,4 @@
 const chartIntegration = (function () {
-    let popupInstance = null;
-
     function createChart(seriesType) {
         let currentChart = chartAPI.getCurrentChart();
         if (currentChart) {
@@ -10,6 +8,7 @@ const chartIntegration = (function () {
     }
 
     function showChartPopup() {
+        const popupInstance = $('#chart-popup').dxPopup('instance');
         popupInstance.show();
         createChart(getters.currentSeriesType());
     }
@@ -20,14 +19,12 @@ const chartIntegration = (function () {
         seriesTabs.bindData();
         chartPopup.bindEditors();
         chartToolbar.bindTitle();
-
-        popupInstance = getters.popup();
-       
     }
 
     function enableAdaptivity() {
         const mq = window.matchMedia('(max-width: 800px)');
         function onMediaChange(e) {
+            const popupInstance = $('#chart-popup').dxPopup('instance');
             popupInstance.option('width', e.matches ? 576 : 800);
             const seriesList = getters.seriesListTabs();
             if (seriesList) {

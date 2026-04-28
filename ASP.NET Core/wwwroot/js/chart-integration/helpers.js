@@ -1,6 +1,5 @@
 const constants = {
   GRID_ID: 'grid',
-  POPUP_ID: 'chart-popup',
   POPUP_SERIES_LIST_ID: 'popup-content-series-list',
   POPUP_CHART_ID: 'popup-content-chart',
   POPUP_EXPORT_TOOLBAR_ID: 'popup-content-toolbar',
@@ -12,7 +11,6 @@ const constants = {
 const getters = {
   grid: () => $('#' + constants.GRID_ID).dxDataGrid('instance'),
   toolbar: () => $('#' + constants.POPUP_EXPORT_TOOLBAR_ID).dxToolbar('instance'),
-  popup: () => $('#' + constants.POPUP_ID).dxPopup('instance'),
   categoryEditor: () => $('#' + constants.POPUP_CATEGORY_ID).dxSelectBox('instance'),
   seriesEditor: () => $('#' + constants.POPUP_SERIES_ID).dxTagBox('instance'),
   seriesListTabs: () => $('#' + constants.POPUP_SERIES_LIST_ID).dxTabs('instance'),
