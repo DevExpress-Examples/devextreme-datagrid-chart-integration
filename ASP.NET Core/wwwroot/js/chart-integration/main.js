@@ -21,7 +21,7 @@ const chartIntegration = (function () {
         chartPopup.bindEditors();
         chartToolbar.bindTitle();
 
-        popupInstance = $(`#${popupElementId}`).dxPopup('instance');
+        popupInstance = getters.popup();
        
     }
 
