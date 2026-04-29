@@ -1,5 +1,21 @@
 # ASP.NET Core DevExtreme Example
 
+Follow these steps to integrate the Chart Popup with your DataGrid.
+- Add the following files and references them in your layout (see *Views/Shared/_Layout.cshtml*):
+  - `~/css/index.css`, `~/css/dx-styles.css`
+  - All js files from `~/js/chart-integration/`
+- Declare the Popup and settings Popover containers in [_ChartPopup.cshtml](Views/Shared/_ChartPopup.cshtml). The Popup's content is composed of the following partials:
+  - [_SeriesTypesTabs.cshtml](Views/Shared/_SeriesTypesTabs.cshtml) — series type selector
+  - [_ChartToolbar.cshtml](Views/Shared/_ChartToolbar.cshtml) — chart toolbar
+  - [_Chart.cshtml](Views/Shared/_Chart.cshtml) — the chart itself
+- Replace data field names with yours in [ChartConfigurationModel.cs](Models/ChartConfigurationModel.cs) by updating the `Categories`, `Series`, and `Defaults` values in `ChartConfigurationModel.Default`. These are served to the client via `GET /api/ChartConfiguration` by [ChartConfigurationController.cs](Controllers/ChartConfigurationController.cs) and received by [chart-data.js](wwwroot/js/chart-integration/chart-data.js).
+- Execute the following code after your DataGrid initialization (see *Views/Home/Index.cshtml*):
+```js
+chartIntegration.activate();
+chartIntegration.enableAdaptivity(); // optional
+```
+- Call the `chartIntegration.showChartPopup` method to invoke the Popup when required.
+
 For more information about this example check the [Readme](../README.md).
 
 ## Build and Run
