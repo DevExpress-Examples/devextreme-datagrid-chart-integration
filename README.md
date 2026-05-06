@@ -6,7 +6,7 @@
 <!-- default badges end -->
 # DevExtreme DataGrid - Chart Integration
 
-This example adds data visualization capabilities to a DataGrid using a DevExtreme Chart component. A dxChart is configured within a DevExtreme Popup and is bound to the grid data source.
+This example adds data visualization capabilities to dxDataGrid using a DevExtreme Chart component. A dxChart is configured within a DevExtreme Popup and is bound to the grid data source.
 
 The chart popup allows you to configure multiple dxChart settings, including:
 
@@ -16,7 +16,7 @@ The chart popup allows you to configure multiple dxChart settings, including:
 
 You can also visualize the grid dataset partially using the selection and filtering capabilities of the dxDataGrid. Select specific records or apply filtering settings before you invoke the chart popup.
 
-This example also implements the exporting and printing capabilities of dxChart. You can save generated charts in four formats (.pdf, .png, .jpeg, .svg), or print directly without exporting.
+This example also implements exporting and printing capabilities of dxChart. You can save generated charts in four formats (.pdf, .png, .jpeg, .svg), or print directly without exporting.
 
 You can invoke the chart popup from either the DataGrid [toolbar](https://js.devexpress.com/Documentation/Guide/UI_Components/DataGrid/Getting_Started_with_DataGrid/#Customize_the_Toolbar) or [context menu](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxDataGrid/Configuration/#onContextMenuPreparing).
 
@@ -49,6 +49,7 @@ This example can adapt to screens of all sizes.
 
 ## Documentation
 
+- [DataGrid Overview](https://js.devexpress.com/Documentation/Guide/UI_Components/DataGrid/Overview/)
 - [Chart Overview](https://js.devexpress.com/Documentation/Guide/UI_Components/Chart/Overview/)
 - [PieChart Overview](https://js.devexpress.com/Documentation/Guide/UI_Components/PieChart/Series/Overview/)
 - [Popup Overview](https://js.devexpress.com/Documentation/Guide/UI_Components/Popup/Overview/)
