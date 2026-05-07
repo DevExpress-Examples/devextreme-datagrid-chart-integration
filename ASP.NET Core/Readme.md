@@ -56,7 +56,7 @@ Update `Categories`, `Series`, and `Defaults` properties in `ChartConfigurationM
 </script>
 ```
 
-5. Call `chartIntegration.showChartPopup()` to invoke the chart popup. This example calls `showChartPopup()` in the **onCLick** handlers of a toolbar button and a context menu item:
+5. Call `chartIntegration.showChartPopup()` to invoke the chart popup. This example calls `showChartPopup()` in the **onClick** handlers of a toolbar button and a context menu item:
 
 ```js
 @(Html.DevExtreme().DataGrid<TData>()

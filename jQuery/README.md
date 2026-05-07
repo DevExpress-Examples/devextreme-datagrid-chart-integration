@@ -35,7 +35,7 @@ chartIntegration.activate('chart-popup', 'settings-popover', gridInstance);
 chartIntegration.enableAdaptivity(); // optional
 ```
 
-5. Call `chartIntegration.showChartPopup()` to invoke the chart popup. This example calls `showChartPopup()` in the **onCLick** handlers of a toolbar button and a context menu item:
+5. Call `chartIntegration.showChartPopup()` to invoke the chart popup. This example calls `showChartPopup()` in the **onClick** handlers of a toolbar button and a context menu item:
 
 ```js
 $('#grid').dxDataGrid({
