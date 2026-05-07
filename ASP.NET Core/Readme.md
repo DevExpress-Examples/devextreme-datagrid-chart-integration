@@ -4,79 +4,79 @@ To integrate the chart popup in your ASP.NET Core application, follow these step
 
 1. Copy files from `wwwroot/js/chart-integration` and `wwwroot/css` (except `Site.css`) into your application and add the following references in your `_Layout.cshtml`:
 
-```razor
-<head>
-    <link rel="stylesheet" href="~/css/index.css" />
-    <link rel="stylesheet" href="~/css/dx-styles.css" />
+    ```razor
+    <head>
+        <link rel="stylesheet" href="~/css/index.css" />
+        <link rel="stylesheet" href="~/css/dx-styles.css" />
 
-    @* Core files *@
-    <script src="~/js/chart-integration/chart-data.js"></script>
-    <script src="~/js/chart-integration/helpers.js"></script>
-    <script src="~/js/chart-integration/chart-api.js"></script>
+        @* Core files *@
+        <script src="~/js/chart-integration/chart-data.js"></script>
+        <script src="~/js/chart-integration/helpers.js"></script>
+        <script src="~/js/chart-integration/chart-api.js"></script>
 
-    @* Component files - one per partial view *@
-    <script src="~/js/chart-integration/chart.js"></script>
-    <script src="~/js/chart-integration/series-tabs.js"></script>
-    <script src="~/js/chart-integration/chart-toolbar.js"></script>
-    <script src="~/js/chart-integration/chart-popup.js"></script>
+        @* Component files - one per partial view *@
+        <script src="~/js/chart-integration/chart.js"></script>
+        <script src="~/js/chart-integration/series-tabs.js"></script>
+        <script src="~/js/chart-integration/chart-toolbar.js"></script>
+        <script src="~/js/chart-integration/chart-popup.js"></script>
 
-    @* Initialization js *@
-    <script src="~/js/chart-integration/main.js"></script>
-</head>
-```
+        @* Initialization js *@
+        <script src="~/js/chart-integration/main.js"></script>
+    </head>
+    ```
 
 2. Copy partial views from `Views/Shared` (except `_Layout.cshtml`) into your application and render `_ChartPopup.cshtml` after your dxDataGrid:
 
-```razor
-@(Html.DevExtreme().DataGrid<TData>()
-    // ...
-)
+    ```razor
+    @(Html.DevExtreme().DataGrid<TData>()
+        // ...
+    )
 
-@await Html.PartialAsync("_ChartPopup")
-```
+    @await Html.PartialAsync("_ChartPopup")
+    ```
 
 3. Copy the following files into your application:
 
-- `Controllers/ChartConfigurationController.cs`
-- `Models/ChartConfiguration.cs`
-- `Models/ChartConfigurationModel.cs`
+    - `Controllers/ChartConfigurationController.cs`
+    - `Models/ChartConfiguration.cs`
+    - `Models/ChartConfigurationModel.cs`
 
-Update `Categories`, `Series`, and `Defaults` properties in `ChartConfigurationModel.Default` to match field names in your data set.
+    Update `Categories`, `Series`, and `Defaults` properties in `ChartConfigurationModel.Default` to match field names in your data set.
 
 4. Implement the following code after you initialize your dxDataGrid instance:
 
-```razor
-<script>
-    $(() => {
-        (async () => {
-            await chartIntegration.activate();
-            chartIntegration.enableAdaptivity(); // optional
-        })();
-    });
-</script>
-```
+    ```razor
+    <script>
+        $(() => {
+            (async () => {
+                await chartIntegration.activate();
+                chartIntegration.enableAdaptivity(); // optional
+            })();
+        });
+    </script>
+    ```
 
 5. Call `chartIntegration.showChartPopup()` to invoke the chart popup. This example calls `showChartPopup()` in the **onClick** handlers of a toolbar button and a context menu item:
 
-```js
-@(Html.DevExtreme().DataGrid<TData>()
-    .Toolbar(t => t.Items(items => {
-        items.Add()
-            .Widget(w => w.Button()
-                .OnClick("chartIntegration.showChartPopup")
-            );
-    }))
-    .OnContextMenuPreparing("onContextMenuPreparing")
-)
+    ```js
+    @(Html.DevExtreme().DataGrid<TData>()
+        .Toolbar(t => t.Items(items => {
+            items.Add()
+                .Widget(w => w.Button()
+                    .OnClick("chartIntegration.showChartPopup")
+                );
+        }))
+        .OnContextMenuPreparing("onContextMenuPreparing")
+    )
 
-<script>
-    function onContextMenuPreparing(e) {
-        e.items = [{
-            onClick: chartIntegration.showChartPopup
-        }];
-    }
-</script>
-```
+    <script>
+        function onContextMenuPreparing(e) {
+            e.items = [{
+                onClick: chartIntegration.showChartPopup
+            }];
+        }
+    </script>
+    ```
 
 For additional information about this example, refer to the general [Readme](../README.md).
 
