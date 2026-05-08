@@ -55,7 +55,7 @@ To integrate the chart popup in your jQuery application, follow these steps:
     });
     ```
 
-For additional information about this example, refer to the general [Readme](../README.md).
+For additional information about this example, refer to the [main readme](../README.md).
 
 ## Build and Lint
 

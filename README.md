@@ -29,15 +29,29 @@ This example can adapt to screens of all sizes.
 ## Files to Review
 
 - **Angular**
+    - [Integration Instructions](Angular/README.md)
     - [app.component.html](Angular/src/app/app.component.html)
     - [app.component.ts](Angular/src/app/app.component.ts)
+    - [chart-popup/chart-popup.component.html](Angular/src/app/components/chart-popup/chart-popup.component.html)
+    - [chart-popup/chart-popup.component.ts](Angular/src/app/components/chart-popup/chart-popup.component.ts)
+    - [utils/chart-api.ts](Angular/src/app/utils/chart-api.ts)
+    - [utils/chart-data.ts](Angular/src/app/utils/chart-data.ts)
 - **React**
+    - [Integration Instructions](React/README.md)
     - [App.tsx](React/src/App.tsx)
+    - [components/chart/popup/ChartPopup.tsx](React/src/components/chart/popup/ChartPopup.tsx)
+    - [hooks/useGridData.ts](React/src/hooks/useGridData.ts)
+    - [utils/chart-api.ts](React/src/utils/chart-api.ts)
+    - [utils/chart-data.ts](React/src/utils/chart-data.ts)
 - **Vue**
+    - [Integration Instructions](Vue/README.md)
     - [App.vue](Vue/src/App.vue)
     - [Home.vue](Vue/src/components/HomeContent.vue)
+    - [components/ChartPopup.vue](Vue/src/components/ChartPopup.vue)
+    - [utils/chartApi.ts](Vue/src/utils/chartApi.ts)
+    - [utils/chartData.ts](Vue/src/utils/chartData.ts)
 - **jQuery**
-    - [Instructions](jQuery/README.md)
+    - [Integration Instructions](jQuery/README.md)
     - [index.html](jQuery/src/index.html)
     - [index.js](jQuery/src/index.js)
     - [chart-integration/chart-api.js](jQuery/src/chart-integration/chart-api.js)
@@ -45,7 +59,12 @@ This example can adapt to screens of all sizes.
     - [chart-integration/helpers.js](jQuery/src/chart-integration/helpers.js)
     - [chart-integration/main.js](jQuery/src/chart-integration/main.js)
 - **ASP.NET Core**    
+    - [Integration Instructions](ASP.NET%20Core/README.md)
     - [Index.cshtml](ASP.NET%20Core/Views/Home/Index.cshtml)
+    - [wwwroot/js/chart-integration/main.js](ASP.NET%20Core/wwwroot/js/chart-integration/main.js)
+    - [wwwroot/js/chart-integration/chart-api.js](ASP.NET%20Core/wwwroot/js/chart-integration/chart-api.js)
+    - [wwwroot/js/chart-integration/chart-data.js](ASP.NET%20Core/wwwroot/js/chart-integration/chart-data.js)
+    - [Models/ChartConfigurationModel.cs](ASP.NET%20Core/Models/ChartConfigurationModel.cs)
 
 ## Documentation
 

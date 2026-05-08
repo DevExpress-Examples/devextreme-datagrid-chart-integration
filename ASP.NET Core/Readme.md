@@ -78,7 +78,7 @@ To integrate the chart popup in your ASP.NET Core application, follow these step
     </script>
     ```
 
-For additional information about this example, refer to the general [Readme](../README.md).
+For additional information about this example, refer to the [main readme](../README.md).
 
 ## Build and Run
 
