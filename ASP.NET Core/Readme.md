@@ -2,7 +2,7 @@
 
 To integrate the chart popup in your ASP.NET Core application, follow these steps:
 
-1. Copy files from `wwwroot/js/chart-integration` and `wwwroot/css` (except `Site.css`) into your application and add the following references in your `_Layout.cshtml`:
+1. Copy `wwwroot/js/chart-integration` and `wwwroot/css` into your application (except `Site.css`) and reference the following files in your `_Layout.cshtml`:
 
     ```razor
     <head>
@@ -58,7 +58,7 @@ To integrate the chart popup in your ASP.NET Core application, follow these step
 
 5. Call `chartIntegration.showChartPopup()` to invoke the chart popup. This example calls `showChartPopup()` in the **onClick** handlers of a toolbar button and a context menu item:
 
-    ```js
+    ```razor
     @(Html.DevExtreme().DataGrid<TData>()
         .Toolbar(t => t.Items(items => {
             items.Add()

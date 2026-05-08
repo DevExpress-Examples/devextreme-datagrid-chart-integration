@@ -59,6 +59,8 @@ For additional information about this example, refer to the general [Readme](../
 
 ## Build and Lint
 
+Prerequisites: Node.js.
+
 Install dependencies:
 ```sh
 npm install
