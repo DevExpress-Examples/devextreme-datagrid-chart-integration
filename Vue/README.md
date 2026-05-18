@@ -1,6 +1,6 @@
 # Vue 3 + TypeScript + Vite + DevExtreme
 
-To integrate the chart popup from this example into your Angular application, follow the steps below:
+To integrate the chart popup from this example into your Vue application, follow the steps below:
 
 1. Copy `src/utils`, `src/assets/chart-styles.css`, and `src/components` (all components except `HomeContent`) into your application.
 
