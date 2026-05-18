@@ -1,6 +1,6 @@
 # Angular DevExtreme Example
 
-To integrate the chart popup in your Angular application, follow these steps:
+To integrate the chart popup from this example to your Angular application, follow the steps below:
 
 1. Copy `src/app/components` into your application (all component folders except `home`) and reference the following files in your `app.module.ts`:
 
@@ -21,9 +21,9 @@ To integrate the chart popup in your Angular application, follow these steps:
     export class AppModule {}
     ```
 
-2. Copy `src/app/services` and `src/app/utils` into your application. Update types and variables in `src/app/utils/chart-data.ts` to match field names in your data set. Replace all instances of `GridDataItem` with your grid data type (this example imports `GridDataItem` from `src/app/data/grid-data.ts`).
+2. Copy `src/app/services` and `src/app/utils` into your application. Update types and variables in `src/app/utils/chart-data.ts` to match field names in your dataset. Replace all instances of `GridDataItem` with your grid data type (the example imports `GridDataItem` from `src/app/data/grid-data.ts`).
 
-3. Add `<app-chart-popup>` beside your dxDataGrid instance and define the `visible` and `chartData` properties.
+3. Add `<app-chart-popup>` next to your `<dx-data-grid>` and define `visible` and `chartData` properties.
 
     ```html
     <dx-data-grid>
@@ -35,7 +35,7 @@ To integrate the chart popup in your Angular application, follow these steps:
     ></app-chart-popup>
     ```
 
-4. Modify the `visible` property value to toggle the chart popup. This example sets this property to `true` in the click handlers of a toolbar button and a context menu item:
+4. Set `visible` to `true` to display the chart popup. This example uses click handlers of a toolbar button and a context menu item:
 
     ```html
     <dx-data-grid

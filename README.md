@@ -6,23 +6,23 @@
 <!-- default badges end -->
 # DevExtreme DataGrid - Chart Integration
 
-This example adds data visualization capabilities to dxDataGrid using a DevExtreme Chart component. A dxChart is configured within a DevExtreme Popup and is bound to the grid data source.
+This example uses three DevExtreme components: `dxChart`, `dxPopup`, and `dxDataGrid`. The popup chart visualizes data displayed within the data grid. 
 
-The chart popup allows you to configure multiple dxChart settings, including:
+Popup chart UI allows users to configure the following `dxChart` settings:
 
 - The chart type
-- Series (value axis) data fields
-- The argument axis data field
+- The data field that supplies arguments
+- Data fields that supply values (one or more series)
 
-You can also visualize the grid dataset partially using the selection and filtering capabilities of the dxDataGrid. Select specific records or apply filtering settings before you invoke the chart popup.
+You can visualize a subset of available data. Select specific grid records or apply a filter before you invoke the chart popup.
 
-This example also implements exporting and printing capabilities of dxChart. You can save generated charts in four formats (.pdf, .png, .jpeg, .svg), or print directly without exporting.
+You can save generated charts in four formats (.pdf, .png, .jpeg, .svg), or send charts directly to printer.
 
-You can invoke the chart popup from either the DataGrid [toolbar](https://js.devexpress.com/Documentation/Guide/UI_Components/DataGrid/Getting_Started_with_DataGrid/#Customize_the_Toolbar) or [context menu](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxDataGrid/Configuration/#onContextMenuPreparing).
+To display the chart popup, either use the DataGrid [toolbar](https://js.devexpress.com/Documentation/Guide/UI_Components/DataGrid/Getting_Started_with_DataGrid/#Customize_the_Toolbar) or [context menu](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxDataGrid/Configuration/#onContextMenuPreparing).
 
 ![DevExtreme DataGrid - Chart Integration](images/image-template.png)
 
-This example can adapt to screens of all sizes.
+This example adapts to screens of all sizes.
 
 ![DevExtreme DataGrid - Chart Integration Adaptability](images/image-adaptive.png)
 

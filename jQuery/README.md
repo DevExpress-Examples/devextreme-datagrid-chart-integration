@@ -1,6 +1,6 @@
 # jQuery DevExtreme Example
 
-To integrate the chart popup in your jQuery application, follow these steps:
+To integrate the chart popup from this example into your jQuery application, follow the steps below:
 
 1. Copy `src/chart-integration` and `src/styles` into your application and reference the following files in your root HTML:
 
@@ -28,14 +28,14 @@ To integrate the chart popup in your jQuery application, follow these steps:
 
 3. Update the `chartData` variable in [chart-data.js](src/chart-integration/chart-data.js). Update `categories`, `series`, and `defaults` fields to match field names in your data set.
 
-4. Implement the following code after you initialize your dxDataGrid instance:
+4. Add the following code after `dxDataGrid` instance initialization:
 
     ```js
     chartIntegration.activate('chart-popup', 'settings-popover', gridInstance);
     chartIntegration.enableAdaptivity(); // optional
     ```
 
-5. Call `chartIntegration.showChartPopup()` to invoke the chart popup. This example calls `showChartPopup()` in the **onClick** handlers of a toolbar button and a context menu item:
+5. Call `chartIntegration.showChartPopup()` to display the chart popup. This example uses **onClick** handlers of a toolbar button and a context menu item:
 
     ```js
     $('#grid').dxDataGrid({
