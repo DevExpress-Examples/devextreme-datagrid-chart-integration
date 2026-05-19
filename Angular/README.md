@@ -35,7 +35,7 @@ To integrate the chart popup from this example to your Angular application, foll
     ></app-chart-popup>
     ```
 
-4. Set `visible` to `true` to display the chart popup. This example uses click handlers of a toolbar button and a context menu item:
+4. Set `visible` to `true` to display the chart popup. This example uses toolbar button click handlers and a context menu item:
 
     ```html
     <dx-data-grid

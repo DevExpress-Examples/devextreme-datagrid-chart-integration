@@ -20,7 +20,7 @@ To integrate the chart popup from this example into your Vue application, follow
     </template>
     ```
 
-4. Set `visible` to `true` to display the chart popup. This example uses click handlers of a toolbar button and a context menu item:
+4. Set `visible` to `true` to display the chart popup. This example uses a toolbar button’s click handler and a context menu item:
 
     ```vue
     <template>

@@ -56,7 +56,7 @@ To integrate the chart popup from this example into your ASP.NET Core applicatio
     </script>
     ```
 
-5. Call `chartIntegration.showChartPopup()` to display the chart popup. This example uses **onClick** handlers of a toolbar button and a context menu item:
+5. Call `chartIntegration.showChartPopup()` to display the chart popup. This example uses a toolbar button’s **onClick** handler and a context menu item:
 
     ```razor
     @(Html.DevExtreme().DataGrid<TData>()

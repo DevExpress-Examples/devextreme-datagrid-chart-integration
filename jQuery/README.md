@@ -35,7 +35,7 @@ To integrate the chart popup from this example into your jQuery application, fol
     chartIntegration.enableAdaptivity(); // optional
     ```
 
-5. Call `chartIntegration.showChartPopup()` to display the chart popup. This example uses **onClick** handlers of a toolbar button and a context menu item:
+5. Call `chartIntegration.showChartPopup()` to display the chart popup. This example uses a toolbar button’s **onClick** handlers and a context menu item:
 
     ```js
     $('#grid').dxDataGrid({
