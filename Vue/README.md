@@ -1,26 +1,61 @@
 # Vue 3 + TypeScript + Vite + DevExtreme
 
-Follow these steps to integrate the Chart Popup with your DataGrid.
-- Add the following component files under `src/components/` and import them where needed:
-  - `ChartPopup.vue` — the Popup container
-  - `ChartViewer.vue` — chart rendering component
-  - `ChartSettings.vue` — chart settings panel
-  - `SeriesTypesTabs.vue` — series type selector
-- Add `src/utils/chartApi.ts` and `src/utils/helpers.ts`.
-- Replace data field names with yours in [chartData.ts](src/utils/chartData.ts) by updating `categories`, `seriesFields`, and `defaults`.
-- Declare `<ChartPopup>` inside your DataGrid host component (see [HomeContent.vue](src/components/HomeContent.vue)):
-```vue
-<ChartPopup
-  v-model:visible="chartPopupVisible"
-  :chart-data="chartData"
-  :only-selected="onlySelected"
-  :has-selected-rows="hasSelectedRows"
-  @update:only-selected="onOnlySelectedChange"
-/>
-```
-- Wire up DataGrid selection and chart data in your host component, then call `showChartPopup()` to open the Popup.
+To integrate the chart popup from this example into your Vue application, follow the steps below:
 
-For more information about this example check the [Readme](../README.md).
+1. Copy `src/utils`, `src/assets/chart-styles.css`, and `src/components` (all components except `HomeContent`) into your application.
+
+2. Update types and variables in `src/utils/chartData.ts` to match field names in your data set. Replace all instances of `GridDataItem` with your grid data type (this example imports `GridDataItem` from `src/data/gridData.ts`).
+
+3. Add `<ChartPopup>` next to your `dxDataGrid` instance and define `visible` and `chart-data` properties.
+
+    ```vue
+    <template>
+        <DxDataGrid>
+            <!-- ... -->
+        </DxDataGrid>
+        <ChartPopup
+            v-model:visible="chartPopupVisible"
+            :chart-data="chartData"
+        />
+    </template>
+    ```
+
+4. Set `visible` to `true` to display the chart popup. This example uses a toolbar button’s click handler and a context menu item:
+
+    ```vue
+    <template>
+        <DxDataGrid
+            @context-menu-preparing="onContextMenuPreparing"
+        >
+            <DxToolbar>
+                <DxToolbarItem>
+                    <template #default>
+                        <DxButton
+                            @click="handleChartButtonClick"
+                        />
+                    </template>
+                </DxToolbarItem>
+            </DxToolbar>
+        </DxDataGrid>
+    </template>
+
+    <script setup lang="ts">
+    import ChartPopup from './ChartPopup.vue';
+    // ...
+
+    function handleChartButtonClick() {
+        chartPopupVisible.value = true;
+    }
+
+    function onContextMenuPreparing(e: DxDataGridTypes.ContextMenuPreparingEvent) {
+        e.items = [{
+            onItemClick: () => { chartPopupVisible.value = true; },
+        }];
+    }
+    </script>
+    ```
+
+For additional information about this example, refer to the [main readme](../README.md).
 
 ## Build and Run
 

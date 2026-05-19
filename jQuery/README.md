@@ -1,19 +1,65 @@
 # jQuery DevExtreme Example
 
-Follow these steps to integrate the Chart Popup with your DataGrid.
-- Add files from the *chart-integration* and *styles* directories to your project and references them in your HTML.
-- Declare DIV elements for Chart Popup and Settings Popover containers in your markup. The sample uses the `chart-popup` and `settings-popover` ids.
-- Replace data field names with yours in [chart-data.js](src/chart-integration/chart-data.js) for the **categories**, **series**, and **defaults** fields.
-- Execute the following code after your DataGrid initialization:
-```js
-chartIntegration.activate('chart-popup', 'settings-popover', gridInstance);
-chartIntegration.enableAdaptivity(); // optional
-```
-- Call the `chartIntegration.showChartPopup` method to invoke the Popup when required.
+To integrate the chart popup from this example into your jQuery application, follow the steps below:
 
-For more information about this example check the [Readme](../README.md).
+1. Copy `src/chart-integration` and `src/styles` into your application and reference the following files in your root HTML:
+
+    ```html
+    <head>
+        <link rel="stylesheet" type="text/css" href="./styles/index.css" />
+        <link rel="stylesheet" type="text/css" href="./styles/dx-styles.css" />
+        <script type="text/javascript" src="chart-integration/chart-data.js"></script>
+        <script type="text/javascript" src="chart-integration/helpers.js"></script>
+        <script type="text/javascript" src="chart-integration/chart-api.js"></script>
+        <script type="text/javascript" src="chart-integration/main.js"></script>
+        <!-- ... -->
+    </head>
+    ```
+
+2. Add containers for the chart popup and the settings panel within the popup. This example uses DIV elements with *"chart-popup"* and *"settings-popover"* `id` attributes:
+
+    ```html
+    <body class="dx-viewport">
+        <div id="grid"></div>
+        <div id="chart-popup"></div>
+        <div id="settings-popover"></div>
+    </body>
+    ```
+
+3. Update the `chartData` variable in [chart-data.js](src/chart-integration/chart-data.js). Update `categories`, `series`, and `defaults` fields to match field names in your data set.
+
+4. Add the following code after `dxDataGrid` instance initialization:
+
+    ```js
+    chartIntegration.activate('chart-popup', 'settings-popover', gridInstance);
+    chartIntegration.enableAdaptivity(); // optional
+    ```
+
+5. Call `chartIntegration.showChartPopup()` to display the chart popup. This example uses a toolbar button’s **onClick** handlers and a context menu item:
+
+    ```js
+    $('#grid').dxDataGrid({
+        toolbar: {
+            items: [{
+                widget: 'dxButton',
+                options: {
+                    onClick: chartIntegration.showChartPopup
+                }
+            }]
+        },
+        onContextMenuPreparing: function(e) {
+            e.items = [{
+                onClick: chartIntegration.showChartPopup
+            }];
+        },
+    });
+    ```
+
+For additional information about this example, refer to the [main readme](../README.md).
 
 ## Build and Lint
+
+Prerequisites: Node.js.
 
 Install dependencies:
 ```sh

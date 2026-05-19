@@ -1,6 +1,84 @@
 # ASP.NET Core DevExtreme Example
 
-For more information about this example check the [Readme](../README.md).
+To integrate the chart popup from this example into your ASP.NET Core application, follow the steps below:
+
+1. Copy `wwwroot/js/chart-integration` and `wwwroot/css` into your application (except `Site.css`). Reference the following files in your `_Layout.cshtml`:
+
+    ```razor
+    <head>
+        <link rel="stylesheet" href="~/css/index.css" />
+        <link rel="stylesheet" href="~/css/dx-styles.css" />
+
+        @* Core files *@
+        <script src="~/js/chart-integration/chart-data.js"></script>
+        <script src="~/js/chart-integration/helpers.js"></script>
+        <script src="~/js/chart-integration/chart-api.js"></script>
+
+        @* Component files - one per partial view *@
+        <script src="~/js/chart-integration/chart.js"></script>
+        <script src="~/js/chart-integration/series-tabs.js"></script>
+        <script src="~/js/chart-integration/chart-toolbar.js"></script>
+        <script src="~/js/chart-integration/chart-popup.js"></script>
+
+        @* Initialization js *@
+        <script src="~/js/chart-integration/main.js"></script>
+    </head>
+    ```
+
+2. Copy partial views from `Views/Shared` into your application (except `_Layout.cshtml`). Render `_ChartPopup.cshtml` after `DataGrid` declaration:
+
+    ```razor
+    @(Html.DevExtreme().DataGrid<TData>()
+        // ...
+    )
+
+    @await Html.PartialAsync("_ChartPopup")
+    ```
+
+3. Copy the following files into your application:
+
+    - `Controllers/ChartConfigurationController.cs`
+    - `Models/ChartConfiguration.cs`
+    - `Models/ChartConfigurationModel.cs`
+
+    Update `Categories`, `Series`, and `Defaults` properties in `ChartConfigurationModel.Default` to match field names in your data set.
+
+4. Add the following code after `DataGrid` instance initialization:
+
+    ```razor
+    <script>
+        $(() => {
+            (async () => {
+                await chartIntegration.activate();
+                chartIntegration.enableAdaptivity(); // optional
+            })();
+        });
+    </script>
+    ```
+
+5. Call `chartIntegration.showChartPopup()` to display the chart popup. This example uses a toolbar button’s **onClick** handler and a context menu item:
+
+    ```razor
+    @(Html.DevExtreme().DataGrid<TData>()
+        .Toolbar(t => t.Items(items => {
+            items.Add()
+                .Widget(w => w.Button()
+                    .OnClick("chartIntegration.showChartPopup")
+                );
+        }))
+        .OnContextMenuPreparing("onContextMenuPreparing")
+    )
+
+    <script>
+        function onContextMenuPreparing(e) {
+            e.items = [{
+                onClick: chartIntegration.showChartPopup
+            }];
+        }
+    </script>
+    ```
+
+For additional information about this example, refer to the [main readme](../README.md).
 
 ## Build and Run
 
