@@ -3,6 +3,19 @@ import type { DxFormTypes } from 'devextreme-angular/ui/form';
 
 import { categories, seriesFields } from '../../utils/chart-data';
 import type { CategoryField, SeriesField } from '../../utils/chart-data';
+import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
+import { DxButtonModule } from 'devextreme-angular/ui/button';
+import { DxChartModule } from 'devextreme-angular/ui/chart';
+import { DxPieChartModule } from 'devextreme-angular/ui/pie-chart';
+import { DxPopupModule } from 'devextreme-angular/ui/popup';
+import { DxPopoverModule } from 'devextreme-angular/ui/popover';
+import { DxTabsModule } from 'devextreme-angular/ui/tabs';
+import { DxToolbarModule } from 'devextreme-angular/ui/toolbar';
+import { DxFormModule } from 'devextreme-angular/ui/form';
+import { DxDropDownButtonModule } from 'devextreme-angular/ui/drop-down-button';
+import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
+import { DxSwitchModule } from 'devextreme-angular/ui/switch';
+import { DxTagBoxModule } from 'devextreme-angular/ui/tag-box';
 
 interface SettingsFormData {
   CategoryAxis: CategoryField;
@@ -12,7 +25,7 @@ interface SettingsFormData {
 
 @Component({
   selector: 'app-chart-settings',
-  standalone: false,
+  imports: [DxDataGridModule, DxButtonModule, DxChartModule, DxPieChartModule, DxPopupModule, DxPopoverModule, DxTabsModule, DxToolbarModule, DxFormModule, DxDropDownButtonModule, DxSelectBoxModule, DxSwitchModule, DxTagBoxModule],
   templateUrl: './chart-settings.component.html',
   styleUrls: ['./chart-settings.component.scss'],
 })

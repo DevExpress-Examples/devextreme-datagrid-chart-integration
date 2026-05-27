@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
+import {DxDataGridComponent, DxDataGridModule} from 'devextreme-angular/ui/data-grid';
 import { DataSource } from 'devextreme-angular/common/data';
 import ArrayStore from 'devextreme/data/array_store';
 import type { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
@@ -10,13 +10,25 @@ import { GridDataService, type GridDataItem } from '../../data/grid-data';
 import { getIcon } from '../../utils/helpers';
 import { getDataForChart } from '../../utils/chart-api';
 import type { ChartDataSource } from '../../utils/chart-api';
+import { DxButtonModule } from 'devextreme-angular/ui/button';
+import { DxChartModule } from 'devextreme-angular/ui/chart';
+import { DxPieChartModule } from 'devextreme-angular/ui/pie-chart';
+import { DxPopupModule } from 'devextreme-angular/ui/popup';
+import { DxPopoverModule } from 'devextreme-angular/ui/popover';
+import { DxTabsModule } from 'devextreme-angular/ui/tabs';
+import { DxToolbarModule } from 'devextreme-angular/ui/toolbar';
+import { DxFormModule } from 'devextreme-angular/ui/form';
+import { DxDropDownButtonModule } from 'devextreme-angular/ui/drop-down-button';
+import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
+import { DxSwitchModule } from 'devextreme-angular/ui/switch';
+import { DxTagBoxModule } from 'devextreme-angular/ui/tag-box';
 
 
 
 @Component({
   selector: 'app-home',
+  imports: [DxDataGridModule, DxButtonModule, DxChartModule, DxPieChartModule, DxPopupModule, DxPopoverModule, DxTabsModule, DxToolbarModule, DxFormModule, DxDropDownButtonModule, DxSelectBoxModule, DxSwitchModule, DxTagBoxModule],
   templateUrl: './home.component.html',
-  standalone: false,
   providers: [GridDataService],
   styleUrls: ['./home.component.scss'],
 })
