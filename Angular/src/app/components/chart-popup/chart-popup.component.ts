@@ -33,10 +33,12 @@ import { DxDropDownButtonModule } from 'devextreme-angular/ui/drop-down-button';
 import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
 import { DxSwitchModule } from 'devextreme-angular/ui/switch';
 import { DxTagBoxModule } from 'devextreme-angular/ui/tag-box';
+import { SeriesTypesTabsComponent } from '../series-types-tabs/series-types-tabs.component';
+import { ChartSettingsComponent } from '../chart-settings/chart-settings.component';
 
 @Component({
     selector: 'app-chart-popup',
-    imports: [DxDataGridModule, DxButtonModule, DxChartModule, DxPieChartModule, DxPopupModule, DxPopoverModule, DxTabsModule, DxToolbarModule, DxFormModule, DxDropDownButtonModule, DxSelectBoxModule, DxSwitchModule, DxTagBoxModule],
+    imports: [DxDataGridModule, DxButtonModule, DxChartModule, DxPieChartModule, DxPopupModule, DxPopoverModule, DxTabsModule, DxToolbarModule, DxFormModule, DxDropDownButtonModule, DxSelectBoxModule, DxSwitchModule, DxTagBoxModule, ChartViewerComponent, SeriesTypesTabsComponent, ChartSettingsComponent],
     templateUrl: './chart-popup.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./chart-popup.component.scss']

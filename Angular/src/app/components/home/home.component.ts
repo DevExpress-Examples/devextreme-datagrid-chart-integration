@@ -22,12 +22,13 @@ import { DxDropDownButtonModule } from 'devextreme-angular/ui/drop-down-button';
 import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
 import { DxSwitchModule } from 'devextreme-angular/ui/switch';
 import { DxTagBoxModule } from 'devextreme-angular/ui/tag-box';
+import { ChartPopupComponent } from '../chart-popup/chart-popup.component';
 
 
 
 @Component({
   selector: 'app-home',
-  imports: [DxDataGridModule, DxButtonModule, DxChartModule, DxPieChartModule, DxPopupModule, DxPopoverModule, DxTabsModule, DxToolbarModule, DxFormModule, DxDropDownButtonModule, DxSelectBoxModule, DxSwitchModule, DxTagBoxModule],
+  imports: [DxDataGridModule, DxButtonModule, DxChartModule, DxPieChartModule, DxPopupModule, DxPopoverModule, DxTabsModule, DxToolbarModule, DxFormModule, DxDropDownButtonModule, DxSelectBoxModule, DxSwitchModule, DxTagBoxModule, ChartPopupComponent],
   templateUrl: './home.component.html',
   providers: [GridDataService],
   styleUrls: ['./home.component.scss'],
