@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import type { DxFormTypes } from 'devextreme-angular/ui/form';
 
 import { categories, seriesFields } from '../../utils/chart-data';
@@ -27,6 +27,7 @@ interface SettingsFormData {
   selector: 'app-chart-settings',
   imports: [DxDataGridModule, DxButtonModule, DxChartModule, DxPieChartModule, DxPopupModule, DxPopoverModule, DxTabsModule, DxToolbarModule, DxFormModule, DxDropDownButtonModule, DxSelectBoxModule, DxSwitchModule, DxTagBoxModule],
   templateUrl: './chart-settings.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./chart-settings.component.scss'],
 })
 export class ChartSettingsComponent implements OnChanges {

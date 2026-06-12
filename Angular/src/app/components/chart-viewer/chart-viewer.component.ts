@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, ViewChild, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import type { DxChartTypes } from 'devextreme-angular/ui/chart';
 import type { DxPieChartTypes } from 'devextreme-angular/ui/pie-chart';
 import {DxChartComponent, DxChartModule} from 'devextreme-angular/ui/chart';
@@ -26,6 +26,7 @@ import { DxTagBoxModule } from 'devextreme-angular/ui/tag-box';
   selector: 'app-chart-viewer',
   imports: [DxDataGridModule, DxButtonModule, DxChartModule, DxPieChartModule, DxPopupModule, DxPopoverModule, DxTabsModule, DxToolbarModule, DxFormModule, DxDropDownButtonModule, DxSelectBoxModule, DxSwitchModule, DxTagBoxModule],
   templateUrl: './chart-viewer.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./chart-viewer.component.scss'],
 })
 export class ChartViewerComponent implements OnChanges {

@@ -3,6 +3,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import type { DxTabsTypes } from 'devextreme-angular/ui/tabs';
 
@@ -27,6 +28,7 @@ import { DxTagBoxModule } from 'devextreme-angular/ui/tag-box';
   selector: 'app-series-types-tabs',
   imports: [DxDataGridModule, DxButtonModule, DxChartModule, DxPieChartModule, DxPopupModule, DxPopoverModule, DxTabsModule, DxToolbarModule, DxFormModule, DxDropDownButtonModule, DxSelectBoxModule, DxSwitchModule, DxTagBoxModule],
   templateUrl: './series-types-tabs.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./series-types-tabs.component.scss'],
 })
 export class SeriesTypesTabsComponent  {

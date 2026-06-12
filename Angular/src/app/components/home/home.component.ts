@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import {DxDataGridComponent, DxDataGridModule} from 'devextreme-angular/ui/data-grid';
@@ -31,6 +31,7 @@ import { ChartPopupComponent } from '../chart-popup/chart-popup.component';
   imports: [DxDataGridModule, DxButtonModule, DxChartModule, DxPieChartModule, DxPopupModule, DxPopoverModule, DxTabsModule, DxToolbarModule, DxFormModule, DxDropDownButtonModule, DxSelectBoxModule, DxSwitchModule, DxTagBoxModule, ChartPopupComponent],
   templateUrl: './home.component.html',
   providers: [GridDataService],
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
